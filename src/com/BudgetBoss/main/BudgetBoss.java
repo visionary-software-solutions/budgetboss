@@ -2,7 +2,7 @@ package com.BudgetBoss.main;
 
 public class BudgetBoss {
 	
-	static Prompter prompter = new Prompter();
+	static Prompts prompter = new Prompts();
 	static PrompterLogic logicChecker = new PrompterLogic();
 	static Budget currentBudget = null;
 		

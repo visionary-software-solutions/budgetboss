@@ -58,7 +58,7 @@ To-Do List : BudgetBoss
 		       <li>Given: An instance of BudgetBoss</li>
 		       <li>And: A a new Budget is created</li>
 		       <li>When: The user wants to quit the program</li>
-		       <li>Then: The Budget saves on exit</li>
+		       <li>Then: The user can view or alter the dates on the Budget</li>
 		  </td>
 	 	  <td>Implemented</td>
 		</tr>
@@ -82,7 +82,7 @@ To-Do List : BudgetBoss
 		       <li>When: The user defines the save/load directory</li>
 		       <li>Then: BudgetBoss will make sure it is a valid directory, or prompt again</li>
 		  </td>
-	 	  <td>Not yet implemented</td>
+	 	  <td>Implemented for now</td>
 		</tr>
 		<tr>
 		  <td>BudgetBoss can check for existing Budgets</td>
@@ -103,7 +103,7 @@ To-Do List : BudgetBoss
 		       <li>Then: BudgetBoss will enter a kind of...editing mode.</li>
 		       <li>And: In this mode, elements of the Budget can be manipulated.</li>
 		  </td>
-	 	  <td>Not yet implemented</td>
+	 	  <td>Implemented for now</td>
 		</tr>
 		</tbody>
 	<tfoot>

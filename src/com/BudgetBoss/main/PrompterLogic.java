@@ -34,43 +34,44 @@ public class PrompterLogic {
 		BudgetFinder finder = new BudgetFinder();
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
+			Prompts.searchingDirectory();
 			File[] foundBudgets = finder.findBudgets(defaultDirectory);
 			try{
 				finder.printFoundBudgets(foundBudgets);
 			}catch (NullPointerException e){
-				Prompter.noBudgetFound();
+				Prompts.noBudgetFound();
 			}
-			Prompter.openBudgetPrompt();
+			Prompts.openBudgetPrompt();
 			openPromptCleared();
 			budgetExists();
 		}
 		else if(validatedInput.equals("n")){
-			Prompter.dontSearchBudgets();
+			Prompts.dontSearchBudgets();
 			openPromptCleared();		
 		}
 		else
-			Prompter.invalidEntryPromptYOrN();
+			Prompts.invalidEntryPromptYOrN();
 	}
 	
 	public Budget askToCreateBudget(){
-		Prompter.createNewBudgetPrompt();
+		Prompts.createNewBudgetPrompt();
 		InputValidator validator = new InputValidator();
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
-			Prompter.getBudgetNamePrompt();
+			Prompts.getBudgetNamePrompt();
 			String desiredName = getInput();
 			Budget currentBudget = new Budget(desiredName);
-			Prompter.showDesiredBudgetName(desiredName);
+			Prompts.showDesiredBudgetName(desiredName);
 			budgetExists();
 			return currentBudget;
 		}
 		else if(validatedInput.equals("n")){
-			Prompter.fuckThisProgram();
+			Prompts.fuckThisProgram();
 			budgetExists();
 			return null;
 		}
 		else
-			Prompter.invalidEntryPromptYOrN();
+			Prompts.invalidEntryPromptYOrN();
 		return null;
 	}
 

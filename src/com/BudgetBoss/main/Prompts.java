@@ -1,6 +1,6 @@
 package com.BudgetBoss.main;
 
-public class Prompter {
+public class Prompts {
 	
 	public static void openBudgetPrompt(){
 		System.out.println ("Which budget do you want to open? (#)");

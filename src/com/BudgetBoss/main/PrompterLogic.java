@@ -30,9 +30,9 @@ public class PrompterLogic {
 		}
 	
 	private String askForLoadDirectory(String defaultDirectory){
-		InputValidator validator = new InputValidator();
 		String userPath = "ERROR";
 		while(userPath.equals("ERROR")){
+			InputValidator validator = new InputValidator();
 			userPath = getInput();
 			userPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}

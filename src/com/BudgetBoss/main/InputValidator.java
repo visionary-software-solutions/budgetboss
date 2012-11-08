@@ -13,7 +13,7 @@ public class InputValidator {
 			return "invalidEntry";
 	}
 	
-	private boolean validateUserPath(String toCheck){
+	public boolean validateUserPath(String toCheck){
 		File directory = new File(toCheck);
 		if(directory.isDirectory())
 			return true;
@@ -22,8 +22,7 @@ public class InputValidator {
 	}
 	
 	public String defaultDirectoryCheck(String toCheck, String defaultDirectory){
-		toCheck = toCheck.toLowerCase();
-		if(toCheck.equals("y"))
+		if(toCheck.equals("y") || toCheck.equals("Y"))
 			return defaultDirectory;
 		else if(validateUserPath(toCheck))
 			return toCheck;

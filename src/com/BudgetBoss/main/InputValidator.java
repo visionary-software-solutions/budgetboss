@@ -2,22 +2,12 @@ package com.BudgetBoss.main;
 
 public class InputValidator {
 		
-	public String isEntryYOrN(String toTest){
-		boolean inputIsValid;
-		inputIsValid = yOrNCheck(toTest);		
-		if (inputIsValid)
-			return toTest.toLowerCase();
-		else{
-			return "Invalid entry. Try again! (y/n)";
-		}
-	}
-		
-	private boolean yOrNCheck(String toCheck){
+	public String inputIsEitherYOrN(String toCheck){
 		if(toCheck.equals("y") || toCheck.equals("Y"))
-			return true;
+			return toCheck.toLowerCase();
 		else if(toCheck.equals("n") || toCheck.equals("N"))
-			return true;
+			return toCheck.toLowerCase();
 		else
-			return false;
+			return "invalidEntry";
 	}
 }

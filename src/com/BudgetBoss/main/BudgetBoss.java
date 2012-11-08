@@ -7,7 +7,7 @@ public class BudgetBoss {
 	static Budget currentBudget = null;
 		
 	public static void main(String args[]){
-		String defaultDirectory = "/home/visionary/Programming/training/BudgetBoss/SavedBudgets/";
+		String defaultDirectory = "/home/visionary/Programming/BudgetBoss/SavedBudgets/";
 		
 		System.out.println("Welcome to BudgetBoss!");
 		System.out.println("Manage your money...like a boss.");

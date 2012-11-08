@@ -7,20 +7,14 @@ public class BudgetFinder {
 	
 	public File[] findBudgets(String directoryToSearch){
 		File foundBudget = new File(directoryToSearch);
-		try{
 			return foundBudget.listFiles(new FilenameFilter(){
 				public boolean accept(File foundBudget, String filename){
 					return filename.endsWith(".bgt");
 				}
 			});
-		}catch(NullPointerException e){
-				Prompter.noBudgetFound();
-				return null;
-			}
 	}
 	
 	public void printFoundBudgets(File[] foundBudgets){
-		if (foundBudgets.length > 0){
 			List<String> budgetPaths= new ArrayList<String>();
 			String delimiter = "[/]";
 		
@@ -35,4 +29,4 @@ public class BudgetFinder {
 				}
 			}
 	}
-}
+

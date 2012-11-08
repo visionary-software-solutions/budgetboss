@@ -30,13 +30,16 @@ public class PrompterLogic {
 		}
 	
 	public void askToOpenBudget(String defaultDirectory){
-		File[] foundBudgets;
 		InputValidator validator = new InputValidator();
 		BudgetFinder finder = new BudgetFinder();
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
-			foundBudgets = finder.findBudgets(defaultDirectory);
-			finder.printFoundBudgets(foundBudgets);
+			File[] foundBudgets = finder.findBudgets(defaultDirectory);
+			try{
+				finder.printFoundBudgets(foundBudgets);
+			}catch (NullPointerException e){
+				Prompter.noBudgetFound();
+			}
 			Prompter.openBudgetPrompt();
 			openPromptCleared();
 			budgetExists();

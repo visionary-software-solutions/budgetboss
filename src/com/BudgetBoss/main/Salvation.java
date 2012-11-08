@@ -6,7 +6,7 @@ public class Salvation {
 	
 	public void saveOnExit(String fileName, Budget budget){
 			try{
-				FileOutputStream autoSave = new FileOutputStream("/home/visionary/Programming/training/BudgetBoss/SavedBudgets/" + fileName + ".bgt");
+				FileOutputStream autoSave = new FileOutputStream("/home/visionary/Programming/BudgetBoss/SavedBudgets/" + fileName + ".bgt");
 				ObjectOutputStream saveOutput = new ObjectOutputStream(autoSave);
 				saveOutput.writeObject(budget);
 				saveOutput.close();

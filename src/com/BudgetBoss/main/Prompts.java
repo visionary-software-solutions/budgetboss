@@ -10,8 +10,8 @@ public class Prompts {
 		System.out.println("Invalid entry! Try again.(y/n)");
 	}
 	
-	public static void searchingDirectory(){
-		System.out.println("Searching default directory...");
+	public static void searchingUserDirectory(String userInput){
+		System.out.println("Searching " + userInput + "...");
 	}
 	
 	public static void noBudgetFound(){
@@ -42,6 +42,11 @@ public class Prompts {
 	
 	public static void getLoadDirectoryPath(){
 		System.out.println("Where is the budget saved? Type the full path, por favor:");
+	}
+	
+	public static void badPathInput(String defaultDirectory){
+		System.out.println("That's not a valid path, yo. Reverting to default directory:");
+		System.out.println(defaultDirectory);
 	}
 	
 }

@@ -35,7 +35,10 @@ public class PrompterLogic {
 		String userPath = getInput();
 		if(validator.validateUserPath(userPath))
 			return userPath;
-		else return defaultDirectory;
+		else {
+			Prompts.badPathInput(defaultDirectory);
+			return defaultDirectory;
+		}
 		
 	}
 	
@@ -45,7 +48,7 @@ public class PrompterLogic {
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
 			defaultDirectory = askForLoadDirectory(defaultDirectory);
-			Prompts.searchingDirectory();
+			Prompts.searchingUserDirectory(defaultDirectory);
 			File[] foundBudgets = finder.findBudgets(defaultDirectory);
 			try{
 				finder.printFoundBudgets(foundBudgets);

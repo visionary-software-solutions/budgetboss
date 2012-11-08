@@ -1,5 +1,7 @@
 package com.BudgetBoss.main;
 
+import java.io.File;
+
 public class InputValidator {
 		
 	public String inputIsEitherYOrN(String toCheck){
@@ -9,5 +11,13 @@ public class InputValidator {
 			return toCheck.toLowerCase();
 		else
 			return "invalidEntry";
+	}
+	
+	public boolean validateUserPath(String toCheck){
+		File directory = new File(toCheck);
+		if(directory.isDirectory())
+			return true;
+		else
+			return false;
 	}
 }

@@ -29,11 +29,22 @@ public class PrompterLogic {
 		return userInput;
 		}
 	
+	private String askForLoadDirectory(String defaultDirectory){
+		InputValidator validator = new InputValidator();
+		Prompts.getLoadDirectoryPath();
+		String userPath = getInput();
+		if(validator.validateUserPath(userPath))
+			return userPath;
+		else return defaultDirectory;
+		
+	}
+	
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
 		BudgetFinder finder = new BudgetFinder();
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
+			defaultDirectory = askForLoadDirectory(defaultDirectory);
 			Prompts.searchingDirectory();
 			File[] foundBudgets = finder.findBudgets(defaultDirectory);
 			try{

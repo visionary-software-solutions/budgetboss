@@ -40,5 +40,9 @@ public class Prompts {
 		System.out.println("So I can only assume you're flipping me off right now. Adios, amigo!");
 	}
 	
+	public static void getLoadDirectoryPath(){
+		System.out.println("Where is the budget saved? Type the full path, por favor:");
+	}
+	
 }
 

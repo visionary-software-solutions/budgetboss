@@ -15,7 +15,7 @@ public class BudgetFinderTests {
 		//Then: A list of Budgets is compiled
 		File[] foundBudgets;
 		BudgetFinder finder = new BudgetFinder();
-		foundBudgets = finder.findBudgets("/home/visionary/Programming/training/BudgetBoss/SavedBudgets/");
+		foundBudgets = finder.findBudgets("/home/visionary/Programming/BudgetBoss/SavedBudgets/");
 		//And: Prints them to the console
 		finder.printFoundBudgets(foundBudgets);
 	}

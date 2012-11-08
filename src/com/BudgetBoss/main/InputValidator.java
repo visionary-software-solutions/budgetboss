@@ -13,11 +13,22 @@ public class InputValidator {
 			return "invalidEntry";
 	}
 	
-	public boolean validateUserPath(String toCheck){
+	private boolean validateUserPath(String toCheck){
 		File directory = new File(toCheck);
 		if(directory.isDirectory())
 			return true;
 		else
 			return false;
+	}
+	
+	public String defaultDirectoryCheck(String toCheck, String defaultDirectory){
+		toCheck = toCheck.toLowerCase();
+		if(toCheck.equals("y"))
+			return defaultDirectory;
+		else if(validateUserPath(toCheck))
+			return toCheck;
+		else
+			Prompts.badPathInput(defaultDirectory);
+			return "ERROR";
 	}
 }

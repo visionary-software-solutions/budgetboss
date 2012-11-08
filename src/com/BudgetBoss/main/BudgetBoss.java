@@ -2,16 +2,14 @@ package com.BudgetBoss.main;
 
 public class BudgetBoss {
 	
-	static Prompts prompter = new Prompts();
 	static PrompterLogic logicChecker = new PrompterLogic();
 	static Budget currentBudget = null;
 		
 	public static void main(String args[]){
-		String defaultDirectory = "/home/visionary/Programming/BudgetBoss/SavedBudgets/";
+		String currentUser = System.getProperty("user.name");
+		String defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
-		System.out.println("Welcome to BudgetBoss!");
-		System.out.println("Manage your money...like a boss.");
-		System.out.println("Is there an existing Budget you want to open? (y/n)");
+		Prompts.welcomeToBudgetBoss();
 		
 		while(!logicChecker.getPromptClearedStatus())
 				logicChecker.askToOpenBudget(defaultDirectory);
@@ -20,10 +18,11 @@ public class BudgetBoss {
 			currentBudget = logicChecker.askToCreateBudget();
 		
 		Salvation savior = new Salvation();
+		Prompts.pathToSalvationCheck(defaultDirectory);
 		try{	
-			savior.saveOnExit(currentBudget.getName(), currentBudget);
+			savior.saveOnExit(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
-			System.out.println("No Budget to save!");
+			Prompts.noBudgetToSave();
 			}
 		}
 	}

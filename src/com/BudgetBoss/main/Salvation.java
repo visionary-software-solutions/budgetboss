@@ -4,9 +4,9 @@ import java.io.*;
 
 public class Salvation {
 	
-	public void saveOnExit(String fileName, Budget budget){
+	public void saveOnExit(String fileName, Budget budget, String pathToSalvation){
 			try{
-				FileOutputStream autoSave = new FileOutputStream("/home/visionary/Programming/BudgetBoss/SavedBudgets/" + fileName + ".bgt");
+				FileOutputStream autoSave = new FileOutputStream(pathToSalvation + fileName + ".bgt");
 				ObjectOutputStream saveOutput = new ObjectOutputStream(autoSave);
 				saveOutput.writeObject(budget);
 				saveOutput.close();

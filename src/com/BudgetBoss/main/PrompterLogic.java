@@ -23,7 +23,7 @@ public class PrompterLogic {
 		return budgetExists;
 	}
 	
-	public static String getInput(){
+	private static String getInput(){
 		InputListener listener = new InputListener();
 		String userInput = listener.listenForInput();
 		return userInput;
@@ -31,33 +31,32 @@ public class PrompterLogic {
 	
 	private String askForLoadDirectory(String defaultDirectory){
 		InputValidator validator = new InputValidator();
-		Prompts.getLoadDirectoryPath();
-		String userPath = getInput();
-		if(validator.validateUserPath(userPath))
-			return userPath;
-		else {
-			Prompts.badPathInput(defaultDirectory);
-			return defaultDirectory;
+		String userPath = "ERROR";
+		while(userPath.equals("ERROR")){
+			userPath = getInput();
+			userPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}
-		
+		return userPath;				
 	}
 	
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
 		BudgetFinder finder = new BudgetFinder();
+		Prompts.existingBudgetPrompt();
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y")){
+			Prompts.getLoadDirectoryPath(defaultDirectory);
 			defaultDirectory = askForLoadDirectory(defaultDirectory);
-			Prompts.searchingUserDirectory(defaultDirectory);
+			Prompts.searchingDirectory();
 			File[] foundBudgets = finder.findBudgets(defaultDirectory);
-			try{
+			if(foundBudgets.length > 0){
 				finder.printFoundBudgets(foundBudgets);
-			}catch (NullPointerException e){
-				Prompts.noBudgetFound();
+				Prompts.openBudgetPrompt();
+				openPromptCleared();
+				budgetExists(); //may have to move this, don't forget
 			}
-			Prompts.openBudgetPrompt();
-			openPromptCleared();
-			budgetExists();
+			else
+				Prompts.noBudgetFound();
 		}
 		else if(validatedInput.equals("n")){
 			Prompts.dontSearchBudgets();

@@ -95,6 +95,17 @@ To-Do List : BudgetBoss
 	 	  <td>Implemented</td>
 		</tr>
 		<tr>
+		  <td>BudgetBoss has a universal default save/load directory</td>
+		  <td>
+		    <ul>
+		       <li>Given: A new instance of BudgetBoss</li>
+		       <li>When: A budget needs to be saved/loaded</li>
+		       <li>And: The user does not specify a save directory</li>
+		       <li>Then: It will save in the user's default Documents folder by getting the username</li>
+		  </td>
+	 	  <td>Partially implemented...only will work on Linux boxes at the moment</td>
+		</tr>
+		<tr>
 		  <td>BudgetBoss can interact with Budgets, beyond just creating and saving them</td>
 		  <td>
 		    <ul>

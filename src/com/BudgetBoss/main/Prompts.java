@@ -8,7 +8,7 @@ public class Prompts {
 	}
 	
 	public static void existingBudgetPrompt(){
-		System.out.println("Is there an existing Budget you want to open? (y/n)");
+		System.out.println("Is there an existing budget you want to open? (y/n)");
 	}
 	
 	public static void openBudgetPrompt(){
@@ -24,28 +24,28 @@ public class Prompts {
 	}
 	
 	public static void noBudgetFound(){
-		System.out.println("You don't have any saved Budgets there!");
+		System.out.println("You don't have any saved budgets there!");
 	}
 	
 	public static void noBudgetToSave(){
-		System.out.println("No Budget to save!");
+		System.out.println("No budget to save!");
 	}
 	
 	public static void dontSearchBudgets(){
-		System.out.println("No saved budget? Ok!");
+		System.out.println("Not gonna open a budget? I can dig it.");
 	}
 	
 	public static void createNewBudgetPrompt(){
-		System.out.println("Would you like to create a new Budget? (y/n)");
+		System.out.println("Would you like to create a new budget? (y/n)");
 	}
 	
 	public static void getBudgetNamePrompt(){
 		System.out.println("Let's make a budget!");
-		System.out.println("What do you want to name the Budget?");
+		System.out.println("What do you want to name the budget? (This will be the filename)");
 	}
 	
 	public static void showDesiredBudgetName(String name){
-		System.out.println("Creating Budget " + name + "...");
+		System.out.println("Creating budget " + name + "...");
 	}
 	
 	public static void fuckThisProgram(){
@@ -59,13 +59,17 @@ public class Prompts {
 		System.out.println("Enter y for the default, or enter path below:");
 	}
 	
+	public static void getSaveDirectoryPath(String defaultDirectory){
+		System.out.println("Where do you want to save the budget then? Enter path below:");
+	}
+	
 	public static void badPathInput(String defaultDirectory){
 		System.out.println("That's not a valid path, yo. Enter y for the default or enter a path:");
 		System.out.println("(" + defaultDirectory + " is the default)");
 	}
 	
 	public static void pathToSalvationCheck(String defaultDirectory){
-		System.out.println("Save in " + defaultDirectory + "?");
+		System.out.println("Save in " + defaultDirectory + "? (y/n)");
 	}
 	
 }

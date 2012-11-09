@@ -53,7 +53,7 @@ public class PrompterLogic {
 				finder.printFoundBudgets(foundBudgets);
 				Prompts.openBudgetPrompt();
 				openPromptCleared();
-				budgetExists(); //may have to move this, don't forget
+				budgetExists();
 			}
 			else
 				Prompts.noBudgetFound();

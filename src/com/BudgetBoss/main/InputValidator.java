@@ -24,8 +24,10 @@ public class InputValidator {
 	public String defaultDirectoryCheck(String toCheck, String defaultDirectory){
 		if(toCheck.equals("y") || toCheck.equals("Y"))
 			return defaultDirectory;
-		else if(validateUserPath(toCheck))
+		else if(validateUserPath(toCheck)){
+			BudgetBoss.setDefaultDirectory(toCheck);
 			return toCheck;
+		}
 		else
 			Prompts.badPathInput(defaultDirectory);
 			return "ERROR";

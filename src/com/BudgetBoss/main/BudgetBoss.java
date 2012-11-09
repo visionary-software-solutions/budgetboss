@@ -4,10 +4,16 @@ public class BudgetBoss {
 	
 	static PrompterLogic logicChecker = new PrompterLogic();
 	static Budget currentBudget = null;
+	static String defaultDirectory;	
+	
+	public static void setDefaultDirectory(String newDefaultDirectory){
+		defaultDirectory = newDefaultDirectory;
+	}
 		
 	public static void main(String args[]){
+		Salvation savior = new Salvation();
 		String currentUser = System.getProperty("user.name");
-		String defaultDirectory = "/home/" + currentUser + "/Documents/";
+		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
 		Prompts.welcomeToBudgetBoss();
 		
@@ -17,10 +23,8 @@ public class BudgetBoss {
 		while(!logicChecker.getBudgetExistsStatus()){
 			currentBudget = logicChecker.askToCreateBudget();
 		
-		Salvation savior = new Salvation();
-		Prompts.pathToSalvationCheck(defaultDirectory);
 		try{	
-			savior.saveOnExit(currentBudget.getName(), currentBudget, defaultDirectory);
+			savior.askToSaveBudget(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
 			Prompts.noBudgetToSave();
 			}

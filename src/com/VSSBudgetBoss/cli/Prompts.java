@@ -44,7 +44,7 @@ public class Prompts {
 		System.out.println("What do you want to name the budget? (This will be the filename)");
 	}
 	
-	public static void showDesiredBudgetName(String name){
+	public static void creatingBudget(String name){
 		System.out.println("Creating budget " + name + "...");
 	}
 	

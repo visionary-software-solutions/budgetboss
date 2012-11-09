@@ -10,7 +10,6 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 public class Opener {
 	
 	private boolean promptNeedsToClear = true;
-	private boolean budgetsExist = false;
 
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
@@ -50,7 +49,6 @@ public class Opener {
 		finder.printFoundBudgets(foundBudgets);
 		Prompts.openBudgetPrompt();
 		promptNeedsToClear = false;
-		budgetsExist = true;
 	}
 	
 	public boolean promptNeedsToClear(){

@@ -6,13 +6,17 @@ import com.VSSBudgetBoss.fileops.*;
 
 public class BudgetBoss {
 	
-	static PrompterLogic logicChecker = new PrompterLogic();
 	static Opener opener = new Opener();
+	static TheCreator TheCreator = new TheCreator();
 	static Budget currentBudget = null;
 	static String defaultDirectory;	
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
 		defaultDirectory = newDefaultDirectory;
+	}
+
+	public static void setCurrentBudget(Budget newBudget){
+		currentBudget = newBudget;
 	}
 		
 	public static void main(String args[]){
@@ -25,15 +29,15 @@ public class BudgetBoss {
 		while(opener.promptNeedsToClear())
 				opener.askToOpenBudget(defaultDirectory);
 		
-		while(!logicChecker.getBudgetExistsStatus()){
-			currentBudget = logicChecker.askToCreateBudget();
+		while(TheCreator.isSlackingOnFinances())
+			TheCreator.bestMakeABudgetNow();
 		
 		try{	
 			savior.askToSaveBudget(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
 			Prompts.noBudgetToSave();
-			}
 		}
 	}
 }
+
 

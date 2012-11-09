@@ -7,12 +7,16 @@ import com.VSSBudgetBoss.fileops.*;
 public class BudgetBoss {
 	
 	static Opener opener = new Opener();
-	static TheCreator TheCreator = new TheCreator();
+	static TheCreator god = new TheCreator();
 	static Budget currentBudget = null;
 	static String defaultDirectory;	
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
 		defaultDirectory = newDefaultDirectory;
+	}
+	
+	public static String getDefaultDirectory(){
+		return defaultDirectory;
 	}
 
 	public static void setCurrentBudget(Budget newBudget){
@@ -30,7 +34,7 @@ public class BudgetBoss {
 				opener.askToOpenBudget(defaultDirectory);
 		
 		while(TheCreator.isSlackingOnFinances())
-			TheCreator.bestMakeABudgetNow();
+			god.bestMakeABudgetNow();
 		
 		try{	
 			savior.askToSaveBudget(currentBudget.getName(), currentBudget, defaultDirectory);

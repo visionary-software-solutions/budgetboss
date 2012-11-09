@@ -1,5 +1,7 @@
 package com.VSSBudgetBoss.cli;
 
+import com.VSSBudgetBoss.main.BudgetBoss;
+
 public class Prompts {
 	
 	public static void welcomeToBudgetBoss(){
@@ -53,9 +55,9 @@ public class Prompts {
 		System.out.println("So I can only assume you're flipping me off right now. Adios, amigo!");
 	}
 	
-	public static void getLoadDirectoryPath(String defaultDirectory){
+	public static void getLoadDirectoryPath(){
 		System.out.println("Where is the budget saved? The default directory is:");
-		System.out.println(defaultDirectory);
+		System.out.println(BudgetBoss.getDefaultDirectory());
 		System.out.println("Enter y for the default, or enter path below:");
 	}
 	

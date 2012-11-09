@@ -6,7 +6,7 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class TheCreator {
 	
-	private boolean budgetless = true;
+	private static boolean budgetless = true;
 
 	public void bestMakeABudgetNow(){
 		Prompts.createNewBudgetPrompt();
@@ -33,7 +33,11 @@ public class TheCreator {
 		budgetless = false;
 	}
 	
-	public boolean isSlackingOnFinances(){
+	public static boolean isSlackingOnFinances(){
 		return budgetless;
+	}
+	
+	public static void notStillBudgetless(){
+		budgetless = false;
 	}
 }

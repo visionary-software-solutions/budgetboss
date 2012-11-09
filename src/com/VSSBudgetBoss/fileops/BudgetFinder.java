@@ -25,7 +25,7 @@ public class BudgetFinder {
 			String pathName = budgetPaths.get(i);
 			String[] splitPathName = pathName.split(delimiter);
 			String fileName = splitPathName[splitPathName.length - 1];
-			System.out.println(fileName);
+			System.out.println((i+1) + ") " + fileName);
 		}
 	}
 }

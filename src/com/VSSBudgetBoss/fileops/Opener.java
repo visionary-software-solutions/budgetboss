@@ -20,7 +20,7 @@ public class Opener {
 			getUserDirectoryPath(defaultDirectory);
 		else if(validatedInput.equals("n")){
 			Prompts.dontSearchBudgets();
-			promptNeedsToClear = false;		
+			promptNeedsToClear = false;
 		}
 		else
 			Prompts.invalidEntryPromptYOrN();
@@ -29,18 +29,21 @@ public class Opener {
 	private void getUserDirectoryPath(String defaultDirectory){
 		String validatedPath = "ERROR";
 		BudgetFinder finder = new BudgetFinder();
-		Prompts.getLoadDirectoryPath(defaultDirectory);
+		Prompts.getLoadDirectoryPath();
 		while(validatedPath.equals("ERROR")){
 			InputValidator validator = new InputValidator();
 			InputListener listener = new InputListener();
 			String userPath = listener.listenForInput();
 			validatedPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}
-		BudgetBoss.setDefaultDirectory(validatedPath);
 		Prompts.searchingDirectory();
-		File[] foundBudgets = finder.findBudgets(defaultDirectory);
-		if(foundBudgets.length > 0)
+		File[] foundBudgets = finder.findBudgets(validatedPath);
+		if(foundBudgets.length > 0){
 			printBudgets(finder, foundBudgets);
+			BudgetBoss.setDefaultDirectory(validatedPath);
+			TheCreator.notStillBudgetless();
+			promptNeedsToClear = false;
+		}
 		else
 			Prompts.noBudgetFound();
 	}
@@ -48,7 +51,6 @@ public class Opener {
 	private void printBudgets(BudgetFinder finder, File[] foundBudgets){
 		finder.printFoundBudgets(foundBudgets);
 		Prompts.openBudgetPrompt();
-		promptNeedsToClear = false;
 	}
 	
 	public boolean promptNeedsToClear(){

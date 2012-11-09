@@ -3,7 +3,6 @@ package com.VSSBudgetBoss.cli;
 import java.io.File;
 
 import com.VSSBudgetBoss.budget.Budget;
-import com.VSSBudgetBoss.fileops.BudgetFinder;
 
 public class PrompterLogic {
 	
@@ -31,43 +30,6 @@ public class PrompterLogic {
 		String userInput = listener.listenForInput();
 		return userInput;
 		}
-	
-	private String askForLoadDirectory(String defaultDirectory){
-		String userPath = "ERROR";
-		while(userPath.equals("ERROR")){
-			InputValidator validator = new InputValidator();
-			userPath = getInput();
-			userPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
-		}
-		return userPath;				
-	}
-	
-	public void askToOpenBudget(String defaultDirectory){
-		InputValidator validator = new InputValidator();
-		BudgetFinder finder = new BudgetFinder();
-		Prompts.existingBudgetPrompt();
-		String validatedInput = validator.inputIsEitherYOrN(getInput());
-		if(validatedInput.equals("y")){
-			Prompts.getLoadDirectoryPath(defaultDirectory);
-			defaultDirectory = askForLoadDirectory(defaultDirectory);
-			Prompts.searchingDirectory();
-			File[] foundBudgets = finder.findBudgets(defaultDirectory);
-			if(foundBudgets.length > 0){
-				finder.printFoundBudgets(foundBudgets);
-				Prompts.openBudgetPrompt();
-				openPromptCleared();
-				budgetExists();
-			}
-			else
-				Prompts.noBudgetFound();
-		}
-		else if(validatedInput.equals("n")){
-			Prompts.dontSearchBudgets();
-			openPromptCleared();		
-		}
-		else
-			Prompts.invalidEntryPromptYOrN();
-	}
 	
 	public Budget askToCreateBudget(){
 		Prompts.createNewBudgetPrompt();

@@ -30,22 +30,24 @@ public class InputValidator {
 			BudgetBoss.setDefaultDirectory(toCheck);
 			return toCheck;
 		}
-		else
-			ConsoleOutput.badPathInput(defaultDirectory);
+		else{
+			BudgetBoss.printPrompt("badPathInput");
+			System.out.println("The default directory is " + defaultDirectory);
 			return "ERROR";
+		}
 	}
 	
 	public boolean validateBudgetSelection(String toCheck, File[] foundBudgets){
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){
-			ConsoleOutput.NotEvenANumberGenius();
+			BudgetBoss.printPrompt("notEvenANumberGenius");
 			return false;
 		}
 		int highestSelection = foundBudgets.length;
 		int userSelection = Integer.valueOf(toCheck);
 		if(userSelection > highestSelection){
-			ConsoleOutput.ThatsNotAChoice();
+			BudgetBoss.printPrompt("thatsNotAChoice");
 			return false;
 		}
 		else

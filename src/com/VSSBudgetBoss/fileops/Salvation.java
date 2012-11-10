@@ -3,9 +3,7 @@ package com.VSSBudgetBoss.fileops;
 import java.io.*;
 
 import com.VSSBudgetBoss.budget.Budget;
-import com.VSSBudgetBoss.cli.InputListener;
-import com.VSSBudgetBoss.cli.InputValidator;
-import com.VSSBudgetBoss.cli.ConsoleOutput;
+import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
@@ -13,7 +11,7 @@ public class Salvation {
 	public void autoSave(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
-		ConsoleOutput.pathToSalvationCheck(pathToSalvation);
+		System.out.println("Save in " + pathToSalvation + "? (y/n)");
 		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
 		if(validatedInput.equals("y"))
 			writeBudgetToDisk(fileName, budget, pathToSalvation);

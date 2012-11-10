@@ -13,7 +13,7 @@ public class InputListener {
 			try {
 				desiredInput = listener.readLine();
 			} catch (IOException e) {
-				System.out.println("You fucked up. Un-Bosslike.");
+				System.out.println("You fucked up. I mean, it wasn't me. Un-Bosslike.");
 			}
 			return desiredInput;
 	}

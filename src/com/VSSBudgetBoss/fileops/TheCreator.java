@@ -27,7 +27,7 @@ public class TheCreator {
 		InputListener listener = new InputListener();
 		BudgetBoss.printPrompt("getBudgetName");
 		String desiredName = listener.listenForInput();
-		ConsoleOutput.creatingBudget(desiredName);
+		System.out.println("Creating budget " + desiredName + "...");
 		Budget newBudget = new Budget(desiredName);
 		BudgetBoss.setCurrentBudget(newBudget);
 		budgetless = false;

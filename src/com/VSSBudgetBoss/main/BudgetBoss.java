@@ -46,6 +46,8 @@ public class BudgetBoss {
 			savior.autoSave(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
 			System.out.println(cliOutput.getString("noBudgetToSave"));
+			//Theres a better way to do this but I'm too tired. Add a paramter to check paths that make sure they end in a slash
+			//or else your filenames get all wonkified when they save.
 		}
 	}
 }

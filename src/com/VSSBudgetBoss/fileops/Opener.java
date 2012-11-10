@@ -8,7 +8,7 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Opener {
 	
-	private boolean promptNeedsToClear = true;
+	private boolean promptCleared = true;
 
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
@@ -19,7 +19,7 @@ public class Opener {
 			getUserDirectoryPath(defaultDirectory);
 		else if(validatedInput.equals("n")){
 			BudgetBoss.printPrompt("dontSearchBudgets");
-			promptNeedsToClear = false;
+			promptCleared = false;
 		}
 		else
 			BudgetBoss.printPrompt("invalidEntryYN");
@@ -28,7 +28,9 @@ public class Opener {
 	private void getUserDirectoryPath(String defaultDirectory){
 		String validatedPath = "ERROR";
 		BudgetFinder finder = new BudgetFinder();
-		ConsoleOutput.getLoadDirectoryPath();
+		BudgetBoss.printPrompt("savedInDefault");
+		System.out.println(BudgetBoss.getDefaultDirectory());
+		BudgetBoss.printPrompt("whereSaved");
 		while(validatedPath.equals("ERROR")){
 			InputValidator validator = new InputValidator();
 			InputListener listener = new InputListener();
@@ -43,11 +45,11 @@ public class Opener {
 			int index = -1;
 			while(index < 0)
 				index = getBudgetNumberToOpen(foundBudgets);
-			ConsoleOutput.openingSelectedBudget(foundBudgets[index].getName());
+			System.out.println("Opening " + foundBudgets[index].getName());
 			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
 			BudgetBoss.setDefaultDirectory(validatedPath);
 			TheCreator.notStillBudgetless();
-			promptNeedsToClear = false;
+			promptCleared = false;
 		}
 		else
 			BudgetBoss.printPrompt("noBudgetFound");
@@ -94,6 +96,6 @@ public class Opener {
 	}
 	
 	public boolean promptNeedsToClear(){
-		return promptNeedsToClear;
+		return promptCleared;
 	}
 }

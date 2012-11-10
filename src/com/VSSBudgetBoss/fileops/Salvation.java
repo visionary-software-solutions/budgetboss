@@ -9,36 +9,32 @@ import com.VSSBudgetBoss.cli.ConsoleOutput;
 
 public class Salvation {
 	
-	private static String getInput(){
+	public void autoSave(String fileName, Budget budget, String pathToSalvation){
+		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
-		String userInput = listener.listenForInput();
-		return userInput;
+		ConsoleOutput.pathToSalvationCheck(pathToSalvation);
+		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
+		if(validatedInput.equals("y"))
+			writeBudgetToDisk(fileName, budget, pathToSalvation);
+		else if(validatedInput.equals("n")){
+			ConsoleOutput.getSaveDirectoryPath(pathToSalvation);
+			pathToSalvation = getUserSaveDirectory(pathToSalvation);
+			writeBudgetToDisk(fileName, budget, pathToSalvation);		
+		}
 	}
 	
-	private String askForSaveDirectory(String defaultDirectory){
+	private String getUserSaveDirectory(String defaultDirectory){
 		String userPath = "ERROR";
 		while(userPath.equals("ERROR")){
 			InputValidator validator = new InputValidator();
-			userPath = getInput();
+			InputListener listener = new InputListener();
+			userPath = listener.listenForInput();
 			userPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}
 		return userPath;				
 	}
-	
-	public void askToSaveBudget(String fileName, Budget budget, String pathToSalvation){
-		InputValidator validator = new InputValidator();
-		ConsoleOutput.pathToSalvationCheck(pathToSalvation);
-		String validatedInput = validator.inputIsEitherYOrN(getInput());
-		if(validatedInput.equals("y"))
-			saveOnExit(fileName, budget, pathToSalvation);
-		else if(validatedInput.equals("n")){
-			ConsoleOutput.getSaveDirectoryPath(pathToSalvation);
-			pathToSalvation = askForSaveDirectory(pathToSalvation);
-			saveOnExit(fileName, budget, pathToSalvation);		
-		}
-	}
-	
-	private void saveOnExit(String fileName, Budget budget, String pathToSalvation){
+
+	private void writeBudgetToDisk(String fileName, Budget budget, String pathToSalvation){
 			try{
 				FileOutputStream autoSave = new FileOutputStream(pathToSalvation + fileName + ".bgt");
 				ObjectOutputStream saveOutput = new ObjectOutputStream(autoSave);

@@ -39,7 +39,7 @@ public class BudgetBoss {
 		//System.out.println("Confirm correct Budget loaded:" + currentBudget.getName());
 		
 		try{	
-			savior.askToSaveBudget(currentBudget.getName(), currentBudget, defaultDirectory);
+			savior.autoSave(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
 			ConsoleOutput.noBudgetToSave();
 		}

@@ -1,7 +1,7 @@
 package com.VSSBudgetBoss.main;
 
+import java.util.ResourceBundle;
 import com.VSSBudgetBoss.budget.Budget;
-import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.*;
 
 public class BudgetBoss {
@@ -9,7 +9,13 @@ public class BudgetBoss {
 	static Opener opener = new Opener();
 	static TheCreator god = new TheCreator();
 	static Budget currentBudget = null;
-	static String defaultDirectory;	
+	static String defaultDirectory;
+	
+	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
+	
+	public static void printPrompt(String toGet){
+		System.out.println(cliOutput.getString(toGet));
+	}
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
 		defaultDirectory = newDefaultDirectory;
@@ -28,7 +34,7 @@ public class BudgetBoss {
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
-		ConsoleOutput.welcomeToBudgetBoss();
+		System.out.println(cliOutput.getString("welcome"));
 		
 		while(opener.promptNeedsToClear())
 				opener.askToOpenBudget(defaultDirectory);
@@ -36,12 +42,10 @@ public class BudgetBoss {
 		while(TheCreator.isSlackingOnFinances())
 			god.bestMakeABudgetNow();
 		
-		//System.out.println("Confirm correct Budget loaded:" + currentBudget.getName());
-		
 		try{	
 			savior.autoSave(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
-			ConsoleOutput.noBudgetToSave();
+			System.out.println(cliOutput.getString("noBudgetToSave"));
 		}
 	}
 }

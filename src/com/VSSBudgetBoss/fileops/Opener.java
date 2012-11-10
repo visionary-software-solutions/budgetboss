@@ -13,16 +13,16 @@ public class Opener {
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
-		ConsoleOutput.existingBudgetPrompt();
+		BudgetBoss.printPrompt("existingBudget");
 		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
 		if(validatedInput.equals("y"))
 			getUserDirectoryPath(defaultDirectory);
 		else if(validatedInput.equals("n")){
-			ConsoleOutput.dontSearchBudgets();
+			BudgetBoss.printPrompt("dontSearchBudgets");
 			promptNeedsToClear = false;
 		}
 		else
-			ConsoleOutput.invalidEntryPromptYOrN();
+			BudgetBoss.printPrompt("invalidEntryYN");
 	}
 		
 	private void getUserDirectoryPath(String defaultDirectory){
@@ -35,11 +35,11 @@ public class Opener {
 			String userPath = listener.listenForInput();
 			validatedPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}
-		ConsoleOutput.searchingDirectory();
+		BudgetBoss.printPrompt("searchingDirectory");
 		File[] foundBudgets = finder.findBudgets(validatedPath);
 		if(foundBudgets.length > 0){
 			finder.printFoundBudgets(foundBudgets);
-			ConsoleOutput.openBudgetPrompt();
+			BudgetBoss.printPrompt("openBudget");
 			int index = -1;
 			while(index < 0)
 				index = getBudgetNumberToOpen(foundBudgets);
@@ -50,7 +50,7 @@ public class Opener {
 			promptNeedsToClear = false;
 		}
 		else
-			ConsoleOutput.noBudgetFound();
+			BudgetBoss.printPrompt("noBudgetFound");
 	}
 	
 	private int getBudgetNumberToOpen(File[] foundBudgets){
@@ -69,25 +69,25 @@ public class Opener {
 		try {
 			newBudget = new FileInputStream(foundBudgets[index].toString());
 		} catch (FileNotFoundException e) {
-			ConsoleOutput.wTF();
+			BudgetBoss.printPrompt("wTF");
 			System.out.println("Error making the FileInputStream");
 		}
 		try {
 			toLoad = new ObjectInputStream(newBudget);
 		} catch (IOException e) {
-			ConsoleOutput.wTF();
+			BudgetBoss.printPrompt("wTF");
 			System.out.println("Error making the ObjectInputStream");
 		}
 		try {
 			loadedBudget = toLoad.readObject();
 		} catch (ClassNotFoundException | IOException e) {
-			ConsoleOutput.wTF();
+			BudgetBoss.printPrompt("wTF");
 			System.out.println("IO exception, maybe the file is bad?");
 		}
 		try {
 			toLoad.close();
 		} catch (IOException e) {
-			ConsoleOutput.wTF();
+			BudgetBoss.printPrompt("wTF");
 			System.out.println("Couldn't close the Object/File input streams.");
 		}
 		return (Budget) loadedBudget;

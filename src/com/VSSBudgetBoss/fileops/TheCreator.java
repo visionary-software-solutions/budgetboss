@@ -9,23 +9,23 @@ public class TheCreator {
 	private static boolean budgetless = true;
 
 	public void bestMakeABudgetNow(){
-		ConsoleOutput.createNewBudgetPrompt();
+		BudgetBoss.printPrompt("createNewBudget");
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
 		if(validatedInput.equals("y"))
 			getBudgetName();
 		else if(validatedInput.equals("n")){
-			ConsoleOutput.fuckThisProgram();
+			BudgetBoss.printPrompt("fuckThisProgram");
 			budgetless = false;
 		}
 		else
-			ConsoleOutput.invalidEntryPromptYOrN();
+			BudgetBoss.cliOutput.getString("invalidEntryYN");
 	}
 	
 	private void getBudgetName(){
 		InputListener listener = new InputListener();
-		ConsoleOutput.getBudgetNamePrompt();
+		BudgetBoss.printPrompt("getBudgetName");
 		String desiredName = listener.listenForInput();
 		ConsoleOutput.creatingBudget(desiredName);
 		Budget newBudget = new Budget(desiredName);

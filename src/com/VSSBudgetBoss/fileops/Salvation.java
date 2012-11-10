@@ -6,6 +6,7 @@ import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.InputListener;
 import com.VSSBudgetBoss.cli.InputValidator;
 import com.VSSBudgetBoss.cli.ConsoleOutput;
+import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
 	
@@ -17,7 +18,7 @@ public class Salvation {
 		if(validatedInput.equals("y"))
 			writeBudgetToDisk(fileName, budget, pathToSalvation);
 		else if(validatedInput.equals("n")){
-			ConsoleOutput.getSaveDirectoryPath(pathToSalvation);
+			BudgetBoss.printPrompt("getSaveDirectoryPath");
 			pathToSalvation = getUserSaveDirectory(pathToSalvation);
 			writeBudgetToDisk(fileName, budget, pathToSalvation);		
 		}
@@ -40,7 +41,7 @@ public class Salvation {
 				ObjectOutputStream saveOutput = new ObjectOutputStream(autoSave);
 				saveOutput.writeObject(budget);
 				saveOutput.close();
-				System.out.println("Budget saved! Adios, amigo.");
+				BudgetBoss.printPrompt("adios");
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}

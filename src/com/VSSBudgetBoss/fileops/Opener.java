@@ -1,7 +1,6 @@
 package com.VSSBudgetBoss.fileops;
 
 import java.io.*;
-
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;
@@ -9,6 +8,10 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 public class Opener {
 	
 	private boolean promptCleared = true;
+	
+	public boolean isPromptCleared(){
+		return promptCleared;
+	}
 
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
@@ -93,9 +96,5 @@ public class Opener {
 			System.out.println("Couldn't close the Object/File input streams.");
 		}
 		return (Budget) loadedBudget;
-	}
-	
-	public boolean promptNeedsToClear(){
-		return promptCleared;
 	}
 }

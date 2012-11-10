@@ -7,7 +7,7 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
 	
-	public void autoSave(String fileName, Budget budget, String pathToSalvation){
+	public void saveBudget(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		System.out.println("Save in " + pathToSalvation + "? (y/n)");

@@ -59,5 +59,21 @@ public class InputValidator {
 		else
 			return true;
 	}
+	
+	public boolean validatesMenuSelection(String toCheck){
+		try{
+			Integer.parseInt(toCheck);
+		}catch(NumberFormatException e){
+			BudgetBoss.printPrompt("notEvenANumberGenius");
+			return false;
+		}
+		int userSelection = Integer.valueOf(toCheck);
+		if(userSelection > 4){
+			BudgetBoss.printPrompt("thatsNotAChoice");
+			return false;
+		}
+		else
+			return true;
+	}
 }
 

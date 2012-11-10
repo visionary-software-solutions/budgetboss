@@ -1,14 +1,15 @@
 package com.VSSBudgetBoss.main;
 
 import java.util.ResourceBundle;
-import com.VSSBudgetBoss.budget.Budget;
+import com.VSSBudgetBoss.budget.*;
+import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.*;
 
 public class BudgetBoss {
 	
 	static Opener opener = new Opener();
 	static TheCreator god = new TheCreator();
-	static Budget currentBudget = null;
+	static Budget currentBudget = new Budget("defaultBudget");
 	static String defaultDirectory;
 	
 	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
@@ -30,23 +31,27 @@ public class BudgetBoss {
 	}
 		
 	public static void main(String args[]){
-		Salvation savior = new Salvation();
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
 		System.out.println(cliOutput.getString("welcome"));
 		
-		while(opener.promptNeedsToClear())
-				opener.askToOpenBudget(defaultDirectory);
+		while(opener.isPromptCleared())
+			opener.askToOpenBudget(defaultDirectory);
 		
 		while(TheCreator.isSlackingOnFinances())
 			god.bestMakeABudgetNow();
 		
-		try{	
-			savior.autoSave(currentBudget.getName(), currentBudget, defaultDirectory);
-		}catch (NullPointerException e){
-			System.out.println(cliOutput.getString("noBudgetToSave"));
-			
+		if(!(currentBudget.getName().equals("defaultBudget"))){
+			MainMenu mainMenu = new MainMenu(currentBudget);
+			while(mainMenu.stillUsingBudgetBoss()){
+				InputListener listener = new InputListener();
+				InputValidator validator = new InputValidator();
+				mainMenu.displayMenu();
+				String toCheck = listener.listenForInput();
+				if(validator.validatesMenuSelection(toCheck))
+					mainMenu.menuSelection(toCheck);
+			}
 		}
 	}
 }

@@ -1,10 +1,9 @@
 package com.VSSBudgetBoss.fileops;
 
-import java.io.File;
+import java.io.*;
 
-import com.VSSBudgetBoss.cli.InputListener;
-import com.VSSBudgetBoss.cli.InputValidator;
-import com.VSSBudgetBoss.cli.Prompts;
+import com.VSSBudgetBoss.budget.Budget;
+import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Opener {
@@ -14,43 +13,84 @@ public class Opener {
 	public void askToOpenBudget(String defaultDirectory){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
-		Prompts.existingBudgetPrompt();
+		ConsoleOutput.existingBudgetPrompt();
 		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
 		if(validatedInput.equals("y"))
 			getUserDirectoryPath(defaultDirectory);
 		else if(validatedInput.equals("n")){
-			Prompts.dontSearchBudgets();
+			ConsoleOutput.dontSearchBudgets();
 			promptNeedsToClear = false;
 		}
 		else
-			Prompts.invalidEntryPromptYOrN();
+			ConsoleOutput.invalidEntryPromptYOrN();
 	}
 		
 	private void getUserDirectoryPath(String defaultDirectory){
 		String validatedPath = "ERROR";
 		BudgetFinder finder = new BudgetFinder();
-		Prompts.getLoadDirectoryPath();
+		ConsoleOutput.getLoadDirectoryPath();
 		while(validatedPath.equals("ERROR")){
 			InputValidator validator = new InputValidator();
 			InputListener listener = new InputListener();
 			String userPath = listener.listenForInput();
 			validatedPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
 		}
-		Prompts.searchingDirectory();
+		ConsoleOutput.searchingDirectory();
 		File[] foundBudgets = finder.findBudgets(validatedPath);
 		if(foundBudgets.length > 0){
-			printBudgets(finder, foundBudgets);
+			finder.printFoundBudgets(foundBudgets);
+			ConsoleOutput.openBudgetPrompt();
+			int index = -1;
+			while(index < 0)
+				index = getBudgetNumberToOpen(foundBudgets);
+			ConsoleOutput.openingSelectedBudget(foundBudgets[index].getName());
+			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
 			BudgetBoss.setDefaultDirectory(validatedPath);
 			TheCreator.notStillBudgetless();
 			promptNeedsToClear = false;
 		}
 		else
-			Prompts.noBudgetFound();
+			ConsoleOutput.noBudgetFound();
 	}
 	
-	private void printBudgets(BudgetFinder finder, File[] foundBudgets){
-		finder.printFoundBudgets(foundBudgets);
-		Prompts.openBudgetPrompt();
+	private int getBudgetNumberToOpen(File[] foundBudgets){
+		InputListener listener = new InputListener();
+		InputValidator validator = new InputValidator();
+		String toCheck = listener.listenForInput();
+		if(validator.validateBudgetSelection(toCheck, foundBudgets))
+			return (Integer.valueOf(toCheck) - 1);
+		else return -1;
+	}
+	
+	private Budget loadBudget(int index, File[] foundBudgets){
+		FileInputStream newBudget = null;
+		ObjectInputStream toLoad = null;
+		Object loadedBudget = null;
+		try {
+			newBudget = new FileInputStream(foundBudgets[index].toString());
+		} catch (FileNotFoundException e) {
+			ConsoleOutput.wTF();
+			System.out.println("Error making the FileInputStream");
+		}
+		try {
+			toLoad = new ObjectInputStream(newBudget);
+		} catch (IOException e) {
+			ConsoleOutput.wTF();
+			System.out.println("Error making the ObjectInputStream");
+		}
+		try {
+			loadedBudget = toLoad.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			ConsoleOutput.wTF();
+			System.out.println("IO exception, maybe the file is bad?");
+		}
+		try {
+			toLoad.close();
+		} catch (IOException e) {
+			ConsoleOutput.wTF();
+			System.out.println("Couldn't close the Object/File input streams.");
+		}
+		return (Budget) loadedBudget;
 	}
 	
 	public boolean promptNeedsToClear(){

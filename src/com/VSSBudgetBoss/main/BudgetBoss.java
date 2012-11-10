@@ -28,7 +28,7 @@ public class BudgetBoss {
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
-		Prompts.welcomeToBudgetBoss();
+		ConsoleOutput.welcomeToBudgetBoss();
 		
 		while(opener.promptNeedsToClear())
 				opener.askToOpenBudget(defaultDirectory);
@@ -36,10 +36,12 @@ public class BudgetBoss {
 		while(TheCreator.isSlackingOnFinances())
 			god.bestMakeABudgetNow();
 		
+		//System.out.println("Confirm correct Budget loaded:" + currentBudget.getName());
+		
 		try{	
 			savior.askToSaveBudget(currentBudget.getName(), currentBudget, defaultDirectory);
 		}catch (NullPointerException e){
-			Prompts.noBudgetToSave();
+			ConsoleOutput.noBudgetToSave();
 		}
 	}
 }

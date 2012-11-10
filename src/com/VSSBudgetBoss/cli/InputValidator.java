@@ -31,7 +31,25 @@ public class InputValidator {
 			return toCheck;
 		}
 		else
-			Prompts.badPathInput(defaultDirectory);
+			ConsoleOutput.badPathInput(defaultDirectory);
 			return "ERROR";
 	}
+	
+	public boolean validateBudgetSelection(String toCheck, File[] foundBudgets){
+		try{
+			Integer.parseInt(toCheck);
+		}catch(NumberFormatException e){
+			ConsoleOutput.NotEvenANumberGenius();
+			return false;
+		}
+		int highestSelection = foundBudgets.length;
+		int userSelection = Integer.valueOf(toCheck);
+		if(userSelection > highestSelection){
+			ConsoleOutput.ThatsNotAChoice();
+			return false;
+		}
+		else
+			return true;
+	}
 }
+

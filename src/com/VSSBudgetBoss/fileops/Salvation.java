@@ -5,7 +5,7 @@ import java.io.*;
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.InputListener;
 import com.VSSBudgetBoss.cli.InputValidator;
-import com.VSSBudgetBoss.cli.Prompts;
+import com.VSSBudgetBoss.cli.ConsoleOutput;
 
 public class Salvation {
 	
@@ -27,12 +27,12 @@ public class Salvation {
 	
 	public void askToSaveBudget(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
-		Prompts.pathToSalvationCheck(pathToSalvation);
+		ConsoleOutput.pathToSalvationCheck(pathToSalvation);
 		String validatedInput = validator.inputIsEitherYOrN(getInput());
 		if(validatedInput.equals("y"))
 			saveOnExit(fileName, budget, pathToSalvation);
 		else if(validatedInput.equals("n")){
-			Prompts.getSaveDirectoryPath(pathToSalvation);
+			ConsoleOutput.getSaveDirectoryPath(pathToSalvation);
 			pathToSalvation = askForSaveDirectory(pathToSalvation);
 			saveOnExit(fileName, budget, pathToSalvation);		
 		}

@@ -2,7 +2,7 @@ package com.VSSBudgetBoss.cli;
 
 import com.VSSBudgetBoss.main.BudgetBoss;
 
-public class Prompts {
+public class ConsoleOutput {
 	
 	public static void welcomeToBudgetBoss(){
 		System.out.println("Welcome to BudgetBoss!");
@@ -72,6 +72,22 @@ public class Prompts {
 	
 	public static void pathToSalvationCheck(String defaultDirectory){
 		System.out.println("Save in " + defaultDirectory + "? (y/n)");
+	}
+
+	public static void NotEvenANumberGenius() {
+		System.out.println("That's...not a number. Try again!");
+	}
+
+	public static void ThatsNotAChoice() {
+		System.out.println("That's not one you can choose from, yo. WTF? Try again!");
+	}
+	
+	public static void wTF(){
+		System.out.println("Something has gone wrong. ABORT THE BABIES!");
+	}
+
+	public static void openingSelectedBudget(String name) {
+		System.out.println("Opening " + name);
 	}
 	
 }

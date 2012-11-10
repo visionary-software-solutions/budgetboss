@@ -9,25 +9,25 @@ public class TheCreator {
 	private static boolean budgetless = true;
 
 	public void bestMakeABudgetNow(){
-		Prompts.createNewBudgetPrompt();
+		ConsoleOutput.createNewBudgetPrompt();
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
 		if(validatedInput.equals("y"))
 			getBudgetName();
 		else if(validatedInput.equals("n")){
-			Prompts.fuckThisProgram();
+			ConsoleOutput.fuckThisProgram();
 			budgetless = false;
 		}
 		else
-			Prompts.invalidEntryPromptYOrN();
+			ConsoleOutput.invalidEntryPromptYOrN();
 	}
 	
 	private void getBudgetName(){
 		InputListener listener = new InputListener();
-		Prompts.getBudgetNamePrompt();
+		ConsoleOutput.getBudgetNamePrompt();
 		String desiredName = listener.listenForInput();
-		Prompts.creatingBudget(desiredName);
+		ConsoleOutput.creatingBudget(desiredName);
 		Budget newBudget = new Budget(desiredName);
 		BudgetBoss.setCurrentBudget(newBudget);
 		budgetless = false;

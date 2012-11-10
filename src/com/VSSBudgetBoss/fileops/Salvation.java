@@ -1,7 +1,6 @@
 package com.VSSBudgetBoss.fileops;
 
 import java.io.*;
-
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;

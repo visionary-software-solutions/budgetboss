@@ -17,8 +17,14 @@ public class InputValidator {
 	
 	public boolean validateUserPath(String toCheck){
 		File directory = new File(toCheck);
-		if(directory.isDirectory())
-			return true;
+		if(directory.isDirectory()){
+			if(toCheck.endsWith("/"))
+				return true;
+			else{
+				BudgetBoss.printPrompt("endInSlash");
+				return false;
+			}
+		}
 		else
 			return false;
 	}

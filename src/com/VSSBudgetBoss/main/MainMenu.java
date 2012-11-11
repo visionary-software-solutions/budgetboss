@@ -3,42 +3,49 @@ package com.VSSBudgetBoss.main;
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 
-public class MainMenu {
+public class MainMenu implements MainMenuOption{
 	
-	Budget currentBudget;
-	
+	private Budget currentBudget;
+	private boolean usingBudgetBoss = true;
+	private int currentMenuChoice;
+
 	public MainMenu(Budget currentBudget){
 		this.currentBudget = currentBudget;
 	}
-	
-	private boolean usingBudgetBoss = true;
-	
+		
 	public boolean stillUsingBudgetBoss(){
 		return usingBudgetBoss;
 	}
+	
+	private MainMenuOption[] menuOptions = new MainMenuOption[]{
+			new MainMenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
+			new MainMenuOption(){public void chooseOption() {startEditor();}},
+			new MainMenuOption(){public void chooseOption() {choseToSaveBudget();}},
+			new MainMenuOption(){public void chooseOption() {usingBudgetBoss = false;}}
+	};
 
 	public void displayMenu() {
 		BudgetBoss.printPrompt("mainMenu");
 	}
 	
+	private void startEditor(){
+		BudgetEditor editor = new BudgetEditor(currentBudget);
+		while(editor.stillEditingBudget())
+			editor.displayEditorMainMenu();
+	}
+	
 	public void menuSelection(String toSelect){
-		int userInput = Integer.valueOf(toSelect);
-		if(userInput == 1)
-			System.out.println(currentBudget.toString());
-		if(userInput ==2){
-			BudgetEditor editor = new BudgetEditor(currentBudget);
-			while(editor.stillEditingBudget()){
-				editor.displayEditorMainMenu();
-			}
-		}
-		if(userInput == 3)
-			choseToSaveBudget();
-		if(userInput == 4)
-			usingBudgetBoss = false;
+		currentMenuChoice = Integer.valueOf(toSelect);
+		chooseOption();
 	}
 	
 	private void choseToSaveBudget(){
 		Salvation savior = new Salvation();
 		savior.saveBudget(currentBudget.getName(), currentBudget, BudgetBoss.getDefaultDirectory());
+	}
+	
+	public void chooseOption(){
+		int index = (currentMenuChoice -1);
+		menuOptions[index].chooseOption();
 	}
 }

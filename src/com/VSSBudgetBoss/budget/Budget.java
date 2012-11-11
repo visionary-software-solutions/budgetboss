@@ -41,8 +41,8 @@ public class Budget implements Serializable{
 	}
 	
 	public String toString(){
-		return ("Budget name: " + getName() + "\nBudget start: " + startDate + 
-				"\nBudget End: " + endDate);
+		return ("\nBudget name: " + getName() + "\nBudget start: " + startDate + 
+				"\nBudget End: " + endDate + "\n");
 	}
 
 }

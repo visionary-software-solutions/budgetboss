@@ -12,15 +12,15 @@ public class TheCreator {
 		BudgetBoss.printPrompt("createNewBudget");
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
-		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
-		if(validatedInput.equals("y"))
+		String toCheck = listener.listenForInput();
+		while(validator.inputIsNotYOrN(toCheck))
+			toCheck = listener.listenForInput();
+		if(toCheck.equalsIgnoreCase("y"))
 			getBudgetName();
-		else if(validatedInput.equals("n")){
+		else{
 			BudgetBoss.printPrompt("fuckThisProgram");
 			budgetless = false;
 		}
-		else
-			BudgetBoss.cliOutput.getString("invalidEntryYN");
 	}
 	
 	private void getBudgetName(){

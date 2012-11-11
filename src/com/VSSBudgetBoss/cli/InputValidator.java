@@ -29,27 +29,30 @@ public class InputValidator {
 	
 	public boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
-		if(directory.isDirectory() && toCheck.endsWith("/"))
-			return false;
+		if(!toCheck.endsWith("/")){
+			BudgetBoss.printPrompt("endsInSlash");
+			return true;
+		}
+		if(directory.isDirectory())
+				return false;
 		else{
-			BudgetBoss.printPrompt("endInSlash");
+			BudgetBoss.printPrompt("badPathInput");
+			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
 	}
 	
-//	public boolean pathIsInvalid(String toCheck){
-//		if(toCheck.equals("y") || toCheck.equals("Y"))
-//			return false;
-//		else if(thisPathIsValid(toCheck)){
-//			BudgetBoss.setDefaultDirectory(toCheck);
-//			return false;
-//		}
-//		else{
-//			BudgetBoss.printPrompt("badPathInput");
-//			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
-//			return true;
-//		}
-//	}
+	public boolean notDefaultNorAPath(String toCheck){
+		if(toCheck.equalsIgnoreCase("y"))
+			return false;
+		else if(pathIsInvalid(toCheck)){
+			return true;
+		}
+		else{
+			BudgetBoss.setDefaultDirectory(toCheck);
+			return false;
+		}
+	}
 
 	public boolean validatesBudgetSelection(String toCheck, File[] foundBudgets){
 		if(inputNotAnInteger(toCheck))

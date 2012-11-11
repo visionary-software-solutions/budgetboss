@@ -13,35 +13,37 @@ public class Opener {
 		return promptCleared;
 	}
 
-	public void askToOpenBudget(String defaultDirectory){
+	public void askToOpenBudget(){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		BudgetBoss.printPrompt("existingBudget");
-		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
-		if(validatedInput.equals("y"))
-			getUserDirectoryPath(defaultDirectory);
-		else if(validatedInput.equals("n")){
+		String toCheck = listener.listenForInput();
+		while(validator.inputIsNotYOrN(toCheck)){
+			BudgetBoss.printPrompt("invalidEntryYN");
+			toCheck = listener.listenForInput();
+		}
+		if(toCheck.equalsIgnoreCase("y"))
+			getUserDirectoryPath();
+		else{
 			BudgetBoss.printPrompt("dontSearchBudgets");
 			promptCleared = false;
 		}
-		else
-			BudgetBoss.printPrompt("invalidEntryYN");
 	}
 		
-	private void getUserDirectoryPath(String defaultDirectory){
-		String validatedPath = "ERROR";
+	private void getUserDirectoryPath(){
+		InputListener listener = new InputListener();
+		InputValidator validator = new InputValidator();
 		BudgetFinder finder = new BudgetFinder();
 		BudgetBoss.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		BudgetBoss.printPrompt("whereSaved");
-		while(validatedPath.equals("ERROR")){
-			InputValidator validator = new InputValidator();
-			InputListener listener = new InputListener();
-			String userPath = listener.listenForInput();
-			validatedPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
-		}
+		String toCheck = listener.listenForInput();
+		while(validator.notDefaultNorAPath(toCheck))
+			toCheck = listener.listenForInput();
+		if(toCheck.equalsIgnoreCase("y"))
+			File[] foundBudgets = finder.findBudgets(BudgetBoss.getDefaultDirectory());
 		BudgetBoss.printPrompt("searchingDirectory");
-		File[] foundBudgets = finder.findBudgets(validatedPath);
+		File[] foundBudgets = finder.findBudgets(toCheck);
 		if(foundBudgets.length > 0){
 			finder.printFoundBudgets(foundBudgets);
 			BudgetBoss.printPrompt("openBudget");
@@ -50,7 +52,7 @@ public class Opener {
 				index = getBudgetNumberToOpen(foundBudgets);
 			System.out.println("Opening " + foundBudgets[index].getName());
 			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
-			BudgetBoss.setDefaultDirectory(validatedPath);
+			BudgetBoss.setDefaultDirectory(toCheck);
 			TheCreator.notStillBudgetless();
 			promptCleared = false;
 		}

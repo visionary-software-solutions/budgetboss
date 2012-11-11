@@ -37,7 +37,7 @@ public class BudgetBoss {
 		System.out.println(cliOutput.getString("welcome"));
 		
 		while(opener.isPromptCleared())
-			opener.askToOpenBudget(defaultDirectory);
+			opener.askToOpenBudget();
 		
 		while(TheCreator.isSlackingOnFinances())
 			god.bestMakeABudgetNow();

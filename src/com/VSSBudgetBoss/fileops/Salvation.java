@@ -34,8 +34,8 @@ public class Salvation {
 
 	private void writeBudgetToDisk(String fileName, Budget budget, String pathToSalvation){
 			try{
-				FileOutputStream autoSave = new FileOutputStream(pathToSalvation + fileName + ".bgt");
-				ObjectOutputStream saveOutput = new ObjectOutputStream(autoSave);
+				FileOutputStream saveFile = new FileOutputStream(pathToSalvation + fileName + ".bgt");
+				ObjectOutputStream saveOutput = new ObjectOutputStream(saveFile);
 				saveOutput.writeObject(budget);
 				saveOutput.close();
 				BudgetBoss.printPrompt("adios");

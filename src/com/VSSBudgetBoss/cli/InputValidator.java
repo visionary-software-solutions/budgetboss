@@ -15,6 +15,16 @@ public class InputValidator {
 			return "invalidEntry";
 	}
 	
+	private boolean inputNotAnInteger(String toCheck){
+		try{
+			Integer.parseInt(toCheck);
+		}catch(NumberFormatException e){
+			BudgetBoss.printPrompt("notEvenANumberGenius");
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean validateUserPath(String toCheck){
 		File directory = new File(toCheck);
 		if(directory.isDirectory()){
@@ -44,15 +54,24 @@ public class InputValidator {
 	}
 	
 	public boolean validateBudgetSelection(String toCheck, File[] foundBudgets){
-		try{
-			Integer.parseInt(toCheck);
-		}catch(NumberFormatException e){
-			BudgetBoss.printPrompt("notEvenANumberGenius");
+		if(inputNotAnInteger(toCheck))
+			return false;
+		int highestChoice = foundBudgets.length;
+		int userChoice = Integer.valueOf(toCheck);
+		if(userChoice > highestChoice){
+			BudgetBoss.printPrompt("thatsNotAChoice");
 			return false;
 		}
-		int highestSelection = foundBudgets.length;
-		int userSelection = Integer.valueOf(toCheck);
-		if(userSelection > highestSelection){
+		else
+			return true;
+	}
+	//For these two methods you should load the options into a string arraylist so you don't have to hardcode
+	//the number of choices every time they change. And they will change.
+	public boolean validatesMainMenuChoice(String toCheck){
+		if(inputNotAnInteger(toCheck))
+			return false;
+		int userChoice = Integer.valueOf(toCheck);
+		if(userChoice > 4){
 			BudgetBoss.printPrompt("thatsNotAChoice");
 			return false;
 		}
@@ -60,15 +79,11 @@ public class InputValidator {
 			return true;
 	}
 	
-	public boolean validatesMenuSelection(String toCheck){
-		try{
-			Integer.parseInt(toCheck);
-		}catch(NumberFormatException e){
-			BudgetBoss.printPrompt("notEvenANumberGenius");
+	public boolean validatesMainEditorChoice(String toCheck){
+		if(inputNotAnInteger(toCheck))
 			return false;
-		}
-		int userSelection = Integer.valueOf(toCheck);
-		if(userSelection > 4){
+		int userChoice = Integer.valueOf(toCheck);
+		if(userChoice > 5){
 			BudgetBoss.printPrompt("thatsNotAChoice");
 			return false;
 		}
@@ -76,4 +91,5 @@ public class InputValidator {
 			return true;
 	}
 }
+
 

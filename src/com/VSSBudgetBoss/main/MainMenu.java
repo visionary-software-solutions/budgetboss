@@ -1,6 +1,6 @@
 package com.VSSBudgetBoss.main;
 
-import com.VSSBudgetBoss.budget.Budget;
+import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 
 public class MainMenu {
@@ -25,6 +25,12 @@ public class MainMenu {
 		int userInput = Integer.valueOf(toSelect);
 		if(userInput == 1)
 			System.out.println(currentBudget.toString());
+		if(userInput ==2){
+			BudgetEditor editor = new BudgetEditor(currentBudget);
+			while(editor.stillEditingBudget()){
+				editor.displayEditorMainMenu();
+			}
+		}
 		if(userInput == 3)
 			choseToSaveBudget();
 		if(userInput == 4)

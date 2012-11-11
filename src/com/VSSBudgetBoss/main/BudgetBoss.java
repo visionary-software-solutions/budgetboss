@@ -49,7 +49,7 @@ public class BudgetBoss {
 				InputValidator validator = new InputValidator();
 				mainMenu.displayMenu();
 				String toCheck = listener.listenForInput();
-				if(validator.validatesMenuSelection(toCheck))
+				if(validator.validatesMainMenuChoice(toCheck))
 					mainMenu.menuSelection(toCheck);
 			}
 		}

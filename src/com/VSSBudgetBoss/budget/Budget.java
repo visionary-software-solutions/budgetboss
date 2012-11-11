@@ -40,8 +40,9 @@ public class Budget implements Serializable{
 		this.endDate = endDate;
 	}
 	
-	public String toString(Budget budgetString){
-		return budgetString.getName();
+	public String toString(){
+		return ("Budget name: " + getName() + "\nBudget start: " + startDate + 
+				"\nBudget End: " + endDate);
 	}
 
 }

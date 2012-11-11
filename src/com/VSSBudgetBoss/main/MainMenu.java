@@ -5,10 +5,10 @@ import com.VSSBudgetBoss.fileops.Salvation;
 
 public class MainMenu {
 	
-	Budget toEdit;
+	Budget currentBudget;
 	
-	public MainMenu(Budget toEdit){
-		this.toEdit = toEdit;
+	public MainMenu(Budget currentBudget){
+		this.currentBudget = currentBudget;
 	}
 	
 	private boolean usingBudgetBoss = true;
@@ -23,6 +23,8 @@ public class MainMenu {
 	
 	public void menuSelection(String toSelect){
 		int userInput = Integer.valueOf(toSelect);
+		if(userInput == 1)
+			System.out.println(currentBudget.toString());
 		if(userInput == 3)
 			choseToSaveBudget();
 		if(userInput == 4)
@@ -31,6 +33,6 @@ public class MainMenu {
 	
 	private void choseToSaveBudget(){
 		Salvation savior = new Salvation();
-		savior.saveBudget(toEdit.getName(), toEdit, BudgetBoss.getDefaultDirectory());
+		savior.saveBudget(currentBudget.getName(), currentBudget, BudgetBoss.getDefaultDirectory());
 	}
 }

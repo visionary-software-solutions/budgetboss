@@ -1,6 +1,7 @@
 package com.VSSBudgetBoss.fileops;
 
 import java.io.*;
+
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;
@@ -33,6 +34,7 @@ public class Opener {
 	private void getUserDirectoryPath(){
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
+		File[] foundBudgets;
 		BudgetFinder finder = new BudgetFinder();
 		BudgetBoss.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
@@ -40,10 +42,14 @@ public class Opener {
 		String toCheck = listener.listenForInput();
 		while(validator.notDefaultNorAPath(toCheck))
 			toCheck = listener.listenForInput();
-		if(toCheck.equalsIgnoreCase("y"))
-			File[] foundBudgets = finder.findBudgets(BudgetBoss.getDefaultDirectory());
-		BudgetBoss.printPrompt("searchingDirectory");
-		File[] foundBudgets = finder.findBudgets(toCheck);
+		if(toCheck.equalsIgnoreCase("y")){
+			BudgetBoss.printPrompt("searchingDirectory");
+			foundBudgets = finder.findBudgets(BudgetBoss.getDefaultDirectory());
+		}
+		else{
+			BudgetBoss.printPrompt("searchingDirectory");
+			foundBudgets = finder.findBudgets(toCheck);
+		}
 		if(foundBudgets.length > 0){
 			finder.printFoundBudgets(foundBudgets);
 			BudgetBoss.printPrompt("openBudget");

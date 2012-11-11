@@ -38,7 +38,7 @@ public class Salvation {
 				ObjectOutputStream saveOutput = new ObjectOutputStream(saveFile);
 				saveOutput.writeObject(budget);
 				saveOutput.close();
-				BudgetBoss.printPrompt("adios");
+				BudgetBoss.printPrompt("budgetSaved");
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}

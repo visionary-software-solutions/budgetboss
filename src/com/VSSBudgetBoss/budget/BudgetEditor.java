@@ -32,9 +32,22 @@ public class BudgetEditor {
 			if (input == 1)
 				System.out.println(toEdit.toString());
 			if (input == 2){
-				BudgetBoss.printPrompt("getNewNamePrompt");
+				BudgetBoss.printPrompt("getNewName");
 				String newBudgetName = listener.listenForInput();
 				toEdit.setName(newBudgetName);
+			}
+			if (input == 3){
+				BudgetBoss.printPrompt("getNewStartDate");
+				String newStartDate = listener.listenForInput();
+				toEdit.setStartDate(newStartDate);
+			}
+			if (input == 4){
+				BudgetBoss.printPrompt("getNewEndDate");
+				String newEndDate = listener.listenForInput();
+				toEdit.setEndDate(newEndDate);
+			}
+			if (input == 5){
+				stillEditing = false;
 			}
 		}
 

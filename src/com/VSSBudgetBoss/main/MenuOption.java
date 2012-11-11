@@ -1,6 +1,6 @@
 package com.VSSBudgetBoss.main;
 
-public interface MainMenuOption {
+public interface MenuOption {
 	
 	public void chooseOption();
 

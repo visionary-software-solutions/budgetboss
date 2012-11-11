@@ -6,13 +6,15 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class InputValidator {
 		
-	public String inputIsEitherYOrN(String toCheck){
-		if(toCheck.equals("y") || toCheck.equals("Y"))
-			return toCheck.toLowerCase();
-		else if(toCheck.equals("n") || toCheck.equals("N"))
-			return toCheck.toLowerCase();
-		else
-			return "invalidEntry";
+	public boolean inputIsNotYOrN(String toCheck){
+		if(toCheck.equalsIgnoreCase("y"))
+			return false;
+		else if(toCheck.equalsIgnoreCase("n"))
+			return false;
+		else{
+			BudgetBoss.printPrompt("invalidEntryYN");
+			return true;
+		}
 	}
 	
 	private boolean inputNotAnInteger(String toCheck){
@@ -25,35 +27,31 @@ public class InputValidator {
 		return false;
 	}
 	
-	public boolean validateUserPath(String toCheck){
+	public boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
-		if(directory.isDirectory()){
-			if(toCheck.endsWith("/"))
-				return true;
-			else{
-				BudgetBoss.printPrompt("endInSlash");
-				return false;
-			}
-		}
-		else
+		if(directory.isDirectory() && toCheck.endsWith("/"))
 			return false;
-	}
-	
-	public String defaultDirectoryCheck(String toCheck, String defaultDirectory){
-		if(toCheck.equals("y") || toCheck.equals("Y"))
-			return defaultDirectory;
-		else if(validateUserPath(toCheck)){
-			BudgetBoss.setDefaultDirectory(toCheck);
-			return toCheck;
-		}
 		else{
-			BudgetBoss.printPrompt("badPathInput");
-			System.out.println("The default directory is " + defaultDirectory);
-			return "ERROR";
+			BudgetBoss.printPrompt("endInSlash");
+			return true;
 		}
 	}
 	
-	public boolean validateBudgetSelection(String toCheck, File[] foundBudgets){
+//	public boolean pathIsInvalid(String toCheck){
+//		if(toCheck.equals("y") || toCheck.equals("Y"))
+//			return false;
+//		else if(thisPathIsValid(toCheck)){
+//			BudgetBoss.setDefaultDirectory(toCheck);
+//			return false;
+//		}
+//		else{
+//			BudgetBoss.printPrompt("badPathInput");
+//			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
+//			return true;
+//		}
+//	}
+
+	public boolean validatesBudgetSelection(String toCheck, File[] foundBudgets){
 		if(inputNotAnInteger(toCheck))
 			return false;
 		int highestChoice = foundBudgets.length;

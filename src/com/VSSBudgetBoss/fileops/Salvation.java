@@ -7,29 +7,30 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
 	
+	InputValidator validator;
+	
 	public void saveBudget(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		System.out.println("Save in " + pathToSalvation + "? (y/n)");
-		String validatedInput = validator.inputIsEitherYOrN(listener.listenForInput());
-		if(validatedInput.equals("y"))
+		String toCheck = listener.listenForInput();
+		while(validator.inputIsNotYOrN(toCheck))
+			toCheck = listener.listenForInput();
+		if(toCheck.equalsIgnoreCase("y"))
 			writeBudgetToDisk(fileName, budget, pathToSalvation);
-		else if(validatedInput.equals("n")){
+		else{
 			BudgetBoss.printPrompt("getSaveDirectoryPath");
-			pathToSalvation = getUserSaveDirectory(pathToSalvation);
+			pathToSalvation = getUserSaveDirectory();
 			writeBudgetToDisk(fileName, budget, pathToSalvation);		
+			}
 		}
-	}
 	
-	private String getUserSaveDirectory(String defaultDirectory){
-		String userPath = "ERROR";
-		while(userPath.equals("ERROR")){
-			InputValidator validator = new InputValidator();
-			InputListener listener = new InputListener();
-			userPath = listener.listenForInput();
-			userPath = validator.defaultDirectoryCheck(userPath, defaultDirectory);
-		}
-		return userPath;				
+	private String getUserSaveDirectory(){
+		InputListener listener = new InputListener();
+		String toCheck = listener.listenForInput();
+		while(validator.pathIsInvalid(toCheck))
+			toCheck = listener.listenForInput();
+		return toCheck;				
 	}
 
 	private void writeBudgetToDisk(String fileName, Budget budget, String pathToSalvation){

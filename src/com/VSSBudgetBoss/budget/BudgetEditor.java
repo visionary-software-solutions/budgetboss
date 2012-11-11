@@ -1,12 +1,13 @@
 package com.VSSBudgetBoss.budget;
 
 import com.VSSBudgetBoss.cli.*;
-import com.VSSBudgetBoss.main.BudgetBoss;
+import com.VSSBudgetBoss.main.*;
 
-public class BudgetEditor {
+public class BudgetEditor implements MenuOption{
 	
-	Budget toEdit;
-	
+	private Budget toEdit;
+	private String userInput;
+	private int currentMenuChoice;
 	private boolean stillEditing = true;
 
 	public BudgetEditor(Budget toEdit){
@@ -17,10 +18,36 @@ public class BudgetEditor {
 		return stillEditing;
 	}
 	
-	//For these menu selections, there HAS to be a way pull out the method blocks in the ifs and 
-	//then call those methods from an array or something, based on the numerical input.
-	//Or something similar, rather than hardcoding and if-checking the numeric choices.
-	//Look that shit up, you.
+	private MenuOption[] menuOptions = new MenuOption[] {
+		new MenuOption() {public void chooseOption() {System.out.println(toEdit.toString());}},
+		new MenuOption() {public void chooseOption() {getNewName();}},
+		new MenuOption() {public void chooseOption() {getNewStartDate();}},
+		new MenuOption() {public void chooseOption() {getNewEndDate();}},
+		new MenuOption() {public void chooseOption() {stillEditing = false;}}
+	};
+	
+	private void getInput(){
+		InputListener listener = new InputListener();
+		userInput = listener.listenForInput();
+	}
+	
+	private void getNewName(){
+		BudgetBoss.printPrompt("getNewName");
+		getInput();
+		toEdit.setName(userInput);
+	}
+	
+	private void getNewStartDate(){
+		BudgetBoss.printPrompt("getNewStartDate");
+		getInput();
+		toEdit.setStartDate(userInput);
+	}
+	
+	private void getNewEndDate(){
+		BudgetBoss.printPrompt("getNewEndDate");
+		getInput();
+		toEdit.setEndDate(userInput);
+	}
 	
 	public void displayEditorMainMenu(){
 		BudgetBoss.printPrompt("editorMainMenu");
@@ -28,28 +55,14 @@ public class BudgetEditor {
 		InputValidator validator = new InputValidator();
 		String userInput = listener.listenForInput();
 		if(validator.validatesMainEditorChoice(userInput)){
-			int input = Integer.valueOf(userInput);
-			if (input == 1)
-				System.out.println(toEdit.toString());
-			if (input == 2){
-				BudgetBoss.printPrompt("getNewName");
-				String newBudgetName = listener.listenForInput();
-				toEdit.setName(newBudgetName);
-			}
-			if (input == 3){
-				BudgetBoss.printPrompt("getNewStartDate");
-				String newStartDate = listener.listenForInput();
-				toEdit.setStartDate(newStartDate);
-			}
-			if (input == 4){
-				BudgetBoss.printPrompt("getNewEndDate");
-				String newEndDate = listener.listenForInput();
-				toEdit.setEndDate(newEndDate);
-			}
-			if (input == 5){
-				stillEditing = false;
-			}
+			currentMenuChoice = Integer.valueOf(userInput);
+			chooseOption();
 		}
 
+	}
+	
+	public void chooseOption(){
+		int index = (currentMenuChoice -1);
+		menuOptions[index].chooseOption();
 	}
 }

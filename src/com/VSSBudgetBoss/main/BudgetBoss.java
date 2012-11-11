@@ -46,11 +46,8 @@ public class BudgetBoss {
 			MainMenu mainMenu = new MainMenu(currentBudget);
 			while(mainMenu.stillUsingBudgetBoss()){
 				InputListener listener = new InputListener();
-				InputValidator validator = new InputValidator();
-				mainMenu.displayMenu();
-				String toCheck = listener.listenForInput();
-				if(validator.validatesMainMenuChoice(toCheck))
-					mainMenu.menuSelection(toCheck);
+				String userInput = listener.listenForInput();
+				mainMenu.displayMainMenu(userInput);
 			}
 		}
 	}

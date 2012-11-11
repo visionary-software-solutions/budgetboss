@@ -62,7 +62,7 @@ public class Opener {
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
 		String toCheck = listener.listenForInput();
-		if(validator.validateBudgetSelection(toCheck, foundBudgets))
+		if(validator.validatesBudgetSelection(toCheck, foundBudgets))
 			return (Integer.valueOf(toCheck) - 1);
 		else return -1;
 	}

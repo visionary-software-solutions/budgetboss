@@ -1,9 +1,10 @@
 package com.VSSBudgetBoss.main;
 
 import com.VSSBudgetBoss.budget.*;
+import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 
-public class MainMenu implements MainMenuOption{
+public class MainMenu implements MenuOption{
 	
 	private Budget currentBudget;
 	private boolean usingBudgetBoss = true;
@@ -17,16 +18,12 @@ public class MainMenu implements MainMenuOption{
 		return usingBudgetBoss;
 	}
 	
-	private MainMenuOption[] menuOptions = new MainMenuOption[]{
-			new MainMenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
-			new MainMenuOption(){public void chooseOption() {startEditor();}},
-			new MainMenuOption(){public void chooseOption() {choseToSaveBudget();}},
-			new MainMenuOption(){public void chooseOption() {usingBudgetBoss = false;}}
+	private MenuOption[] menuOptions = new MenuOption[]{
+		new MenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
+		new MenuOption(){public void chooseOption() {startEditor();}},
+		new MenuOption(){public void chooseOption() {choseToSaveBudget();}},
+		new MenuOption(){public void chooseOption() {usingBudgetBoss = false;}}
 	};
-
-	public void displayMenu() {
-		BudgetBoss.printPrompt("mainMenu");
-	}
 	
 	private void startEditor(){
 		BudgetEditor editor = new BudgetEditor(currentBudget);
@@ -34,9 +31,15 @@ public class MainMenu implements MainMenuOption{
 			editor.displayEditorMainMenu();
 	}
 	
-	public void menuSelection(String toSelect){
-		currentMenuChoice = Integer.valueOf(toSelect);
-		chooseOption();
+	public void displayMainMenu(String toSelect){
+		BudgetBoss.printPrompt("mainMenu");
+		InputListener listener = new InputListener();
+		InputValidator validator = new InputValidator();
+		String userInput = listener.listenForInput();
+		if(validator.validatesMainMenuChoice(userInput)){
+			currentMenuChoice = Integer.valueOf(toSelect);
+			chooseOption();
+		}
 	}
 	
 	private void choseToSaveBudget(){

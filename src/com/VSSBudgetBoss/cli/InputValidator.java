@@ -17,7 +17,7 @@ public class InputValidator {
 		}
 	}
 	
-	private boolean inputNotAnInteger(String toCheck){
+	public boolean inputNotAnInteger(String toCheck){
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){

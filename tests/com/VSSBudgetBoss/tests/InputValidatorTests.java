@@ -1,7 +1,6 @@
 package com.VSSBudgetBoss.tests;
 
 import static org.junit.Assert.*;
-import com.VSSBudgetBoss.budget.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,7 +48,6 @@ public class InputValidatorTests {
 		assertTrue(validator.pathIsInvalid("/home/" + currentUser + "/Documents"));
 		assertFalse(validator.pathIsInvalid("/home/" + currentUser + "/Documents/"));
 		assertTrue(validator.pathIsInvalid("/home/" + currentUser + "/notevenarealdirectory/"));
-
 	}
 }
 	

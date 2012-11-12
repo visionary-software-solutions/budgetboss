@@ -19,10 +19,11 @@ public class Opener {
 		}
 		if(toCheck.equalsIgnoreCase("y")){
 			getUserDirectoryPath();
-			BudgetBoss.budgetLoaded();
+			BudgetBoss.endLoadSavedBudget();
 		}
 		else{
 			BudgetBoss.printPrompt("dontSearchBudgets");
+			BudgetBoss.endLoadSavedBudget();
 		}
 	}
 		

@@ -10,7 +10,7 @@ public class BudgetBoss {
 	static TheCreator god = new TheCreator();
 	static Budget currentBudget = new Budget("defaultBudget");
 	static String defaultDirectory;
-	static boolean noBudgetIsLoaded = true;
+	static boolean loadASavedBudget = true;
 	
 	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
 	
@@ -18,8 +18,8 @@ public class BudgetBoss {
 		System.out.println(cliOutput.getString(toGet));
 	}
 	
-	public static void budgetLoaded(){
-		noBudgetIsLoaded = false;
+	public static void endLoadSavedBudget(){
+		loadASavedBudget = false;
 	}
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
@@ -40,7 +40,7 @@ public class BudgetBoss {
 		
 		System.out.println(cliOutput.getString("welcome"));
 		
-		while(noBudgetIsLoaded)
+		while(loadASavedBudget)
 			opener.askToOpenBudget();
 		
 		while(TheCreator.isSlackingOnFinances())

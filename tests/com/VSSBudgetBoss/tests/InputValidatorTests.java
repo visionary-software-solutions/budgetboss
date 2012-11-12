@@ -1,27 +1,28 @@
 package com.VSSBudgetBoss.tests;
 
 import static org.junit.Assert.*;
-
+import com.VSSBudgetBoss.budget.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.VSSBudgetBoss.cli.InputValidator;
 
 public class InputValidatorTests {
-
+	
+	InputValidator validator;
+	
+	@Before
+	public void setup(){
+	validator = new InputValidator();
+	}
 	@Test
-	public void testRecognizeYOrN() {
-		//Given: An Input Validator
-		InputValidator validator = new InputValidator();
-		//When: An input needs to be checked to see if it is "Y" or "y"
-		//And: An input needs to be checked to see if it is "N" or "n"
-		//Then: The input can be validated, or a message will be displayed to the user
-		//And: A validated input will be returned, lower-cased
-		assertTrue(validator.inputIsEitherYOrN("y").equals("y"));
-		assertTrue(validator.inputIsEitherYOrN("n").equals("n"));
-		assertTrue(validator.inputIsEitherYOrN("Y").equals("y"));
-		assertTrue(validator.inputIsEitherYOrN("N").equals("n"));
-		String message = "invalidEntry";
-		assertTrue(validator.inputIsEitherYOrN("jfkdsl").equals(message));		
+	
+	public void testInputIsNotYOrN(){
+		//Given: An input is required from a user
+		//And: The input needs to be either "y" or "n" (case doesn't matter)
+		//When: The user inputs something besides those two
+		//Then:The input will not be validated
+		assertTrue(validator.inputIsNotYOrN("this ain't yo momma's 'y'"));
 	}
 
 }

@@ -2,7 +2,6 @@ package com.VSSBudgetBoss.main;
 
 import java.util.ResourceBundle;
 import com.VSSBudgetBoss.budget.*;
-import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.*;
 
 public class BudgetBoss {
@@ -11,11 +10,16 @@ public class BudgetBoss {
 	static TheCreator god = new TheCreator();
 	static Budget currentBudget = new Budget("defaultBudget");
 	static String defaultDirectory;
+	static boolean noBudgetIsLoaded = true;
 	
 	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
 	
 	public static void printPrompt(String toGet){
 		System.out.println(cliOutput.getString(toGet));
+	}
+	
+	public static void budgetLoaded(){
+		noBudgetIsLoaded = false;
 	}
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
@@ -36,7 +40,7 @@ public class BudgetBoss {
 		
 		System.out.println(cliOutput.getString("welcome"));
 		
-		while(opener.isPromptCleared())
+		while(noBudgetIsLoaded)
 			opener.askToOpenBudget();
 		
 		while(TheCreator.isSlackingOnFinances())
@@ -45,9 +49,7 @@ public class BudgetBoss {
 		if(!(currentBudget.getName().equals("defaultBudget"))){
 			MainMenu mainMenu = new MainMenu(currentBudget);
 			while(mainMenu.stillUsingBudgetBoss()){
-				InputListener listener = new InputListener();
-				String userInput = listener.listenForInput();
-				mainMenu.displayMainMenu(userInput);
+				mainMenu.displayMainMenu();
 			}
 		}
 	}

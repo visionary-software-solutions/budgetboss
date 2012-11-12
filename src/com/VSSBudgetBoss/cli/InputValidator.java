@@ -54,17 +54,18 @@ public class InputValidator {
 		}
 	}
 
-	public boolean validatesBudgetSelection(String toCheck, File[] foundBudgets){
-		if(inputNotAnInteger(toCheck))
-			return false;
-		int highestChoice = foundBudgets.length;
+	public boolean inputNotABudget(String toCheck, int highestChoice){
+		if(inputNotAnInteger(toCheck)){
+			BudgetBoss.printPrompt("notEvenANumberGenius");
+			return true;
+		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > highestChoice){
 			BudgetBoss.printPrompt("thatsNotAChoice");
-			return false;
+			return true;
 		}
 		else
-			return true;
+			return false;
 	}
 	//For these two methods you should load the options into a string arraylist so you don't have to hardcode
 	//the number of choices every time they change. And they will change.

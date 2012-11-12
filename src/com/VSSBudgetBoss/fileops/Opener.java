@@ -8,12 +8,6 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Opener {
 	
-	private boolean promptCleared = true;
-	
-	public boolean isPromptCleared(){
-		return promptCleared;
-	}
-
 	public void askToOpenBudget(){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
@@ -23,19 +17,21 @@ public class Opener {
 			BudgetBoss.printPrompt("invalidEntryYN");
 			toCheck = listener.listenForInput();
 		}
-		if(toCheck.equalsIgnoreCase("y"))
+		if(toCheck.equalsIgnoreCase("y")){
 			getUserDirectoryPath();
+			BudgetBoss.budgetLoaded();
+		}
 		else{
 			BudgetBoss.printPrompt("dontSearchBudgets");
-			promptCleared = false;
 		}
 	}
 		
 	private void getUserDirectoryPath(){
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
-		File[] foundBudgets;
 		BudgetFinder finder = new BudgetFinder();
+		File[] foundBudgets;
+		
 		BudgetBoss.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		BudgetBoss.printPrompt("whereSaved");
@@ -53,14 +49,11 @@ public class Opener {
 		if(foundBudgets.length > 0){
 			finder.printFoundBudgets(foundBudgets);
 			BudgetBoss.printPrompt("openBudget");
-			int index = -1;
-			while(index < 0)
-				index = getBudgetNumberToOpen(foundBudgets);
+			int index = getBudgetNumberToOpen(foundBudgets);
 			System.out.println("Opening " + foundBudgets[index].getName());
 			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
 			BudgetBoss.setDefaultDirectory(toCheck);
 			TheCreator.notStillBudgetless();
-			promptCleared = false;
 		}
 		else
 			BudgetBoss.printPrompt("noBudgetFound");
@@ -70,9 +63,11 @@ public class Opener {
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
 		String toCheck = listener.listenForInput();
-		if(validator.validatesBudgetSelection(toCheck, foundBudgets))
-			return (Integer.valueOf(toCheck) - 1);
-		else return -1;
+		int highestChoice = foundBudgets.length;
+		while(validator.inputNotABudget(toCheck, highestChoice))
+			toCheck = listener.listenForInput();
+		return (Integer.valueOf(toCheck) - 1);
+		
 	}
 	
 	private Budget loadBudget(int index, File[] foundBudgets){

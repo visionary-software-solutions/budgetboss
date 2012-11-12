@@ -11,12 +11,13 @@ To-Do List : BudgetBoss
 	</thead>
 	<tbody>
 		<tr>
-		  <td>Initial Prompt</td>
+		  <td>Get Budget at program launch</td>
 		  <td>
 		    <ul>
 		       <li>Given: An instance of BudgetBoss</li>
-		       <li>When: There are no existing budgets</li>
-		       <li>Then: BudgetBoss should prompt to create a budget, and take name input</li>
+		       <li>When: The program starts up</li>
+		       <li>Then: BudgetBoss will ask to load a Budget</li>
+		       <li>And: If the user declines, it will prompt to create a Budget</li>
 		  </td>
 		  <td>Implemented</td>
 		</tr>

@@ -42,22 +42,27 @@ public class Opener {
 		if(toCheck.equalsIgnoreCase("y")){
 			BudgetBoss.printPrompt("searchingDirectory");
 			foundBudgets = finder.findBudgets(BudgetBoss.getDefaultDirectory());
+			selectBudget(foundBudgets, finder);
 		}
 		else{
 			BudgetBoss.printPrompt("searchingDirectory");
 			foundBudgets = finder.findBudgets(toCheck);
+			if(foundBudgets.length > 0){
+				selectBudget(foundBudgets, finder);
+				BudgetBoss.setDefaultDirectory(toCheck);
+			}
+			else
+				BudgetBoss.printPrompt("noBudgetFound");
 		}
-		if(foundBudgets.length > 0){
-			finder.printFoundBudgets(foundBudgets);
-			BudgetBoss.printPrompt("openBudget");
-			int index = getBudgetNumberToOpen(foundBudgets);
-			System.out.println("Opening " + foundBudgets[index].getName());
-			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
-			BudgetBoss.setDefaultDirectory(toCheck);
-			TheCreator.notStillBudgetless();
-		}
-		else
-			BudgetBoss.printPrompt("noBudgetFound");
+	}
+	
+	private void selectBudget(File[] foundBudgets, BudgetFinder finder){
+		finder.printFoundBudgets(foundBudgets);
+		BudgetBoss.printPrompt("openBudget");
+		int index = getBudgetNumberToOpen(foundBudgets);
+		System.out.println("Opening " + foundBudgets[index].getName());
+		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
+		TheCreator.notStillBudgetless();
 	}
 	
 	private int getBudgetNumberToOpen(File[] foundBudgets){

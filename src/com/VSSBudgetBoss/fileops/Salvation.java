@@ -7,8 +7,6 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
 	
-	InputValidator validator;
-	
 	public void saveBudget(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
@@ -27,6 +25,7 @@ public class Salvation {
 	
 	private String getUserSaveDirectory(){
 		InputListener listener = new InputListener();
+		InputValidator validator = new InputValidator();
 		String toCheck = listener.listenForInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = listener.listenForInput();

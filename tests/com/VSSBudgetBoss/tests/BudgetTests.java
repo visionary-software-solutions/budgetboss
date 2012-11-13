@@ -50,5 +50,14 @@ public class BudgetTests {
 		testBudget.setName("dontNeedNoTestBudget");
 		assertTrue(testBudget.getName().equals("dontNeedNoTestBudget"));
 	}
+	
+	@Test
+	public void testConvertDates(){
+		String userInput = "12/28/2012";
+		String delimiter = "[/]";
+		String[] dateInput = userInput.split(delimiter);
+		String convertedDate = dateInput[2] + "-" + dateInput[0] + "-" + dateInput[1];
+		System.out.println(convertedDate);
+	}
 
 }

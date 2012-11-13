@@ -1,19 +1,21 @@
 package com.VSSBudgetBoss.budget;
 
 import java.io.Serializable;
+import org.joda.time.*;
+import org.joda.time.format.*;
 
 public class Budget implements Serializable{
 	
 	private static final long serialVersionUID = -8611741910364436624L;
 	
 	String name;
-	String startDate;
-	String endDate;
+	LocalDate startDate;
+	LocalDate endDate;
 	
 	public Budget(String name){
 		setName(name);
-		startDate = "01/01/2012";
-		endDate = "12/31/2012";
+		startDate = new LocalDate(2012, 1, 1);
+		endDate = new LocalDate(2012, 12, 31);
 	}
 	
 	public String getName(){
@@ -25,24 +27,29 @@ public class Budget implements Serializable{
 	}
 	
 	public String getStartDate() {
-		return startDate;
+		String startDateOutput = DateConverter.formateDate(startDate);
+		return startDateOutput;
 	}
 	
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;		
+	public void setStartDate(String newDate) {
+		String convertedDate = DateConverter.convertDate(newDate);
+		this.startDate = new LocalDate(convertedDate);		
 	}
 
 	public String getEndDate() {
-		return endDate;
+		String endDateOutput = DateConverter.formateDate(endDate);
+		return endDateOutput;
 	}
 
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	public void setEndDate(String newDate) {
+		String convertedDate = DateConverter.convertDate(newDate);
+		this.endDate = new LocalDate(convertedDate);
 	}
 	
+	
 	public String toString(){
-		return ("\nBudget name: " + getName() + "\nBudget start: " + startDate + 
-				"\nBudget End: " + endDate + "\n");
+		return ("\nBudget name: " + getName() + "\nBudget start: " + getStartDate() + 
+				"\nBudget End: " + getEndDate() + "\n");
 	}
 
 }

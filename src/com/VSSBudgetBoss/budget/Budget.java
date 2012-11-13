@@ -2,7 +2,6 @@ package com.VSSBudgetBoss.budget;
 
 import java.io.Serializable;
 import org.joda.time.*;
-import org.joda.time.format.*;
 
 public class Budget implements Serializable{
 	

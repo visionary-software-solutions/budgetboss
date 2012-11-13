@@ -11,111 +11,80 @@ To-Do List : BudgetBoss
 	</thead>
 	<tbody>
 		<tr>
-		  <td>Get Budget at program launch</td>
+		  <td>BudgetBoss has a default initial save/load directory - Windows</td>
 		  <td>
 		    <ul>
 		       <li>Given: An instance of BudgetBoss</li>
-		       <li>When: The program starts up</li>
-		       <li>Then: BudgetBoss will ask to load a Budget</li>
-		       <li>And: If the user declines, it will prompt to create a Budget</li>
-		  </td>
-		  <td>Implemented</td>
-		</tr>
-		<tr>
-		  <td>BudgetBoss can create Budgets</td>
-		  <td>
-		    <ul>
-		       <li>Given: An instance of BudgetBoss</li>
-		       <li>When: A a new Budget is desired</li>
-		       <li>Then: BudgetBoss can generate a Budget object</li>
-		  </td>
-	 	  <td>Implemented</td>
-		</tr>
-		<tr>
-		  <td>Budgets have start and end dates</td>
-		  <td>
-		    <ul>
-		       <li>Given: An instance of BudgetBoss</li>
-		       <li>When: A a new Budget is created</li>
-		       <li>Then: It will have user-defined start and end dates</li>
-		  </td>
-	 	  <td>Partially Implemented - Dates in place, not user-defined</td>
-		</tr>
-		<tr>
-		  <td>Budgets dates are retrievable and changeable</td>
-		  <td>
-		    <ul>
-		       <li>Given: An instance of BudgetBoss</li>
-		       <li>And: A a new Budget is created</li>
-		       <li>When: The user wants to check or change the start or end date</li>
-		       <li>Then: The user can view or alter the dates on the Budget</li>
-		  </td>
-	 	  <td>Partially Implemented -Dates are changeable and retrievable...but there's no way for a user to do this yet</td>
-		</tr>
-		<tr>
-		  <td>BudgetBoss writes Budget objects to disk on exit</td>
-		  <td>
-		    <ul>
-		       <li>Given: An instance of BudgetBoss</li>
-		       <li>And: A a new Budget is created</li>
-		       <li>When: The user wants to quit the program</li>
-		       <li>Then: The Budget saves on exit</li>
-		  </td>
-	 	  <td>Implemented</td>
-		</tr>
-		<tr>
-		  <td>BudgetBoss's save/load directory can be defined by the user</td>
-		  <td>
-		    <ul>
-		       <li>Given: An instance of BudgetBoss</li>
-		       <li>And: A a new Budget is to be opened or saved</li>
-		       <li>When: The user wants to change the directory from default</li>
-		       <li>Then: The user can define the save/load path</li>
+		       <li>When: The user wants to open/save a Budget</li>
+		       <li>Then: BudgetBoss will offer to use C:\Users\(username)\Documents\</li>
 		  </td>
 	 	  <td>Not yet implemented</td>
 		</tr>
 		<tr>
-		  <td>BudgetBoss validates user-supplied save/load directory</td>
+		  <td>BudgetBoss can detect host OS and current username for default path generation</td>
 		  <td>
 		    <ul>
 		       <li>Given: An instance of BudgetBoss</li>
-		       <li>And: A a new Budget is to be opened or saved</li>
-		       <li>When: The user defines the save/load directory</li>
-		       <li>Then: BudgetBoss will make sure it is a valid directory, or prompt again</li>
+		       <li>And: The user wants to open/save a Budget</li>
+		       <li>When: The default path is to be offered</li>
+		       <li>Then: BudgetBoss will generate the correct path by detecting username and host OS</li>
 		  </td>
-	 	  <td>Not yet implemented</td>
+	 	  <td>Partially implemented - It can get the username at this point</td>
 		</tr>
 		<tr>
-		  <td>BudgetBoss can check for existing Budgets</td>
+		  <td>BudgetBoss has a user-definable save/load directory</td>
 		  <td>
 		    <ul>
-		       <li>Given: A new instance of BudgetBoss</li>
-		       <li>When: The program initializes</li>
-		       <li>Then: It will check for existing budgets, if the user desires</li>
-		  </td>
-	 	  <td>Implemented</td>
-		</tr>
-		<tr>
-		  <td>BudgetBoss has a universal default save/load directory</td>
-		  <td>
-		    <ul>
-		       <li>Given: A new instance of BudgetBoss</li>
+		       <li>Given: An instance of BudgetBoss</li>
 		       <li>When: A budget needs to be saved/loaded</li>
-		       <li>And: The user does not specify a save directory</li>
-		       <li>Then: It will save in the user's default Documents folder by getting the username</li>
+		       <li>And: The user declines to use the default directory</li>
+		       <li>Then: The user can define a custom directory, provided it is an existing/valid path</li>
 		  </td>
 	 	  <td>Partially implemented...only will work on Linux boxes at the moment</td>
 		</tr>
 		<tr>
-		  <td>BudgetBoss can interact with Budgets, beyond just creating and saving them</td>
+		  <td>BudgetBoss validates user inputs</td>
 		  <td>
 		    <ul>
-		       <li>Given: A new instance of BudgetBoss</li>
-		       <li>When: A budget is either created or opened</li>
-		       <li>Then: BudgetBoss will enter a kind of...editing mode.</li>
-		       <li>And: In this mode, elements of the Budget can be manipulated.</li>
+		       <li>Given: An instance of BudgetBoss</li>
+		       <li>And: Input is required/requested from the user</li>
+		       <li>When: The user provides the input</li>
+		       <li>Then: BudgetBoss will make sure it meets a set of conditions making it a valid input for whatever purpose the input was required/requested for</li>
+		  </td>
+	 	  <td>Partially implemented - not all checks in place, yet</td>
+		</tr>
+		<tr>
+		  <td>BudgetBoss has a mode/menu for editing Budgets</td>
+		  <td>
+		    <ul>
+		       <li>Given: An instance of BudgetBoss</li>
+		       <li>When: A Budget is either created or opened</li>
+		       <li>Then: If desired, the user can access an Editor Menu</li>
+		       <li>And: From there, make changes to any/all aspects of the Budget (specific editing features listed seperately)</li>
+		  </td>
+	 	  <td>Partially implemented - BudgetEditor exists, but is very sparse</td>
+		</tr>
+		<tr>
+		  <td>Budgets have default spending categories to add</td>
+		  <td>
+		    <ul>
+		       <li>Given: An instance of BudgetBoss</li>
+		       <li>When: A new Budget is created</li>
+		       <li>Then: The Budget will have some built in spending categories to choose from</li>
+		       <li>And: The user can choose from the categories and add them to the Budget as desired</li>
 		  </td>
 	 	  <td>Not yet implemented</td>
+		</tr>
+		<tr>
+		  <td>BudgetBoss budgets can be integrated with Budginator</td>
+		  <td>
+		    <ul>
+		       <li>Given: A Budget created by BudgetBoss</li>
+		       <li>When: That Budget is to be used with Budginator</li>
+		       <li>Then: The Budget will conform to the MasterBudget Interface</li>
+		       <li>And: The Budget can be converted into JSON format</li>
+		  </td>
+	 	  <td>Partially implemented - initial BudgetToJSON class in place</td>
 		</tr>
 		</tbody>
 	<tfoot>

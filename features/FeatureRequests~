@@ -1,1 +1,0 @@
-1) The customer is thrilled that their BudgetBoss program is coming along swimmingly! But they want to be able to integrate their budgets with Budginator, another program that looks at your budget history and proactively schedules online payments to pay down debt. Budginator accepts budgets in a JSON format, and expects them to adhere to the MasterBudget interface.

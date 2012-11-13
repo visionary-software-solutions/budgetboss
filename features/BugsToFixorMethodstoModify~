@@ -1,1 +1,0 @@
-Make all your validator methods return booleans, it'll make the code read nicer and bring some consitency to the class.

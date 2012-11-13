@@ -1,11 +1,10 @@
 package com.VSSBudgetBoss.budget;
 
 import java.math.BigDecimal;
-import java.util.Date;
-
+import org.joda.time.*;
 public interface LineItem {
 
-	Date purchased();
+	LocalDate purchased();
 	String item();
 	BigDecimal cost();
 }

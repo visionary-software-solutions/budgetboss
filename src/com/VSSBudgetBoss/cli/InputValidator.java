@@ -29,28 +29,17 @@ public class InputValidator {
 	
 	public boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
+		if(toCheck.equalsIgnoreCase("y"))
+			return false;
+		if(directory.isDirectory())
+			return false;
 		if(!toCheck.endsWith("/")){
 			Prompter.printPrompt("endsInSlash");
 			return true;
-		}
-		if(directory.isDirectory())
-				return false;
-		else{
+		}else{
 			Prompter.printPrompt("badPathInput");
 			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
 			return true;
-		}
-	}
-	
-	public boolean notDefaultNorAPath(String toCheck){
-		if(toCheck.equalsIgnoreCase("y"))
-			return false;
-		else if(pathIsInvalid(toCheck)){
-			return true;
-		}
-		else{
-			BudgetBoss.setDefaultDirectory(toCheck);
-			return false;
 		}
 	}
 

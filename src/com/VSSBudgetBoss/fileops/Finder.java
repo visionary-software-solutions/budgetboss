@@ -3,9 +3,12 @@ package com.VSSBudgetBoss.fileops;
 import java.io.*;
 import java.util.*;
 
-public class BudgetFinder {
+import com.VSSBudgetBoss.cli.Prompter;
+import com.VSSBudgetBoss.main.BudgetBoss;
+
+public class Finder {
 	
-	public File[] findBudgets(String directoryToSearch){
+	public static File[] findBudgets(String directoryToSearch){
 		File foundBudget = new File(directoryToSearch);
 			return foundBudget.listFiles(new FilenameFilter(){
 				public boolean accept(File foundBudget, String filename){
@@ -14,7 +17,8 @@ public class BudgetFinder {
 			});
 	}
 	
-	public void printFoundBudgets(File[] foundBudgets){
+		
+	public static void printFoundBudgets(File[] foundBudgets){
 		List<String> budgetPaths= new ArrayList<String>();
 		String delimiter = "[/]";
 		

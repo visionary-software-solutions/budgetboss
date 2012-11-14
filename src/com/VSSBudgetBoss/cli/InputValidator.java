@@ -31,8 +31,14 @@ public class InputValidator {
 		File directory = new File(toCheck);
 		if(toCheck.equalsIgnoreCase("y"))
 			return false;
-		if(directory.isDirectory())
-			return false;
+		if(toCheck.endsWith("/")){
+			if(directory.isDirectory())
+				return false;
+		}
+		if(toCheck.contains(" ")){
+			Prompter.printPrompt("whitespaceGenius");
+			return true;
+		}
 		if(!toCheck.endsWith("/")){
 			Prompter.printPrompt("endsInSlash");
 			return true;

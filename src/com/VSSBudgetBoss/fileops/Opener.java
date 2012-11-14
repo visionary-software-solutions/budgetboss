@@ -18,14 +18,14 @@ public class Opener {
 			toCheck = Listener.getInput();
 		}
 		if(toCheck.equalsIgnoreCase("y")){
-			getFileLoadPath();
+			getLoadDirectory();
 		}else{
 			Prompter.printPrompt("dontSearchBudgets");
 			BudgetBoss.endLoadSavedBudget();
 		}
 	}
 		
-	private void getFileLoadPath(){
+	private void getLoadDirectory(){
 		Prompter.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Prompter.printPrompt("whereSaved");
@@ -41,12 +41,11 @@ public class Opener {
 	}
 		
 	private void searchDirectory(String directoryToSearch){
-		File[] foundBudgets;
 		Prompter.printPrompt("searchingDirectory");
-		foundBudgets = Finder.findBudgets(directoryToSearch);
-		if(foundBudgets.length > 0)
+		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
+		if(foundBudgets.length > 0){
 			selectBudget(foundBudgets);
-		else
+		}else
 			Prompter.printPrompt("noBudgetFound");
 	}
 	
@@ -56,7 +55,7 @@ public class Opener {
 		int index = getBudgetNumberToOpen(foundBudgets);
 		System.out.println("Opening " + foundBudgets[index].getName());
 		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
-		TheCreator.notStillBudgetless();
+		TheCreator.budgetLoaded();
 	}
 	
 	private int getBudgetNumberToOpen(File[] foundBudgets){

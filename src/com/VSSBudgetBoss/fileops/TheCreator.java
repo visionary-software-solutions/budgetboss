@@ -6,7 +6,7 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class TheCreator {
 	
-	private static boolean budgetless = true;
+	private static boolean needANewBudget = true;
 
 	public void bestMakeABudgetNow(){
 		Prompter.printPrompt("createNewBudget");
@@ -18,7 +18,7 @@ public class TheCreator {
 			getBudgetName();
 		else{
 			Prompter.printPrompt("fuckThisProgram");
-			budgetless = false;
+			needANewBudget = false;
 		}
 	}
 	
@@ -28,14 +28,14 @@ public class TheCreator {
 		System.out.println("Creating budget " + desiredName + "...");
 		Budget newBudget = new Budget(desiredName);
 		BudgetBoss.setCurrentBudget(newBudget);
-		budgetless = false;
+		needANewBudget = false;
 	}
 	
 	public static boolean isSlackingOnFinances(){
-		return budgetless;
+		return needANewBudget;
 	}
 	
-	public static void notStillBudgetless(){
-		budgetless = false;
+	public static void budgetLoaded(){
+		needANewBudget = false;
 	}
 }

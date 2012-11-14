@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.VSSBudgetBoss.cli.InputListener;
+import com.VSSBudgetBoss.cli.Listener;
 
 public class InputListenerTests {
 
@@ -12,7 +12,7 @@ public class InputListenerTests {
 	public void testListenForInput() {
 		String userInput = null;
 		//Given: An input listener
-		InputListener listener = new InputListener();
+		Listener listener = new Listener();
 		//When: It is waiting for user input
 		userInput = listener.listenForInput();
 		//And: user input is received (Type anything into the console)

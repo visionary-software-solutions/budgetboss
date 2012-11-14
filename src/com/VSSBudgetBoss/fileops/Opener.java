@@ -9,13 +9,12 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 public class Opener {
 	
 	public void openExistingFile(){
-		InputValidator validator = new InputValidator();
-		InputListener listener = new InputListener();
 		Prompter.printPrompt("existingBudget");
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
+		InputValidator validator = new InputValidator();
 		while(validator.inputIsNotYOrN(toCheck)){
 			Prompter.printPrompt("invalidEntryYN");
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		}
 		if(toCheck.equalsIgnoreCase("y")){
 			getFileLoadPath();
@@ -28,7 +27,6 @@ public class Opener {
 	}
 		
 	private void getFileLoadPath(){
-		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
 		BudgetFinder finder = new BudgetFinder();
 		File[] foundBudgets;
@@ -36,9 +34,9 @@ public class Opener {
 		Prompter.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Prompter.printPrompt("whereSaved");
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
 		while(validator.notDefaultNorAPath(toCheck))
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		if(toCheck.equalsIgnoreCase("y")){
 			Prompter.printPrompt("searchingDirectory");
 			foundBudgets = finder.findBudgets(BudgetBoss.getDefaultDirectory());
@@ -66,12 +64,11 @@ public class Opener {
 	}
 	
 	private int getBudgetNumberToOpen(File[] foundBudgets){
-		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
 		int highestChoice = foundBudgets.length;
 		while(validator.inputNotABudget(toCheck, highestChoice))
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		return (Integer.valueOf(toCheck) - 1);
 		
 	}

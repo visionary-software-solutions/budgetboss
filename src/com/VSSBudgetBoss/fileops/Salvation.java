@@ -3,17 +3,15 @@ package com.VSSBudgetBoss.fileops;
 import java.io.*;
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.*;
-import com.VSSBudgetBoss.main.BudgetBoss;
 
 public class Salvation {
 	
 	public void saveBudget(String fileName, Budget budget, String pathToSalvation){
 		InputValidator validator = new InputValidator();
-		InputListener listener = new InputListener();
 		System.out.println("Save in " + pathToSalvation + "? (y/n)");
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
 		while(validator.inputIsNotYOrN(toCheck))
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		if(toCheck.equalsIgnoreCase("y"))
 			writeBudgetToDisk(fileName, budget, pathToSalvation);
 		else{
@@ -24,11 +22,10 @@ public class Salvation {
 		}
 	
 	private String getUserSaveDirectory(){
-		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		return toCheck;				
 	}
 

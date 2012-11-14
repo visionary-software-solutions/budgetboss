@@ -33,9 +33,8 @@ public class MainMenu implements MenuOption{
 	
 	public void displayMainMenu(){
 		Prompter.printPrompt("mainMenu");
-		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
-		String userInput = listener.listenForInput();
+		String userInput = Listener.getInput();
 		if(validator.validatesMainMenuChoice(userInput)){
 			currentMenuChoice = Integer.valueOf(userInput);
 			chooseOption();

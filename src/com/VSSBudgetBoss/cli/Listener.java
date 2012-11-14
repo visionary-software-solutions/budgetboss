@@ -4,11 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputListener {
+public class Listener {
 	
 	private String desiredInput;
 	
-	public String listenForInput(){
+	public static String getInput(){
+		Listener listener = new Listener();
+		String input = listener.listenForInput();
+		return input;
+	}
+	
+	private String listenForInput(){
 			BufferedReader listener = new BufferedReader(new InputStreamReader(System.in));
 			try {
 				desiredInput = listener.readLine();

@@ -11,10 +11,9 @@ public class TheCreator {
 	public void bestMakeABudgetNow(){
 		Prompter.printPrompt("createNewBudget");
 		InputValidator validator = new InputValidator();
-		InputListener listener = new InputListener();
-		String toCheck = listener.listenForInput();
+		String toCheck = Listener.getInput();
 		while(validator.inputIsNotYOrN(toCheck))
-			toCheck = listener.listenForInput();
+			toCheck = Listener.getInput();
 		if(toCheck.equalsIgnoreCase("y"))
 			getBudgetName();
 		else{
@@ -24,9 +23,8 @@ public class TheCreator {
 	}
 	
 	private void getBudgetName(){
-		InputListener listener = new InputListener();
 		Prompter.printPrompt("getBudgetName");
-		String desiredName = listener.listenForInput();
+		String desiredName = Listener.getInput();
 		System.out.println("Creating budget " + desiredName + "...");
 		Budget newBudget = new Budget(desiredName);
 		BudgetBoss.setCurrentBudget(newBudget);

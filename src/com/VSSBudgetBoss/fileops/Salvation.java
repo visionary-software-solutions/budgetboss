@@ -19,11 +19,11 @@ public class Salvation {
 		else{
 			Prompter.printPrompt("getSaveDirectoryPath");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
-			getUserSaveDirectory(fileName, budget);
+			getSaveDirectory(fileName, budget);
 			}
 		}
 	
-	private void getUserSaveDirectory(String fileName, Budget budget){
+	private void getSaveDirectory(String fileName, Budget budget){
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();

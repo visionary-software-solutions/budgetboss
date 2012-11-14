@@ -4,7 +4,7 @@ import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 
-public class MainMenu implements MenuOption{
+public class MainMenu implements MenuOption, MasterMenu{
 	
 	private Budget currentBudget;
 	private boolean usingBudgetBoss = true;
@@ -16,6 +16,11 @@ public class MainMenu implements MenuOption{
 		
 	public boolean stillUsingBudgetBoss(){
 		return usingBudgetBoss;
+	}
+	
+	@Override
+	public int getNumberOfOptions(){
+		return menuOptions.length;
 	}
 	
 	private MenuOption[] menuOptions = new MenuOption[]{
@@ -35,7 +40,7 @@ public class MainMenu implements MenuOption{
 		Prompter.printPrompt("mainMenu");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		if(validator.validatesMainMenuChoice(userInput)){
+		if(validator.validatesMenuChoice(userInput, this)){
 			currentMenuChoice = Integer.valueOf(userInput);
 			chooseOption();
 		}

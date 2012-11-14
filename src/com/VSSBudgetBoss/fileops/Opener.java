@@ -52,13 +52,13 @@ public class Opener {
 	private void selectBudget(File[] foundBudgets){
 		Finder.printFoundBudgets(foundBudgets);
 		Prompter.printPrompt("openBudget");
-		int index = getBudgetNumberToOpen(foundBudgets);
+		int index = getNumberToOpen(foundBudgets);
 		System.out.println("Opening " + foundBudgets[index].getName());
 		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
 		TheCreator.budgetLoaded();
 	}
 	
-	private int getBudgetNumberToOpen(File[] foundBudgets){
+	private int getNumberToOpen(File[] foundBudgets){
 		String toCheck = Listener.getInput();
 		int highestChoice = foundBudgets.length;
 		while(validator.inputNotABudget(toCheck, highestChoice))

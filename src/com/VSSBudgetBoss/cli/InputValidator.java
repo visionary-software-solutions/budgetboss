@@ -2,7 +2,7 @@ package com.VSSBudgetBoss.cli;
 
 import java.io.File;
 
-import com.VSSBudgetBoss.main.BudgetBoss;
+import com.VSSBudgetBoss.main.*;
 
 public class InputValidator {
 		
@@ -64,25 +64,12 @@ public class InputValidator {
 		else
 			return false;
 	}
-	//For these two methods you should load the options into a string arraylist so you don't have to hardcode
-	//the number of choices every time they change. And they will change.
-	public boolean validatesMainMenuChoice(String toCheck){
-		if(inputNotAnInteger(toCheck))
-			return false;
-		int userChoice = Integer.valueOf(toCheck);
-		if(userChoice > 4){
-			Prompter.printPrompt("thatsNotAChoice");
-			return false;
-		}
-		else
-			return true;
-	}
 	
-	public boolean validatesMainEditorChoice(String toCheck){
+	public boolean validatesMenuChoice(String toCheck, MasterMenu menu){
 		if(inputNotAnInteger(toCheck))
 			return false;
 		int userChoice = Integer.valueOf(toCheck);
-		if(userChoice > 5){
+		if(userChoice > menu.getNumberOfOptions()){
 			Prompter.printPrompt("thatsNotAChoice");
 			return false;
 		}

@@ -3,7 +3,7 @@ package com.VSSBudgetBoss.budget;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.*;
 
-public class BudgetEditor implements MenuOption{
+public class BudgetEditor implements MenuOption, MasterMenu{
 	
 	private Budget toEdit;
 	private int currentMenuChoice;
@@ -15,6 +15,11 @@ public class BudgetEditor implements MenuOption{
 	
 	public boolean stillEditingBudget(){
 		return stillEditing;
+	}
+	
+	@Override
+	public int getNumberOfOptions() {
+		return menuOptions.length;
 	}
 	
 	private MenuOption[] menuOptions = new MenuOption[] {
@@ -47,7 +52,7 @@ public class BudgetEditor implements MenuOption{
 		Prompter.printPrompt("editorMainMenu");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		if(validator.validatesMainEditorChoice(userInput)){
+		if(validator.validatesMenuChoice(userInput, this)){
 			currentMenuChoice = Integer.valueOf(userInput);
 			chooseOption();
 		}

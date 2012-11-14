@@ -43,7 +43,7 @@ public class MainMenu implements MenuOption{
 	
 	private void choseToSaveBudget(){
 		Salvation savior = new Salvation();
-		savior.saveBudget(currentBudget.getName(), currentBudget, BudgetBoss.getDefaultDirectory());
+		savior.saveBudget(currentBudget.getName(), currentBudget);
 	}
 	
 	public void chooseOption(){

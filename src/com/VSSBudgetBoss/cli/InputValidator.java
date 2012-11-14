@@ -37,14 +37,16 @@ public class InputValidator {
 		}
 		if(toCheck.contains(" ")){
 			Prompter.printPrompt("whitespaceGenius");
+			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
 		if(!toCheck.endsWith("/")){
 			Prompter.printPrompt("endsInSlash");
+			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}else{
 			Prompter.printPrompt("badPathInput");
-			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
+			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
 	}

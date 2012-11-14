@@ -32,25 +32,25 @@ public class BudgetEditor implements MenuOption{
 	}
 	
 	private void getNewName(){
-		BudgetBoss.printPrompt("getNewName");
+		Prompter.printPrompt("getNewName");
 		getInput();
 		toEdit.setName(userInput);
 	}
 	
 	private void getNewStartDate(){
-		BudgetBoss.printPrompt("getNewStartDate");
+		Prompter.printPrompt("getNewStartDate");
 		getInput();
 		toEdit.setStartDate(userInput);
 	}
 	
 	private void getNewEndDate(){
-		BudgetBoss.printPrompt("getNewEndDate");
+		Prompter.printPrompt("getNewEndDate");
 		getInput();
 		toEdit.setEndDate(userInput);
 	}
 	
 	public void displayEditorMainMenu(){
-		BudgetBoss.printPrompt("editorMainMenu");
+		Prompter.printPrompt("editorMainMenu");
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
 		String userInput = listener.listenForInput();

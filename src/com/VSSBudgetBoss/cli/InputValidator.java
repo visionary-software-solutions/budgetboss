@@ -12,7 +12,7 @@ public class InputValidator {
 		else if(toCheck.equalsIgnoreCase("n"))
 			return false;
 		else{
-			BudgetBoss.printPrompt("invalidEntryYN");
+			Prompter.printPrompt("invalidEntryYN");
 			return true;
 		}
 	}
@@ -21,7 +21,7 @@ public class InputValidator {
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){
-			BudgetBoss.printPrompt("notEvenANumberGenius");
+			Prompter.printPrompt("notEvenANumberGenius");
 			return true;
 		}
 		return false;
@@ -30,13 +30,13 @@ public class InputValidator {
 	public boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
 		if(!toCheck.endsWith("/")){
-			BudgetBoss.printPrompt("endsInSlash");
+			Prompter.printPrompt("endsInSlash");
 			return true;
 		}
 		if(directory.isDirectory())
 				return false;
 		else{
-			BudgetBoss.printPrompt("badPathInput");
+			Prompter.printPrompt("badPathInput");
 			System.out.println("The default directory is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
@@ -56,12 +56,12 @@ public class InputValidator {
 
 	public boolean inputNotABudget(String toCheck, int highestChoice){
 		if(inputNotAnInteger(toCheck)){
-			BudgetBoss.printPrompt("notEvenANumberGenius");
+			Prompter.printPrompt("notEvenANumberGenius");
 			return true;
 		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > highestChoice){
-			BudgetBoss.printPrompt("thatsNotAChoice");
+			Prompter.printPrompt("thatsNotAChoice");
 			return true;
 		}
 		else
@@ -74,7 +74,7 @@ public class InputValidator {
 			return false;
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > 4){
-			BudgetBoss.printPrompt("thatsNotAChoice");
+			Prompter.printPrompt("thatsNotAChoice");
 			return false;
 		}
 		else
@@ -86,7 +86,7 @@ public class InputValidator {
 			return false;
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > 5){
-			BudgetBoss.printPrompt("thatsNotAChoice");
+			Prompter.printPrompt("thatsNotAChoice");
 			return false;
 		}
 		else

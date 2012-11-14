@@ -1,8 +1,8 @@
 package com.VSSBudgetBoss.main;
 
-import java.util.ResourceBundle;
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.fileops.*;
+import com.VSSBudgetBoss.cli.*;
 
 public class BudgetBoss {
 	
@@ -11,12 +11,6 @@ public class BudgetBoss {
 	static Budget currentBudget = new Budget("defaultBudget");
 	static String defaultDirectory;
 	static boolean loadASavedBudget = true;
-	
-	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
-	
-	public static void printPrompt(String toGet){
-		System.out.println(cliOutput.getString(toGet));
-	}
 	
 	public static void endLoadSavedBudget(){
 		loadASavedBudget = false;
@@ -38,10 +32,10 @@ public class BudgetBoss {
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		
-		System.out.println(cliOutput.getString("welcome"));
+		Prompter.printPrompt("welcome");
 		
 		while(loadASavedBudget)
-			opener.askToOpenBudget();
+			opener.openExistingFile();
 		
 		while(TheCreator.isSlackingOnFinances())
 			god.bestMakeABudgetNow();

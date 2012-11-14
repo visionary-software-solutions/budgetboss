@@ -32,7 +32,7 @@ public class MainMenu implements MenuOption{
 	}
 	
 	public void displayMainMenu(){
-		BudgetBoss.printPrompt("mainMenu");
+		Prompter.printPrompt("mainMenu");
 		InputListener listener = new InputListener();
 		InputValidator validator = new InputValidator();
 		String userInput = listener.listenForInput();

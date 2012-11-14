@@ -9,7 +9,7 @@ public class TheCreator {
 	private static boolean budgetless = true;
 
 	public void bestMakeABudgetNow(){
-		BudgetBoss.printPrompt("createNewBudget");
+		Prompter.printPrompt("createNewBudget");
 		InputValidator validator = new InputValidator();
 		InputListener listener = new InputListener();
 		String toCheck = listener.listenForInput();
@@ -18,14 +18,14 @@ public class TheCreator {
 		if(toCheck.equalsIgnoreCase("y"))
 			getBudgetName();
 		else{
-			BudgetBoss.printPrompt("fuckThisProgram");
+			Prompter.printPrompt("fuckThisProgram");
 			budgetless = false;
 		}
 	}
 	
 	private void getBudgetName(){
 		InputListener listener = new InputListener();
-		BudgetBoss.printPrompt("getBudgetName");
+		Prompter.printPrompt("getBudgetName");
 		String desiredName = listener.listenForInput();
 		System.out.println("Creating budget " + desiredName + "...");
 		Budget newBudget = new Budget(desiredName);

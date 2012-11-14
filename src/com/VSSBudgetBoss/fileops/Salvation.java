@@ -17,7 +17,7 @@ public class Salvation {
 		if(toCheck.equalsIgnoreCase("y"))
 			writeBudgetToDisk(fileName, budget, pathToSalvation);
 		else{
-			BudgetBoss.printPrompt("getSaveDirectoryPath");
+			Prompter.printPrompt("getSaveDirectoryPath");
 			pathToSalvation = getUserSaveDirectory();
 			writeBudgetToDisk(fileName, budget, pathToSalvation);		
 			}
@@ -38,7 +38,7 @@ public class Salvation {
 				ObjectOutputStream saveOutput = new ObjectOutputStream(saveFile);
 				saveOutput.writeObject(budget);
 				saveOutput.close();
-				BudgetBoss.printPrompt("budgetSaved");
+				Prompter.printPrompt("budgetSaved");
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}

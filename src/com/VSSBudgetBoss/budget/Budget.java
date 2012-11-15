@@ -1,12 +1,19 @@
 package com.VSSBudgetBoss.budget;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.*;
 import org.joda.time.*;
+import com.VSSBudgetBoss.budginator.*;
 
-public class Budget implements Serializable{
+public class Budget implements MasterBudget, Serializable{
 	
 	private static final long serialVersionUID = -8611741910364436624L;
 	
+	Collection<LineItem> items;
+	BigDecimal totalCost;
+	ArrayList<ExpenseCategory> expenseCategories;
+	ArrayList<IncomeCategory> incomeCategories;
 	String name;
 	LocalDate startDate;
 	LocalDate endDate;
@@ -49,6 +56,26 @@ public class Budget implements Serializable{
 	public String toString(){
 		return ("\nBudget name: " + getName() + "\nBudget start: " + getStartDate() + 
 				"\nBudget End: " + getEndDate() + "\n");
+	}
+
+	@Override
+	public Collection<LineItem> items() {
+		return items;
+	}
+
+	@Override
+	public BigDecimal total() {
+		return totalCost;
+	}
+
+	@Override
+	public LocalDate start() {
+		return startDate;
+	}
+
+	@Override
+	public LocalDate end() {
+		return endDate;
 	}
 
 }

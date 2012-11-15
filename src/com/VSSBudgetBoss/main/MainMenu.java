@@ -21,8 +21,9 @@ public class MainMenu implements MenuOption, MasterMenu{
 	private MenuOption[] menuOptions = new MenuOption[]{
 		new MenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
 		new MenuOption(){public void chooseOption() {startEditor();}},
-		new MenuOption(){public void chooseOption() {choseToSaveBudget();}},
-		new MenuOption(){public void chooseOption() {choseToOpenBudget();}},
+		new MenuOption(){public void chooseOption() {choseToSave();}},
+		new MenuOption(){public void chooseOption() {choseToOpen();}},
+		new MenuOption(){public void chooseOption() {choseToCreate();}},
 		new MenuOption(){public void chooseOption() {choseToClose();}}
 	};
 	
@@ -44,19 +45,25 @@ public class MainMenu implements MenuOption, MasterMenu{
 		}
 	}
 	
-	private void choseToSaveBudget(){
+	private void choseToSave(){
 		Salvation savior = new Salvation();
 		savior.saveBudget(currentBudget.getName(), currentBudget);
 	}
 	
-	private void choseToOpenBudget(){
+	private void choseToOpen(){
 		BudgetBoss.loadSavedBudget();
+		BudgetBoss.endNeedNewBudget();
 	}
 	
 	private void choseToClose(){
 		BudgetBoss.doneUsingBudgetBoss();
 		BudgetBoss.endLoadSavedBudget();
 		BudgetBoss.endNeedNewBudget();
+	}
+	
+	private void choseToCreate(){
+		BudgetBoss.endLoadSavedBudget();
+		BudgetBoss.needNewBudget();
 	}
 	
 	public void chooseOption(){

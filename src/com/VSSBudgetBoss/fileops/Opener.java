@@ -10,23 +10,7 @@ public class Opener {
 	
 	InputValidator validator = new InputValidator();
 	
-	public void openExistingFile(){
-		BudgetBoss.needNewBudget();
-		Prompter.printPrompt("existingBudget");
-		String toCheck = Listener.getInput();
-		while(validator.inputIsNotYOrN(toCheck)){
-			Prompter.printPrompt("invalidEntryYN");
-			toCheck = Listener.getInput();
-		}
-		if(toCheck.equalsIgnoreCase("y")){
-			getLoadDirectory();
-		}else{
-			Prompter.printPrompt("dontSearchBudgets");
-			BudgetBoss.endLoadSavedBudget();
-		}
-	}
-		
-	public void getLoadDirectory(){
+	public void loadFromDirectory(){
 		Prompter.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Prompter.printPrompt("whereSaved");

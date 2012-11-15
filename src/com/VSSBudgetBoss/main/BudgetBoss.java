@@ -7,7 +7,7 @@ import com.VSSBudgetBoss.cli.*;
 public class BudgetBoss {
 	
 	static Opener opener = new Opener();
-	static TheCreator god = new TheCreator();
+	static TheCreator creator = new TheCreator();
 	static Budget currentBudget = new Budget("No budget loaded");
 	static String defaultDirectory;
 	static boolean stillUsingBudgetBoss = true;
@@ -62,9 +62,9 @@ public class BudgetBoss {
 		while (stillUsingBudgetBoss){
 			mainMenu.displayMainMenu();
 			while(loadASavedBudget)
-				opener.openExistingFile();
+				opener.loadFromDirectory();
 			while(needANewBudget)
-				god.bestMakeABudgetNow();
+				creator.createBudget();
 		}
 	}
 }

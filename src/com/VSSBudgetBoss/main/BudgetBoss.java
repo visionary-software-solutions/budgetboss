@@ -42,6 +42,10 @@ public class BudgetBoss {
 		currentBudget = newBudget;
 		mainMenu = new MainMenu(newBudget);
 	}
+	
+	public static String getCurrentBudget(){
+		return currentBudget.getName();
+	}
 		
 	public static void main(String args[]){
 		

@@ -39,12 +39,12 @@ public class MainMenu implements MenuOption, MasterMenu{
 		Prompter.printPrompt("mainMenuChoices");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		if(validator.validatesMenuChoice(userInput, this)){
-			currentMenuChoice = Integer.valueOf(userInput);
-			chooseOption();
-		}
+		while(validator.menuChoiceIsInvalid(userInput, this))
+			userInput = Listener.getInput();
+		currentMenuChoice = Integer.valueOf(userInput);
+		chooseOption();			
 	}
-	
+
 	private void choseToSave(){
 		Salvation savior = new Salvation();
 		savior.saveBudget(currentBudget.getName(), currentBudget);

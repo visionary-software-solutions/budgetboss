@@ -54,10 +54,8 @@ public class InputValidator {
 	}
 
 	public boolean inputNotABudget(String toCheck, int highestChoice){
-		if(inputNotAnInteger(toCheck)){
-			Prompter.printPrompt("notEvenANumberGenius");
+		if(inputNotAnInteger(toCheck))
 			return true;
-		}
 		if(Integer.valueOf(toCheck).equals(0)){
 			Prompter.printPrompt("youreAZero");
 			return true;
@@ -71,25 +69,24 @@ public class InputValidator {
 			return false;
 	}
 	
-	public boolean validatesMenuChoice(String toCheck, MasterMenu menu){
+	public boolean menuChoiceIsInvalid(String toCheck, MasterMenu menu){
 		if(inputNotAnInteger(toCheck))
-			return false;
+			return true;
 		int userChoice = Integer.valueOf(toCheck);
 		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && ((userChoice < 4))){
 			Prompter.printPrompt("noBudgetLoaded");
-			return false;
-		}
-		
+			return true;
+		}		
 		if(Integer.valueOf(toCheck).equals(0)){
 			Prompter.printPrompt("youreAZero");
-			return false;
+			return true;
 		}
 		if(userChoice > menu.getNumberOfOptions()){
 			Prompter.printPrompt("thatsNotAChoice");
-			return false;
+			return true;
 		}
 		else
-			return true;
+			return false;
 	}
 	
 	public boolean dateIsInvalid(String toCheck){
@@ -151,5 +148,3 @@ public class InputValidator {
 			return false;
 	}
 }
-
-

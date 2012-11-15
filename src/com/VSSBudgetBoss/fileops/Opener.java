@@ -1,7 +1,6 @@
 package com.VSSBudgetBoss.fileops;
 
 import java.io.*;
-
 import com.VSSBudgetBoss.budget.Budget;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.main.BudgetBoss;
@@ -21,7 +20,6 @@ public class Opener {
 			searchDirectory(BudgetBoss.getDefaultDirectory());
 		}else{
 			searchDirectory(toCheck);
-			BudgetBoss.setDefaultDirectory(toCheck);
 		}
 	}
 		
@@ -30,6 +28,7 @@ public class Opener {
 		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
 		if(foundBudgets.length > 0){
 			selectBudget(foundBudgets);
+			BudgetBoss.setDefaultDirectory(directoryToSearch);
 		}else
 			Prompter.printPrompt("noBudgetFound");
 	}

@@ -2,6 +2,8 @@ package com.VSSBudgetBoss.cli;
 
 import java.io.File;
 
+import org.joda.time.DateTime;
+
 import com.VSSBudgetBoss.main.*;
 
 public class InputValidator {
@@ -70,25 +72,83 @@ public class InputValidator {
 	}
 	
 	public boolean validatesMenuChoice(String toCheck, MasterMenu menu){
-		if(Integer.valueOf(toCheck).equals(5))
-			return true;
-		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && !(Integer.valueOf(toCheck).equals(4))){
+		if(inputNotAnInteger(toCheck))
+			return false;
+		int userChoice = Integer.valueOf(toCheck);
+		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && !((userChoice == 4) || (userChoice == 5))){
 			Prompter.printPrompt("noBudgetLoaded");
 			return false;
 		}
-		if(inputNotAnInteger(toCheck))
-			return false;
+		
 		if(Integer.valueOf(toCheck).equals(0)){
 			Prompter.printPrompt("youreAZero");
 			return false;
 		}
-		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > menu.getNumberOfOptions()){
 			Prompter.printPrompt("thatsNotAChoice");
 			return false;
 		}
 		else
 			return true;
+	}
+	
+	public boolean dateIsInvalid(String toCheck){
+		if(!toCheck.contains("/")){
+			Prompter.printPrompt("wrongDateFormat");
+			return true;
+		}
+		if(toCheck.contains(" ")){
+			Prompter.printPrompt("wrongDateFormat");
+			return true;
+		}
+		String delimiter = "/";
+		String[] date = toCheck.split(delimiter);
+		if(!(date.length == 3)){
+			Prompter.printPrompt("wrongDateFormat");
+			return true;
+		}
+		for(int i = 0; i < 3; i++){
+			try{
+				Integer.parseInt(date[i]);
+			}catch(NumberFormatException e){
+				Prompter.printPrompt("lessLettersPorFavor");
+				return true;
+			}
+		}
+		int month = Integer.valueOf(date[0].toString());
+		int day = Integer.valueOf(date[1].toString());
+		int year = Integer.valueOf(date[2].toString());
+		if((month < 1) || (month > 12)){
+			Prompter.printPrompt("notAMonth");
+			return true;
+		}
+		if((month == 4) || (month == 6) || (month == 9) || (month == 11)){
+			if((day < 1) || (day > 30)){
+				Prompter.printPrompt("notADay");
+				return true;
+			}
+		}else if(month == 2){
+			if((day == 29)){
+				Prompter.printPrompt("dontBeASmartass");
+				return true;
+			}
+			if((day < 1) || (day > 28)){
+				Prompter.printPrompt("notADay");
+				return true;
+			}
+		}else{
+			if((day < 1) || (day > 31)){
+				Prompter.printPrompt("notADay");
+				return true;
+			}
+		}
+		DateTime timeNow = new DateTime();
+		int currentYear = timeNow.getYear();
+		if(year < currentYear){
+			Prompter.printPrompt("backToTheFuture");
+			return true;
+		}else
+			return false;
 	}
 }
 

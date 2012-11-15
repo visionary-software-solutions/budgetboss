@@ -8,6 +8,7 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 	private Budget toEdit;
 	private int currentMenuChoice;
 	private boolean stillEditing = true;
+	private InputValidator validator = new InputValidator();
 
 	public BudgetEditor(Budget toEdit){
 		this.toEdit = toEdit;
@@ -39,12 +40,16 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 	private void getNewStartDate(){
 		Prompter.printPrompt("getNewStartDate");
 		String userInput = Listener.getInput();
+		while(validator.dateIsInvalid(userInput))
+			userInput = Listener.getInput();
 		toEdit.setStartDate(userInput);
 	}
 	
 	private void getNewEndDate(){
 		Prompter.printPrompt("getNewEndDate");
 		String userInput = Listener.getInput();
+		while(validator.dateIsInvalid(userInput))
+			userInput = Listener.getInput();
 		toEdit.setEndDate(userInput);
 	}
 	

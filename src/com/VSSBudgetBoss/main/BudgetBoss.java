@@ -8,8 +8,9 @@ public class BudgetBoss {
 	
 	static Opener opener = new Opener();
 	static TheCreator god = new TheCreator();
-	static Budget currentBudget = new Budget("No Budget Loaded");
+	static Budget currentBudget = new Budget("No budget loaded");
 	static String defaultDirectory;
+	static boolean stillUsingBudgetBoss = true;
 	static boolean loadASavedBudget = true;
 	static boolean needANewBudget = true;
 	static MainMenu mainMenu;
@@ -28,6 +29,10 @@ public class BudgetBoss {
 	
 	public static void endNeedNewBudget(){
 		needANewBudget = false;
+	}
+	
+	public static void doneUsingBudgetBoss(){
+		stillUsingBudgetBoss = false;
 	}
 	
 	public static void setDefaultDirectory(String newDefaultDirectory){
@@ -54,7 +59,7 @@ public class BudgetBoss {
 		mainMenu = new MainMenu(currentBudget);
 		Prompter.printPrompt("welcome");
 		
-		while (mainMenu.stillUsingBudgetBoss()){
+		while (stillUsingBudgetBoss){
 			mainMenu.displayMainMenu();
 			while(loadASavedBudget)
 				opener.openExistingFile();

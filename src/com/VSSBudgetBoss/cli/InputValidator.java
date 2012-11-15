@@ -70,7 +70,9 @@ public class InputValidator {
 	}
 	
 	public boolean validatesMenuChoice(String toCheck, MasterMenu menu){
-		if(BudgetBoss.getCurrentBudget().equals("No Budget Loaded") && !(Integer.valueOf(toCheck).equals(4))){
+		if(Integer.valueOf(toCheck).equals(5))
+			return true;
+		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && !(Integer.valueOf(toCheck).equals(4))){
 			Prompter.printPrompt("noBudgetLoaded");
 			return false;
 		}

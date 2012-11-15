@@ -2,23 +2,17 @@ package com.VSSBudgetBoss.main;
 
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.cli.*;
-import com.VSSBudgetBoss.fileops.Opener;
 import com.VSSBudgetBoss.fileops.Salvation;
 
 public class MainMenu implements MenuOption, MasterMenu{
 	
 	private Budget currentBudget;
-	private boolean usingBudgetBoss = true;
 	private int currentMenuChoice;
 
 	public MainMenu(Budget currentBudget){
 		this.currentBudget = currentBudget;
 	}
 		
-	public boolean stillUsingBudgetBoss(){
-		return usingBudgetBoss;
-	}
-	
 	@Override
 	public int getNumberOfOptions(){
 		return menuOptions.length;
@@ -29,7 +23,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 		new MenuOption(){public void chooseOption() {startEditor();}},
 		new MenuOption(){public void chooseOption() {choseToSaveBudget();}},
 		new MenuOption(){public void chooseOption() {choseToOpenBudget();}},
-		new MenuOption(){public void chooseOption() {usingBudgetBoss = false;}}
+		new MenuOption(){public void chooseOption() {choseToClose();}}
 	};
 	
 	private void startEditor(){
@@ -57,6 +51,12 @@ public class MainMenu implements MenuOption, MasterMenu{
 	
 	private void choseToOpenBudget(){
 		BudgetBoss.loadSavedBudget();
+	}
+	
+	private void choseToClose(){
+		BudgetBoss.doneUsingBudgetBoss();
+		BudgetBoss.endLoadSavedBudget();
+		BudgetBoss.endNeedNewBudget();
 	}
 	
 	public void chooseOption(){

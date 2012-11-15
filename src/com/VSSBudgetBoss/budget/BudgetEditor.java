@@ -57,10 +57,10 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 		Prompter.printPrompt("editorMainMenu");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		if(validator.menuChoiceIsInvalid(userInput, this)){
-			currentMenuChoice = Integer.valueOf(userInput);
-			chooseOption();
-		}
+		while(validator.menuChoiceIsInvalid(userInput, this))
+			userInput = Listener.getInput();
+		currentMenuChoice = Integer.valueOf(userInput);
+		chooseOption();
 	}
 	
 	public void chooseOption(){

@@ -35,7 +35,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 	
 	public void displayMainMenu(){
 		Prompter.printPrompt("mainMenu");
-		System.out.println("Currently opened budget: " + currentBudget.getName());
+		System.out.println("Working with budget: " + currentBudget.getName());
 		Prompter.printPrompt("mainMenuChoices");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();

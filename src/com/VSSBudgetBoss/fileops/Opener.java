@@ -11,6 +11,7 @@ public class Opener {
 	InputValidator validator = new InputValidator();
 	
 	public void openExistingFile(){
+		BudgetBoss.needNewBudget();
 		Prompter.printPrompt("existingBudget");
 		String toCheck = Listener.getInput();
 		while(validator.inputIsNotYOrN(toCheck)){
@@ -55,7 +56,7 @@ public class Opener {
 		int index = getNumberToOpen(foundBudgets);
 		System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
 		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
-		TheCreator.budgetLoaded();
+		BudgetBoss.endNeedNewBudget();
 	}
 	
 	private int getNumberToOpen(File[] foundBudgets){

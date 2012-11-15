@@ -56,8 +56,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 	}
 	
 	private void choseToOpenBudget(){
-		Opener opener = new Opener();
-		opener.getLoadDirectory();
+		BudgetBoss.loadSavedBudget();
 	}
 	
 	public void chooseOption(){

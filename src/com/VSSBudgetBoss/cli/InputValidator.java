@@ -56,6 +56,10 @@ public class InputValidator {
 			Prompter.printPrompt("notEvenANumberGenius");
 			return true;
 		}
+		if(Integer.valueOf(toCheck).equals(0)){
+			Prompter.printPrompt("youreAZero");
+			return true;
+		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > highestChoice){
 			Prompter.printPrompt("thatsNotAChoice");
@@ -68,6 +72,10 @@ public class InputValidator {
 	public boolean validatesMenuChoice(String toCheck, MasterMenu menu){
 		if(inputNotAnInteger(toCheck))
 			return false;
+		if(Integer.valueOf(toCheck).equals(0)){
+			Prompter.printPrompt("youreAZero");
+			return false;
+		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > menu.getNumberOfOptions()){
 			Prompter.printPrompt("thatsNotAChoice");

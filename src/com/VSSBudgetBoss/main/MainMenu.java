@@ -2,6 +2,7 @@ package com.VSSBudgetBoss.main;
 
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.cli.*;
+import com.VSSBudgetBoss.fileops.Opener;
 import com.VSSBudgetBoss.fileops.Salvation;
 
 public class MainMenu implements MenuOption, MasterMenu{
@@ -27,6 +28,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 		new MenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
 		new MenuOption(){public void chooseOption() {startEditor();}},
 		new MenuOption(){public void chooseOption() {choseToSaveBudget();}},
+		new MenuOption(){public void chooseOption() {choseToOpenBudget();}},
 		new MenuOption(){public void chooseOption() {usingBudgetBoss = false;}}
 	};
 	
@@ -38,6 +40,8 @@ public class MainMenu implements MenuOption, MasterMenu{
 	
 	public void displayMainMenu(){
 		Prompter.printPrompt("mainMenu");
+		System.out.println("Currently opened budget: " + currentBudget.getName());
+		Prompter.printPrompt("mainMenuChoices");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
 		if(validator.validatesMenuChoice(userInput, this)){
@@ -49,6 +53,11 @@ public class MainMenu implements MenuOption, MasterMenu{
 	private void choseToSaveBudget(){
 		Salvation savior = new Salvation();
 		savior.saveBudget(currentBudget.getName(), currentBudget);
+	}
+	
+	private void choseToOpenBudget(){
+		Opener opener = new Opener();
+		opener.getLoadDirectory();
 	}
 	
 	public void chooseOption(){

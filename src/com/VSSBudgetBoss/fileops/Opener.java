@@ -25,7 +25,7 @@ public class Opener {
 		}
 	}
 		
-	private void getLoadDirectory(){
+	public void getLoadDirectory(){
 		Prompter.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Prompter.printPrompt("whereSaved");
@@ -53,7 +53,7 @@ public class Opener {
 		Finder.printFoundBudgets(foundBudgets);
 		Prompter.printPrompt("openBudget");
 		int index = getNumberToOpen(foundBudgets);
-		System.out.println("Opening " + foundBudgets[index].getName());
+		System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
 		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
 		TheCreator.budgetLoaded();
 	}

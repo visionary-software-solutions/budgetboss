@@ -9,6 +9,8 @@ import com.VSSBudgetBoss.main.*;
 public class InputValidator {
 	
 	public boolean inputNotAnInteger(String toCheck){
+		if(itsTimeToExit(toCheck))
+			return false;
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){
@@ -20,6 +22,8 @@ public class InputValidator {
 	
 	public boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
+		if(itsTimeToExit(toCheck))
+			return false;
 		if(toCheck.equalsIgnoreCase("y"))
 			return false;
 		if(toCheck.endsWith("/")){
@@ -43,6 +47,8 @@ public class InputValidator {
 	}
 
 	public boolean inputNotABudget(String toCheck, int highestChoice){
+		if(itsTimeToExit(toCheck))
+			return false;
 		if(inputNotAnInteger(toCheck))
 			return true;
 		if(Integer.valueOf(toCheck).equals(0)){
@@ -59,6 +65,8 @@ public class InputValidator {
 	}
 	
 	public boolean menuChoiceIsInvalid(String toCheck, MasterMenu menu){
+		if(itsTimeToExit(toCheck))
+			return false;
 		if(inputNotAnInteger(toCheck))
 			return true;
 		int userChoice = Integer.valueOf(toCheck);
@@ -79,6 +87,8 @@ public class InputValidator {
 	}
 	
 	public boolean dateIsInvalid(String toCheck){
+		if(itsTimeToExit(toCheck))
+			return false;
 		if(!toCheck.contains("/")){
 			Prompter.printPrompt("wrongDateFormat");
 			return true;
@@ -132,6 +142,16 @@ public class InputValidator {
 		int currentYear = timeNow.getYear();
 		if(year < currentYear){
 			Prompter.printPrompt("backToTheFuture");
+			return true;
+		}else
+			return false;
+	}
+	
+	private boolean itsTimeToExit(String toCheck){
+		if(toCheck.equalsIgnoreCase("exit")){
+			BudgetBoss.endLoadSavedBudget();
+			BudgetBoss.endNeedNewBudget();
+			BudgetBoss.doneUsingBudgetBoss();
 			return true;
 		}else
 			return false;

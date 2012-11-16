@@ -9,9 +9,15 @@ public class TheCreator {
 	public void createBudget(){
 		Prompter.printPrompt("getBudgetName");
 		String desiredName = Listener.getInput();
-		System.out.println("Creating budget " + desiredName + "...\n");
-		Budget newBudget = new Budget(desiredName);
-		BudgetBoss.setCurrentBudget(newBudget);
-		BudgetBoss.endNeedNewBudget();
+		if(!(desiredName.equals("exit"))){
+			System.out.println("Creating budget " + desiredName + "...\n");
+			Budget newBudget = new Budget(desiredName);
+			BudgetBoss.setCurrentBudget(newBudget);
+			BudgetBoss.endNeedNewBudget();
+		}else{
+			BudgetBoss.endLoadSavedBudget();
+			BudgetBoss.endNeedNewBudget();
+			BudgetBoss.doneUsingBudgetBoss();
+		}
 	}
 }

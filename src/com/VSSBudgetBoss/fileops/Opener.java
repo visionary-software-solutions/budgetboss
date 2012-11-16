@@ -16,10 +16,11 @@ public class Opener {
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();
-		if(toCheck.equalsIgnoreCase("y")){
-			searchDirectory(BudgetBoss.getDefaultDirectory());
-		}else{
-			searchDirectory(toCheck);
+		if(!(toCheck.equals("exit"))){
+			if(toCheck.equalsIgnoreCase("y")){
+				searchDirectory(BudgetBoss.getDefaultDirectory());
+			}else
+				searchDirectory(toCheck);
 		}
 	}
 		
@@ -37,9 +38,11 @@ public class Opener {
 		Finder.printFoundBudgets(foundBudgets);
 		Prompter.printPrompt("openBudget");
 		int index = getNumberToOpen(foundBudgets);
-		System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
-		BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
-		BudgetBoss.endNeedNewBudget();
+		if(!(index == -5)){
+			System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
+			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
+			BudgetBoss.endNeedNewBudget();
+		}
 	}
 	
 	private int getNumberToOpen(File[] foundBudgets){
@@ -47,7 +50,10 @@ public class Opener {
 		int highestChoice = foundBudgets.length;
 		while(validator.inputNotABudget(toCheck, highestChoice))
 			toCheck = Listener.getInput();
-		return (Integer.valueOf(toCheck) - 1);
+		if(!(toCheck.equals("exit")))
+			return (Integer.valueOf(toCheck) - 1);
+		else
+			return -5;
 	}
 	
 	private Budget loadBudget(int index, File[] foundBudgets){

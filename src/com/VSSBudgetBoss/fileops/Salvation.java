@@ -15,10 +15,12 @@ public class Salvation {
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();
-		if(toCheck.equalsIgnoreCase("y")){
-			writeBudgetToDisk(fileName, budget, BudgetBoss.getDefaultDirectory());
-		}else
-			writeBudgetToDisk(fileName, budget, toCheck);
+		if(!(toCheck.equals("exit"))){
+			if(toCheck.equalsIgnoreCase("y")){
+				writeBudgetToDisk(fileName, budget, BudgetBoss.getDefaultDirectory());
+			}else
+				writeBudgetToDisk(fileName, budget, toCheck);
+		}
 	}
 
 	private void writeBudgetToDisk(String fileName, Budget budget, String pathToSalvation){
@@ -28,6 +30,7 @@ public class Salvation {
 				saveOutput.writeObject(budget);
 				saveOutput.close();
 				Prompter.printPrompt("budgetSaved");
+				BudgetBoss.setDefaultDirectory(pathToSalvation);
 			}catch(Exception ex){
 				ex.printStackTrace();
 			}

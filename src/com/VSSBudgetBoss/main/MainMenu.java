@@ -41,8 +41,10 @@ public class MainMenu implements MenuOption, MasterMenu{
 		String userInput = Listener.getInput();
 		while(validator.menuChoiceIsInvalid(userInput, this))
 			userInput = Listener.getInput();
-		currentMenuChoice = Integer.valueOf(userInput);
-		chooseOption();			
+		if(!(userInput.equals("exit"))){
+			currentMenuChoice = Integer.valueOf(userInput);
+			chooseOption();	
+		}
 	}
 
 	private void choseToSave(){

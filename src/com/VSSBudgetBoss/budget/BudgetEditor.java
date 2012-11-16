@@ -34,7 +34,14 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 	private void getNewName(){
 		Prompter.printPrompt("getNewName");
 		String userInput = Listener.getInput();
-		toEdit.setName(userInput);
+		if(!(userInput.equals("exit")))
+			toEdit.setName(userInput);
+		else{
+			stillEditing = false;
+			BudgetBoss.endLoadSavedBudget();
+			BudgetBoss.endNeedNewBudget();
+			BudgetBoss.doneUsingBudgetBoss();
+		}
 	}
 	
 	private void getNewStartDate(){
@@ -42,7 +49,8 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 		String userInput = Listener.getInput();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
-		toEdit.setStartDate(userInput);
+		if(!(userInput.equals("exit")))
+			toEdit.setStartDate(userInput);
 	}
 	
 	private void getNewEndDate(){
@@ -50,17 +58,22 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 		String userInput = Listener.getInput();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
-		toEdit.setEndDate(userInput);
+		if(!(userInput.equals("exit")))
+			toEdit.setEndDate(userInput);
 	}
 	
 	public void displayEditorMainMenu(){
 		Prompter.printPrompt("editorMainMenu");
+		System.out.println("Working with budget: " + toEdit.getName());
+		Prompter.printPrompt("editorMainMenuChoices");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
 		while(validator.menuChoiceIsInvalid(userInput, this))
 			userInput = Listener.getInput();
-		currentMenuChoice = Integer.valueOf(userInput);
-		chooseOption();
+		if(!(userInput.equals("exit"))){
+			currentMenuChoice = Integer.valueOf(userInput);
+			chooseOption();
+		}
 	}
 	
 	public void chooseOption(){

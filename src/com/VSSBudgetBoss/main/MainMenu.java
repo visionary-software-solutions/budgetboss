@@ -47,7 +47,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 
 	private void choseToSave(){
 		Salvation savior = new Salvation();
-		savior.saveBudget(currentBudget.getName(), currentBudget);
+		savior.getSaveDirectory(currentBudget.getName(), currentBudget);
 	}
 	
 	private void choseToOpen(){

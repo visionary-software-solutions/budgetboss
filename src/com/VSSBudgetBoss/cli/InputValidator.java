@@ -7,17 +7,6 @@ import org.joda.time.DateTime;
 import com.VSSBudgetBoss.main.*;
 
 public class InputValidator {
-		
-	public boolean inputIsNotYOrN(String toCheck){
-		if(toCheck.equalsIgnoreCase("y"))
-			return false;
-		else if(toCheck.equalsIgnoreCase("n"))
-			return false;
-		else{
-			Prompter.printPrompt("invalidEntryYN");
-			return true;
-		}
-	}
 	
 	public boolean inputNotAnInteger(String toCheck){
 		try{

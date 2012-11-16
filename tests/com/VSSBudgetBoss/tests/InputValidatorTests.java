@@ -15,20 +15,7 @@ public class InputValidatorTests {
 	//Given: An input is required from a user
 	validator = new InputValidator();
 	}
-	
-	@Test
-	public void testInputIsNotYOrNInvalid(){
-		//And: The input needs to be either "y" or "n" (case doesn't matter)
-		//When: The user inputs something
-		//Then:The input will only validate if it is "y" or "n"
-		assertTrue(validator.inputIsNotYOrN("this ain't yo momma's 'y'"));
-		assertTrue(validator.inputIsNotYOrN("yh"));
-		assertFalse(validator.inputIsNotYOrN("Y"));
-		assertFalse(validator.inputIsNotYOrN("y"));
-		assertFalse(validator.inputIsNotYOrN("N"));
-		assertFalse(validator.inputIsNotYOrN("n"));
-	}
-	
+		
 	@Test
 	public void testNonIntegerRejection(){
 		//And: The input must be an integer (for selecting menu options numerically)

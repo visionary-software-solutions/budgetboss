@@ -9,21 +9,9 @@ public class Salvation {
 	
 	InputValidator validator = new InputValidator();
 	
-	public void saveBudget(String fileName, Budget budget){
-		System.out.println("Save in " + BudgetBoss.getDefaultDirectory() + "? (y/n)");
-		String toCheck = Listener.getInput();
-		while(validator.inputIsNotYOrN(toCheck))
-			toCheck = Listener.getInput();
-		if(toCheck.equalsIgnoreCase("y"))
-			writeBudgetToDisk(fileName, budget, BudgetBoss.getDefaultDirectory());
-		else{
-			Prompter.printPrompt("getSaveDirectoryPath");
-			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
-			getSaveDirectory(fileName, budget);
-			}
-		}
-	
-	private void getSaveDirectory(String fileName, Budget budget){
+	public void getSaveDirectory(String fileName, Budget budget){
+		Prompter.printPrompt("getSaveDirectoryPath");
+		System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();

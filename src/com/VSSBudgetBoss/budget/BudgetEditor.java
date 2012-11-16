@@ -1,6 +1,7 @@
 package com.VSSBudgetBoss.budget;
 
 import com.VSSBudgetBoss.cli.*;
+import com.VSSBudgetBoss.fileops.Salvation;
 import com.VSSBudgetBoss.main.*;
 
 public class BudgetEditor implements MenuOption, MasterMenu{
@@ -25,11 +26,17 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 	
 	private MenuOption[] menuOptions = new MenuOption[] {
 		new MenuOption() {public void chooseOption() {System.out.println(toEdit.toString());}},
+		new MenuOption() {public void chooseOption() {choseToSaveText();}},
 		new MenuOption() {public void chooseOption() {getNewName();}},
 		new MenuOption() {public void chooseOption() {getNewStartDate();}},
 		new MenuOption() {public void chooseOption() {getNewEndDate();}},
 		new MenuOption() {public void chooseOption() {stillEditing = false;}}
 	};
+	
+	private void choseToSaveText(){
+		Salvation savior = new Salvation();
+		savior.writeBudgetToText(toEdit.getName(), toEdit);
+	}
 	
 	private void getNewName(){
 		Prompter.printPrompt("getNewName");

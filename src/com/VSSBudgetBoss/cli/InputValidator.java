@@ -70,7 +70,7 @@ public class InputValidator {
 		if(inputNotAnInteger(toCheck))
 			return true;
 		int userChoice = Integer.valueOf(toCheck);
-		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && ((userChoice < 4))){
+		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && ((userChoice < 5))){
 			Prompter.printPrompt("noBudgetLoaded");
 			return true;
 		}		

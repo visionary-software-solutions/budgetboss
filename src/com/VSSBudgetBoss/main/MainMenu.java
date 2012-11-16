@@ -20,6 +20,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 	
 	private MenuOption[] menuOptions = new MenuOption[]{
 		new MenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
+		new MenuOption(){public void chooseOption() {choseToSaveText();}},
 		new MenuOption(){public void chooseOption() {startEditor();}},
 		new MenuOption(){public void chooseOption() {choseToSave();}},
 		new MenuOption(){public void chooseOption() {choseToOpen();}},
@@ -46,10 +47,15 @@ public class MainMenu implements MenuOption, MasterMenu{
 			chooseOption();	
 		}
 	}
+	
+	private void choseToSaveText(){
+		Salvation savior = new Salvation();
+		savior.writeBudgetToText(currentBudget.getName(), currentBudget);
+	}
 
 	private void choseToSave(){
 		Salvation savior = new Salvation();
-		savior.getSaveDirectory(currentBudget.getName(), currentBudget);
+		savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
 	}
 	
 	private void choseToOpen(){

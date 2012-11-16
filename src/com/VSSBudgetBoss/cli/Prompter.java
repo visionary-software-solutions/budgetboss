@@ -1,6 +1,10 @@
 package com.VSSBudgetBoss.cli;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
 import java.util.ResourceBundle;
+
+import org.fusesource.jansi.AnsiConsole;
 
 public class Prompter {
 	

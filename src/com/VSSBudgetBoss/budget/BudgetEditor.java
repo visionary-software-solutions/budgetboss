@@ -1,5 +1,9 @@
 package com.VSSBudgetBoss.budget;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
+import org.fusesource.jansi.AnsiConsole;
+
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 import com.VSSBudgetBoss.main.*;
@@ -70,6 +74,7 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 	}
 	
 	public void displayEditorMainMenu(){
+		AnsiConsole.out.println(ansi().eraseScreen());
 		Prompter.printPrompt("editorMainMenu");
 		System.out.println("Working with budget: " + toEdit.getName());
 		Prompter.printPrompt("editorMainMenuChoices");
@@ -80,7 +85,8 @@ public class BudgetEditor implements MenuOption, MasterMenu{
 		if(!(userInput.equals("exit"))){
 			currentMenuChoice = Integer.valueOf(userInput);
 			chooseOption();
-		}
+		}else
+			stillEditing = false;
 	}
 	
 	public void chooseOption(){

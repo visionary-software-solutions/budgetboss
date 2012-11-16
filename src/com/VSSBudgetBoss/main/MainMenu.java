@@ -1,5 +1,9 @@
 package com.VSSBudgetBoss.main;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
+import org.fusesource.jansi.AnsiConsole;
+
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.Salvation;
@@ -35,6 +39,7 @@ public class MainMenu implements MenuOption, MasterMenu{
 	}
 	
 	public void displayMainMenu(){
+		AnsiConsole.out.println(ansi().eraseScreen());
 		Prompter.printPrompt("mainMenu");
 		System.out.println("Working with budget: " + currentBudget.getName());
 		Prompter.printPrompt("mainMenuChoices");

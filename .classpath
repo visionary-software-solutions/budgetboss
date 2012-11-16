@@ -11,5 +11,6 @@
 			<attribute name="javadoc_location" value="jar:file:/home/visionary/eclipse/externaljars/JodaTime2.1/joda-time-2.1-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/visionary/eclipse/externaljars/jansi-1.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

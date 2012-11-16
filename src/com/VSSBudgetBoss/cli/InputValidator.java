@@ -1,9 +1,7 @@
 package com.VSSBudgetBoss.cli;
 
 import java.io.File;
-
 import org.joda.time.DateTime;
-
 import com.VSSBudgetBoss.main.*;
 
 public class InputValidator {

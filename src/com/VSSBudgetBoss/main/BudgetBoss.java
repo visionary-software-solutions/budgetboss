@@ -58,6 +58,7 @@ public class BudgetBoss {
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		mainMenu = new MainMenu(currentBudget);
 		Prompter.printPrompt("welcome");
+		Listener.getInput();
 		
 		while (stillUsingBudgetBoss){
 			mainMenu.displayMainMenu();

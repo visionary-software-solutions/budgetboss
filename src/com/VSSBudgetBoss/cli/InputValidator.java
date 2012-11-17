@@ -12,7 +12,7 @@ public class InputValidator {
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){
-			Prompter.printPrompt("notEvenANumberGenius");
+			Printer.printPrompt("notEvenANumberGenius");
 			return true;
 		}
 		return false;
@@ -29,16 +29,16 @@ public class InputValidator {
 				return false;
 		}
 		if(toCheck.contains(" ")){
-			Prompter.printPrompt("whitespaceGenius");
+			Printer.printPrompt("whitespaceGenius");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
 		if(!toCheck.endsWith("/")){
-			Prompter.printPrompt("endsInSlash");
+			Printer.printPrompt("endsInSlash");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}else{
-			Prompter.printPrompt("badPathInput");
+			Printer.printPrompt("badPathInput");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
@@ -50,12 +50,12 @@ public class InputValidator {
 		if(inputNotAnInteger(toCheck))
 			return true;
 		if(Integer.valueOf(toCheck).equals(0)){
-			Prompter.printPrompt("youreAZero");
+			Printer.printPrompt("youreAZero");
 			return true;
 		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(userChoice > highestChoice){
-			Prompter.printPrompt("thatsNotAChoice");
+			Printer.printPrompt("thatsNotAChoice");
 			return true;
 		}
 		else
@@ -69,15 +69,15 @@ public class InputValidator {
 			return true;
 		int userChoice = Integer.valueOf(toCheck);
 		if(BudgetBoss.getCurrentBudget().equals("No budget loaded") && ((userChoice < 5))){
-			Prompter.printPrompt("noBudgetLoaded");
+			Printer.printPrompt("noBudgetLoaded");
 			return true;
 		}		
 		if(Integer.valueOf(toCheck).equals(0)){
-			Prompter.printPrompt("youreAZero");
+			Printer.printPrompt("youreAZero");
 			return true;
 		}
 		if(userChoice > menu.getNumberOfOptions()){
-			Prompter.printPrompt("thatsNotAChoice");
+			Printer.printPrompt("thatsNotAChoice");
 			return true;
 		}
 		else
@@ -88,24 +88,24 @@ public class InputValidator {
 		if(itsTimeToExit(toCheck))
 			return false;
 		if(!toCheck.contains("/")){
-			Prompter.printPrompt("wrongDateFormat");
+			Printer.printPrompt("wrongDateFormat");
 			return true;
 		}
 		if(toCheck.contains(" ")){
-			Prompter.printPrompt("wrongDateFormat");
+			Printer.printPrompt("wrongDateFormat");
 			return true;
 		}
 		String delimiter = "/";
 		String[] date = toCheck.split(delimiter);
 		if(!(date.length == 3)){
-			Prompter.printPrompt("wrongDateFormat");
+			Printer.printPrompt("wrongDateFormat");
 			return true;
 		}
 		for(int i = 0; i < 3; i++){
 			try{
 				Integer.parseInt(date[i]);
 			}catch(NumberFormatException e){
-				Prompter.printPrompt("lessLettersPorFavor");
+				Printer.printPrompt("lessLettersPorFavor");
 				return true;
 			}
 		}
@@ -113,33 +113,33 @@ public class InputValidator {
 		int day = Integer.valueOf(date[1].toString());
 		int year = Integer.valueOf(date[2].toString());
 		if((month < 1) || (month > 12)){
-			Prompter.printPrompt("notAMonth");
+			Printer.printPrompt("notAMonth");
 			return true;
 		}
 		if((month == 4) || (month == 6) || (month == 9) || (month == 11)){
 			if((day < 1) || (day > 30)){
-				Prompter.printPrompt("notADay");
+				Printer.printPrompt("notADay");
 				return true;
 			}
 		}else if(month == 2){
 			if((day == 29)){
-				Prompter.printPrompt("dontBeASmartass");
+				Printer.printPrompt("dontBeASmartass");
 				return true;
 			}
 			if((day < 1) || (day > 28)){
-				Prompter.printPrompt("notADay");
+				Printer.printPrompt("notADay");
 				return true;
 			}
 		}else{
 			if((day < 1) || (day > 31)){
-				Prompter.printPrompt("notADay");
+				Printer.printPrompt("notADay");
 				return true;
 			}
 		}
 		DateTime timeNow = new DateTime();
 		int currentYear = timeNow.getYear();
 		if(year < currentYear){
-			Prompter.printPrompt("backToTheFuture");
+			Printer.printPrompt("backToTheFuture");
 			return true;
 		}else
 			return false;

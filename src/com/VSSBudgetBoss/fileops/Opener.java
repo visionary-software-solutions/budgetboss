@@ -10,9 +10,9 @@ public class Opener {
 	InputValidator validator = new InputValidator();
 	
 	public void loadFromDirectory(){
-		Prompter.printPrompt("savedInDefault");
+		Printer.printPrompt("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
-		Prompter.printPrompt("whereSaved");
+		Printer.printPrompt("whereSaved");
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();
@@ -25,18 +25,18 @@ public class Opener {
 	}
 		
 	private void searchDirectory(String directoryToSearch){
-		Prompter.printPrompt("searchingDirectory");
+		Printer.printPrompt("searchingDirectory");
 		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
 		if(foundBudgets.length > 0){
 			selectBudget(foundBudgets);
 			BudgetBoss.setDefaultDirectory(directoryToSearch);
 		}else
-			Prompter.printPrompt("noBudgetFound");
+			Printer.printPrompt("noBudgetFound");
 	}
 	
 	private void selectBudget(File[] foundBudgets){
-		Finder.printFoundBudgets(foundBudgets);
-		Prompter.printPrompt("openBudget");
+		Printer.printFoundBudgets(foundBudgets);
+		Printer.printPrompt("openBudget");
 		int index = getNumberToOpen(foundBudgets);
 		if(!(index == -5)){
 			System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
@@ -63,25 +63,25 @@ public class Opener {
 		try {
 			newBudget = new FileInputStream(foundBudgets[index].toString());
 		} catch (FileNotFoundException e) {
-			Prompter.printPrompt("wTF");
+			Printer.printPrompt("wTF");
 			System.out.println("Error making the FileInputStream");
 		}
 		try {
 			toLoad = new ObjectInputStream(newBudget);
 		} catch (IOException e) {
-			Prompter.printPrompt("wTF");
+			Printer.printPrompt("wTF");
 			System.out.println("Error making the ObjectInputStream");
 		}
 		try {
 			loadedBudget = toLoad.readObject();
 		} catch (ClassNotFoundException | IOException e) {
-			Prompter.printPrompt("wTF");
+			Printer.printPrompt("wTF");
 			System.out.println("IO exception, maybe the file is bad?");
 		}
 		try {
 			toLoad.close();
 		} catch (IOException e) {
-			Prompter.printPrompt("wTF");
+			Printer.printPrompt("wTF");
 			System.out.println("Couldn't close the Object/File input streams.");
 		}
 		BudgetBoss.endLoadSavedBudget();

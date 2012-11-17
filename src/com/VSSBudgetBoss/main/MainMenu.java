@@ -40,9 +40,9 @@ public class MainMenu implements MenuOption, MasterMenu{
 	
 	public void displayMainMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
-		Prompter.printPrompt("mainMenu");
+		Printer.printPrompt("mainMenu");
 		System.out.println("Working with budget: " + currentBudget.getName());
-		Prompter.printPrompt("mainMenuChoices");
+		Printer.printPrompt("mainMenuChoices");
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
 		while(validator.menuChoiceIsInvalid(userInput, this))

@@ -7,7 +7,7 @@ import com.VSSBudgetBoss.main.BudgetBoss;
 public class TheCreator {
 		
 	public void createBudget(){
-		Prompter.printPrompt("getBudgetName");
+		Printer.printPrompt("getBudgetName");
 		String desiredName = Listener.getInput();
 		if(!(desiredName.equals("exit"))){
 			System.out.println("Creating budget " + desiredName + "...\n");

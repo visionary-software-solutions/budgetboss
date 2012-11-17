@@ -1,9 +1,7 @@
 package com.VSSBudgetBoss.main;
 
 import static org.fusesource.jansi.Ansi.ansi;
-
 import org.fusesource.jansi.AnsiConsole;
-
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.fileops.*;
 import com.VSSBudgetBoss.cli.*;

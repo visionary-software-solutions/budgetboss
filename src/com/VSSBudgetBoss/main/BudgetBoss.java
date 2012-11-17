@@ -1,5 +1,9 @@
 package com.VSSBudgetBoss.main;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
+import org.fusesource.jansi.AnsiConsole;
+
 import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.fileops.*;
 import com.VSSBudgetBoss.cli.*;
@@ -53,7 +57,7 @@ public class BudgetBoss {
 	}
 		
 	public static void main(String args[]){
-		
+		AnsiConsole.out.println(ansi().eraseScreen());
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		mainMenu = new MainMenu(currentBudget);

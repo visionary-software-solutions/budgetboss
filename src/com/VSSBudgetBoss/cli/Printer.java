@@ -1,16 +1,26 @@
 package com.VSSBudgetBoss.cli;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import com.VSSBudgetBoss.main.MasterOption;
 
 public class Printer {
 	
 	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
+	
+	public static String getPrintout(String toGet){
+		return cliOutput.getString(toGet);
+	}
 
 	public static void printPrompt(String toGet){
 		System.out.println(cliOutput.getString(toGet));
+	}
+	
+	public static void printMenuOptions(MasterOption[] menuOptions){
+		for(int i = 0; i < menuOptions.length; i++){
+			int optionNumber = (i + 1);
+			System.out.println(optionNumber + ") " + menuOptions[i].printOption());
+		}
 	}
 	
 	public static void printFoundBudgets(File[] foundBudgets){

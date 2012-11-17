@@ -8,7 +8,7 @@ import com.VSSBudgetBoss.budget.*;
 import com.VSSBudgetBoss.cli.*;
 import com.VSSBudgetBoss.fileops.Salvation;
 
-public class MainMenu implements MenuOption, MasterMenu{
+public class MainMenu implements MasterMenu {
 	
 	private Budget currentBudget;
 	private int currentMenuChoice;
@@ -16,33 +16,36 @@ public class MainMenu implements MenuOption, MasterMenu{
 	public MainMenu(Budget currentBudget){
 		this.currentBudget = currentBudget;
 	}
-		
-	@Override
-	public int getNumberOfOptions(){
-		return menuOptions.length;
-	}
-	
-	private MenuOption[] menuOptions = new MenuOption[]{
-		new MenuOption(){public void chooseOption() {System.out.println(currentBudget.toString());}},
-		new MenuOption(){public void chooseOption() {choseToSaveText();}},
-		new MenuOption(){public void chooseOption() {startEditor();}},
-		new MenuOption(){public void chooseOption() {choseToSave();}},
-		new MenuOption(){public void chooseOption() {choseToOpen();}},
-		new MenuOption(){public void chooseOption() {choseToCreate();}},
-		new MenuOption(){public void chooseOption() {choseToClose();}}
+			
+	private MasterOption[] menuOptions = new MasterOption[]{
+		new MasterOption(){String optionPrintout = Printer.getPrintout("toConsoleOption"); 
+			public void optionMethod() {System.out.println(currentBudget.toString());}
+			public String printOption(){return optionPrintout;} },
+		new MasterOption(){String optionPrintout = Printer.getPrintout("toTextOption");
+			public void optionMethod() {choseToSaveText();}
+			public String printOption(){return optionPrintout;}},
+		new MasterOption(){String optionPrintout = Printer.getPrintout("startEditorOption");
+			public void optionMethod() {startEditor();}
+			public String printOption(){return optionPrintout;}},
+		new MasterOption(){String optionPrintout = Printer.getPrintout("saveBudgetOption");
+			public void optionMethod() {choseToSave();}
+			public String printOption(){return optionPrintout;}},
+		new MasterOption(){String optionPrintout = Printer.getPrintout("openBudgetOption");
+			public void optionMethod() {choseToOpen();}
+			public String printOption(){return optionPrintout;}},
+		new MasterOption(){String optionPrintout = Printer.getPrintout("createBudgetOption");
+			public void optionMethod() {choseToCreate();}
+			public String printOption(){return optionPrintout;}},
+		new MasterOption(){String optionPrintout = Printer.getPrintout("exitOption");
+			public void optionMethod() {choseToClose();}
+			public String printOption(){return optionPrintout;}}
 	};
 	
-	private void startEditor(){
-		BudgetEditor editor = new BudgetEditor(currentBudget);
-		while(editor.stillEditingBudget())
-			editor.displayEditorMainMenu();
-	}
-	
-	public void displayMainMenu(){
+	public void displayMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
-		Printer.printPrompt("mainMenu");
-		System.out.println("Working with budget: " + currentBudget.getName());
-		Printer.printPrompt("mainMenuChoices");
+		Printer.printPrompt("mainMenuHeader");
+		System.out.println("Working with budget: " + currentBudget.getName() + "\n");
+		Printer.printMenuOptions(menuOptions);
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
 		while(validator.menuChoiceIsInvalid(userInput, this))
@@ -53,9 +56,19 @@ public class MainMenu implements MenuOption, MasterMenu{
 		}
 	}
 	
+	public int getNumberOfOptions(){
+		return menuOptions.length;
+	}
+	
 	private void choseToSaveText(){
 		Salvation savior = new Salvation();
 		savior.writeBudgetToText(currentBudget.getName(), currentBudget);
+	}
+	
+	private void startEditor(){
+		EditorMenu editor = new EditorMenu(currentBudget);
+		while(editor.stillEditingBudget())
+			editor.displayMenu();
 	}
 
 	private void choseToSave(){
@@ -67,6 +80,11 @@ public class MainMenu implements MenuOption, MasterMenu{
 		BudgetBoss.loadSavedBudget();
 		BudgetBoss.endNeedNewBudget();
 	}
+		
+	private void choseToCreate(){
+		BudgetBoss.endLoadSavedBudget();
+		BudgetBoss.needNewBudget();
+	}
 	
 	private void choseToClose(){
 		BudgetBoss.doneUsingBudgetBoss();
@@ -74,13 +92,8 @@ public class MainMenu implements MenuOption, MasterMenu{
 		BudgetBoss.endNeedNewBudget();
 	}
 	
-	private void choseToCreate(){
-		BudgetBoss.endLoadSavedBudget();
-		BudgetBoss.needNewBudget();
-	}
-	
 	public void chooseOption(){
 		int index = (currentMenuChoice -1);
-		menuOptions[index].chooseOption();
+		menuOptions[index].optionMethod();
 	}
 }

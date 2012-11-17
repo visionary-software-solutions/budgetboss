@@ -63,7 +63,7 @@ public class BudgetBoss {
 		Listener.getInput();
 		
 		while (stillUsingBudgetBoss){
-			mainMenu.displayMainMenu();
+			mainMenu.displayMenu();
 			while(loadASavedBudget)
 				opener.loadFromDirectory();
 			while(needANewBudget)

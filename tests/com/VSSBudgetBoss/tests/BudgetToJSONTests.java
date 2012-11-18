@@ -1,9 +1,6 @@
 package com.VSSBudgetBoss.tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-
 import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.budginator.BudgetToJSON;
 

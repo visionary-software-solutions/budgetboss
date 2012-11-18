@@ -6,6 +6,7 @@ import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 
 public class BudgetToJSON {
 	
+	@SuppressWarnings("unchecked")
 	public static JSONObject convertToBudginator(Budget budget){
 		JSONObject convertedBudget = new JSONObject();
 		convertedBudget.put("name", budget.getName());

@@ -7,23 +7,22 @@ import org.joda.time.*;
 
 import com.visionarysoftwaresolutions.budgetboss.budginator.*;
 import com.visionarysoftwaresolutions.budgetboss.cli.DateConverter;
+import com.visionarysoftwaresolutions.budgetboss.cli.Printer;
 
 public class Budget implements MasterBudget, Serializable{
 	
 	private static final long serialVersionUID = -8611741910364436624L;
 	
-	Collection<LineItem> items;
-	BigDecimal totalCost;
-	ArrayList<ExpenseCategory> expenseCategories;
-	ArrayList<IncomeCategory> incomeCategories;
-	String name;
-	LocalDate startDate;
-	LocalDate endDate;
+	private Collection<LineItem> items;
+	private BigDecimal totalCost;
+	private ArrayList<ExpenseCategory> expenseCategories;
+	private ArrayList<IncomeCategory> incomeCategories;
+	private String name;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	
 	public Budget(String name){
 		setName(name);
-		startDate = new LocalDate(2012, 1, 1);
-		endDate = new LocalDate(2012, 12, 31);
 	}
 	
 	public String getName(){
@@ -35,8 +34,11 @@ public class Budget implements MasterBudget, Serializable{
 	}
 	
 	public String getStartDate() {
-		String startDateOutput = DateConverter.formateDate(startDate);
-		return startDateOutput;
+		if(!(startDate == null)){
+			String startDateOutput = DateConverter.formateDate(startDate);
+			return startDateOutput;
+		}else
+			return Printer.getPrintout("dateNotSet");
 	}
 	
 	public void setStartDate(String newDate) {
@@ -45,8 +47,11 @@ public class Budget implements MasterBudget, Serializable{
 	}
 
 	public String getEndDate() {
-		String endDateOutput = DateConverter.formateDate(endDate);
-		return endDateOutput;
+		if(!(endDate == null)){
+			String endDateOutput = DateConverter.formateDate(endDate);
+			return endDateOutput;
+		}else
+			return Printer.getPrintout("dateNotSet");
 	}
 
 	public void setEndDate(String newDate) {

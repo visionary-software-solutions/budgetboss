@@ -1,6 +1,10 @@
 package com.visionarysoftwaresolutions.budgetboss.cli;
 
+import static org.fusesource.jansi.Ansi.ansi;
+
 import java.io.File;
+
+import org.fusesource.jansi.AnsiConsole;
 import org.joda.time.DateTime;
 
 import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
@@ -30,15 +34,18 @@ public class InputValidator {
 				return false;
 		}
 		if(toCheck.contains(" ")){
+			AnsiConsole.out.println(ansi().eraseScreen());
 			Printer.print("whitespaceGenius");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}
 		if(!toCheck.endsWith("/")){
+			AnsiConsole.out.println(ansi().eraseScreen());
 			Printer.print("endsInSlash");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;
 		}else{
+			AnsiConsole.out.println(ansi().eraseScreen());
 			Printer.print("badPathInput");
 			System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 			return true;

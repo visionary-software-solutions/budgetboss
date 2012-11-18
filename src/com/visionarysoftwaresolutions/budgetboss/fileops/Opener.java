@@ -1,6 +1,9 @@
 package com.visionarysoftwaresolutions.budgetboss.fileops;
 
 import java.io.*;
+
+import org.fusesource.jansi.AnsiConsole;
+import static org.fusesource.jansi.Ansi.ansi;
 import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
 import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
@@ -10,6 +13,7 @@ public class Opener {
 	InputValidator validator = new InputValidator();
 	
 	public void loadFromDirectory(){
+		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Printer.print("whereSaved");
@@ -25,6 +29,7 @@ public class Opener {
 	}
 		
 	private void searchDirectory(String directoryToSearch){
+		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("searchingDirectory");
 		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
 		if(foundBudgets.length > 0){

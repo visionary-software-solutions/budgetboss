@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.VSSBudgetBoss.budget.Budget;
+import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 
 public class BudgetTests {
 

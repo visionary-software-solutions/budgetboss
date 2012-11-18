@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
-import com.VSSBudgetBoss.budget.Expense;
-import com.VSSBudgetBoss.budget.ExpenseCategory;
+import com.visionarysoftwaresolutions.budgetboss.budget.Expense;
+import com.visionarysoftwaresolutions.budgetboss.budget.ExpenseCategory;
 
 public class ExpenseCategoryTests {
 

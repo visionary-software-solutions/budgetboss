@@ -1,4 +1,4 @@
-package com.VSSBudgetBoss.budginator;
+package com.visionarysoftwaresolutions.budgetboss.budginator;
 
 import java.math.BigDecimal;
 import org.joda.time.*;

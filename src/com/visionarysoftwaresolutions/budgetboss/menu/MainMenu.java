@@ -1,12 +1,13 @@
-package com.VSSBudgetBoss.main;
+package com.visionarysoftwaresolutions.budgetboss.menu;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
 import org.fusesource.jansi.AnsiConsole;
 
-import com.VSSBudgetBoss.budget.*;
-import com.VSSBudgetBoss.cli.*;
-import com.VSSBudgetBoss.fileops.Salvation;
+import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
+import com.visionarysoftwaresolutions.budgetboss.budget.*;
+import com.visionarysoftwaresolutions.budgetboss.cli.*;
+import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
 
 public class MainMenu implements MasterMenu {
 	
@@ -20,7 +21,7 @@ public class MainMenu implements MasterMenu {
 	private MasterOption[] menuOptions = new MasterOption[]{
 		new MasterOption(){String optionPrintout = Printer.getPrintout("toConsoleOption"); 
 			public void optionMethod() {System.out.println(currentBudget.toString());}
-			public String printOption(){return optionPrintout;} },
+			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("toTextOption");
 			public void optionMethod() {choseToSaveText();}
 			public String printOption(){return optionPrintout;}},

@@ -1,10 +1,12 @@
-package com.VSSBudgetBoss.budget;
+package com.visionarysoftwaresolutions.budgetboss.budget;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 import org.joda.time.*;
-import com.VSSBudgetBoss.budginator.*;
+
+import com.visionarysoftwaresolutions.budgetboss.budginator.*;
+import com.visionarysoftwaresolutions.budgetboss.cli.DateConverter;
 
 public class Budget implements MasterBudget, Serializable{
 	

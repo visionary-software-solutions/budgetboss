@@ -1,12 +1,12 @@
-package com.VSSBudgetBoss.budget;
+package com.visionarysoftwaresolutions.budgetboss.menu;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
 import org.fusesource.jansi.AnsiConsole;
-
-import com.VSSBudgetBoss.cli.*;
-import com.VSSBudgetBoss.fileops.Salvation;
-import com.VSSBudgetBoss.main.*;
+import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
+import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
+import com.visionarysoftwaresolutions.budgetboss.cli.*;
+import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
 
 public class EditorMenu implements MasterMenu{
 	

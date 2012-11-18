@@ -1,4 +1,4 @@
-package com.VSSBudgetBoss.main;
+package com.visionarysoftwaresolutions.budgetboss.menu;
 
 public interface MasterMenu {
 

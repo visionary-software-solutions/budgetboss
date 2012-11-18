@@ -1,7 +1,8 @@
-package com.VSSBudgetBoss.budginator;
+package com.visionarysoftwaresolutions.budgetboss.budginator;
 
 import org.json.simple.*;
-import com.VSSBudgetBoss.budget.Budget;
+
+import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 
 public class BudgetToJSON {
 	

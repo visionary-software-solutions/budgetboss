@@ -1,4 +1,4 @@
-package com.VSSBudgetBoss.cli;
+package com.visionarysoftwaresolutions.budgetboss.cli;
 
 import java.io.BufferedReader;
 import java.io.IOException;

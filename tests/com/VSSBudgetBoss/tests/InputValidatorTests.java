@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.VSSBudgetBoss.cli.InputValidator;
+import com.visionarysoftwaresolutions.budgetboss.cli.InputValidator;
 
 public class InputValidatorTests {
 	

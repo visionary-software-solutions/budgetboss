@@ -1,8 +1,10 @@
-package com.VSSBudgetBoss.cli;
+package com.visionarysoftwaresolutions.budgetboss.cli;
 
 import java.io.File;
 import org.joda.time.DateTime;
-import com.VSSBudgetBoss.main.*;
+
+import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
+import com.visionarysoftwaresolutions.budgetboss.menu.*;
 
 public class InputValidator {
 	

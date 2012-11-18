@@ -1,8 +1,9 @@
-package com.VSSBudgetBoss.cli;
+package com.visionarysoftwaresolutions.budgetboss.cli;
 
 import java.io.File;
 import java.util.*;
-import com.VSSBudgetBoss.main.MasterOption;
+
+import com.visionarysoftwaresolutions.budgetboss.menu.MasterOption;
 
 public class Printer {
 	

@@ -1,10 +1,12 @@
-package com.VSSBudgetBoss.main;
+package com.visionarysoftwaresolutions.budgetboss.app;
 
 import static org.fusesource.jansi.Ansi.ansi;
 import org.fusesource.jansi.AnsiConsole;
-import com.VSSBudgetBoss.budget.*;
-import com.VSSBudgetBoss.fileops.*;
-import com.VSSBudgetBoss.cli.*;
+
+import com.visionarysoftwaresolutions.budgetboss.budget.*;
+import com.visionarysoftwaresolutions.budgetboss.cli.*;
+import com.visionarysoftwaresolutions.budgetboss.fileops.*;
+import com.visionarysoftwaresolutions.budgetboss.menu.MainMenu;
 
 public class BudgetBoss {
 	

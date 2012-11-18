@@ -1,4 +1,4 @@
-package com.VSSBudgetBoss.budget;
+package com.visionarysoftwaresolutions.budgetboss.budget;
 
 import java.math.BigDecimal;
 import org.joda.time.LocalDate;

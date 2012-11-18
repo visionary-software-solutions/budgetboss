@@ -12,7 +12,7 @@ public class Opener {
 	
 	InputValidator validator = new InputValidator();
 	
-	public void loadFromDirectory(){
+	public void getLoadDirectory(){
 		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
@@ -33,16 +33,16 @@ public class Opener {
 		Printer.print("searchingDirectory");
 		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
 		if(foundBudgets.length > 0){
-			selectBudget(foundBudgets);
+			chooseBudget(foundBudgets);
 			BudgetBoss.setDefaultDirectory(directoryToSearch);
 		}else
 			Printer.print("noBudgetFound");
 	}
 	
-	private void selectBudget(File[] foundBudgets){
+	private void chooseBudget(File[] foundBudgets){
 		Printer.printFoundBudgets(foundBudgets);
 		Printer.print("openBudget");
-		int index = getNumberToOpen(foundBudgets);
+		int index = getChoiceNumber(foundBudgets);
 		if(!(index == -5)){
 			System.out.println("Opening " + foundBudgets[index].getName() + "...\n");
 			BudgetBoss.setCurrentBudget(loadBudget(index, foundBudgets));
@@ -50,7 +50,7 @@ public class Opener {
 		}
 	}
 	
-	private int getNumberToOpen(File[] foundBudgets){
+	private int getChoiceNumber(File[] foundBudgets){
 		String toCheck = Listener.getInput();
 		int highestChoice = foundBudgets.length;
 		while(validator.inputNotABudget(toCheck, highestChoice))

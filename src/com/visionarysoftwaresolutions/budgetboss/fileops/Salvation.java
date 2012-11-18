@@ -41,7 +41,7 @@ public class Salvation {
 		}
 	}
 	
-	public void writeBudgetToText(String fileName, Budget budget){
+	public void generateBudgetReport(String fileName, Budget budget){
 		String pathToSalvation = getSaveDirectory();
 		if(!(pathToSalvation.equalsIgnoreCase("exit"))){
 			try {
@@ -51,7 +51,7 @@ public class Salvation {
 				Printer.print("budgetSaved");
 				BudgetBoss.setDefaultDirectory(pathToSalvation);
 			} catch (FileNotFoundException e) {
-				System.out.println("Rethink this son");
+				System.out.println("Rethink this, son.");
 				e.printStackTrace();
 			}
 		}

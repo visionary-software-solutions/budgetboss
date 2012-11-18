@@ -28,8 +28,8 @@ public class MainMenu implements MasterMenu {
 		new MasterOption(){String optionPrintout = Printer.getPrintout("toConsoleOption"); 
 			public void optionMethod() {choseToPrintText();}
 			public String printOption(){return optionPrintout;}},
-		new MasterOption(){String optionPrintout = Printer.getPrintout("toTextOption");
-			public void optionMethod() {choseToSaveText();}
+		new MasterOption(){String optionPrintout = Printer.getPrintout("budgetReportOption");
+			public void optionMethod() {choseBudgetReport();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("startEditorOption");
 			public void optionMethod() {startEditor();}
@@ -51,7 +51,7 @@ public class MainMenu implements MasterMenu {
 	public void displayMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("mainMenuHeader");
-		System.out.println("Working with budget: " + currentBudget.getName() + "\n");
+		System.out.println("Budget in use: " + currentBudget.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
 	}
 	
@@ -80,10 +80,10 @@ public class MainMenu implements MasterMenu {
 		}
 	}
 	
-	private void choseToSaveText(){
+	private void choseBudgetReport(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			Salvation savior = new Salvation();
-			savior.writeBudgetToText(currentBudget.getName(), currentBudget);
+			savior.generateBudgetReport(currentBudget.getName(), currentBudget);
 		}else{
 			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);

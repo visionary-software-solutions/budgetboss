@@ -34,8 +34,8 @@ public class EditorMenu implements MasterMenu{
 		new MasterOption() {String optionPrintout = Printer.getPrintout("toConsoleOption");
 			public void optionMethod() {System.out.println(toEdit.toString());}
 			public String printOption(){return optionPrintout;}},
-		new MasterOption() {String optionPrintout = Printer.getPrintout("toTextOption");
-			public void optionMethod() {choseToSaveText();}
+		new MasterOption() {String optionPrintout = Printer.getPrintout("budgetReportOption");
+			public void optionMethod() {choseBudgetReport();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption() {String optionPrintout = Printer.getPrintout("newNameOption");
 			public void optionMethod() {getNewName();}
@@ -54,7 +54,7 @@ public class EditorMenu implements MasterMenu{
 	public void displayMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("editorMenuHeader");
-		System.out.println("Working with budget: " + toEdit.getName() + "\n");
+		System.out.println("Budget in use: " + toEdit.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
 	}
 	
@@ -68,22 +68,22 @@ public class EditorMenu implements MasterMenu{
 			System.out.println(errorMessage);
 			userInput = Listener.getInput();
 		}
-		if(!(userInput.equals("exit"))){
+		if(!(userInput.equalsIgnoreCase("exit"))){
 			int optionChose = Integer.valueOf(userInput);
 			chooseOption(optionChose);
 		}else
 			stillEditing = false;
 	}
 	
-	private void choseToSaveText(){
+	private void choseBudgetReport(){
 		Salvation savior = new Salvation();
-		savior.writeBudgetToText(toEdit.getName(), toEdit);
+		savior.generateBudgetReport(toEdit.getName(), toEdit);
 	}
 	
 	private void getNewName(){
 		Printer.print("getNewName");
 		String userInput = Listener.getInput();
-		if(!(userInput.equals("exit")))
+		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setName(userInput);
 		else{
 			stillEditing = false;
@@ -99,7 +99,7 @@ public class EditorMenu implements MasterMenu{
 		InputValidator validator = new InputValidator();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
-		if(!(userInput.equals("exit")))
+		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setStartDate(userInput);
 	}
 	
@@ -109,7 +109,7 @@ public class EditorMenu implements MasterMenu{
 		InputValidator validator = new InputValidator();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
-		if(!(userInput.equals("exit")))
+		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setEndDate(userInput);
 	}
 		

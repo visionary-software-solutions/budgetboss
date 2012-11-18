@@ -151,7 +151,7 @@ public class InputValidator {
 			return false;
 	}
 	
-	private boolean itsTimeToExit(String toCheck){
+	public boolean itsTimeToExit(String toCheck){
 		if(toCheck.equalsIgnoreCase("exit")){
 			BudgetBoss.endLoadSavedBudget();
 			BudgetBoss.endNeedNewBudget();

@@ -67,7 +67,7 @@ public class BudgetBoss {
 		while (stillUsingBudgetBoss){
 			mainMenu.getOption(mainMenu);
 			while(loadASavedBudget)
-				opener.loadFromDirectory();
+				opener.getLoadDirectory();
 			while(needANewBudget)
 				creator.createBudget();
 		}

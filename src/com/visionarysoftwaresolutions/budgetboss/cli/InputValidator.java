@@ -14,7 +14,6 @@ public class InputValidator {
 		try{
 			Integer.parseInt(toCheck);
 		}catch(NumberFormatException e){
-			Printer.print("notEvenANumberGenius");
 			return true;
 		}
 		return false;
@@ -67,15 +66,17 @@ public class InputValidator {
 	public boolean menuChoiceIsInvalid(String toCheck, MasterMenu menu){
 		if(itsTimeToExit(toCheck))
 			return false;
-		if(inputNotAnInteger(toCheck))
+		if(inputNotAnInteger(toCheck)){
+			menu.setErrorMessage(Printer.getPrintout("notEvenANumberGenius"));
 			return true;
+		}
 		int userChoice = Integer.valueOf(toCheck);
 		if(Integer.valueOf(toCheck).equals(0)){
-			Printer.print("youreAZero");
+			menu.setErrorMessage(Printer.getPrintout("youreAZero"));
 			return true;
 		}
 		if(userChoice > menu.getNumberOfOptions()){
-			Printer.print("thatsNotAChoice");
+			menu.setErrorMessage(Printer.getPrintout("thatsNotAChoice"));
 			return true;
 		}
 		else

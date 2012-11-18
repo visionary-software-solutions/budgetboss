@@ -6,7 +6,7 @@ import org.fusesource.jansi.AnsiConsole;
 import com.visionarysoftwaresolutions.budgetboss.budget.*;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
 import com.visionarysoftwaresolutions.budgetboss.fileops.*;
-import com.visionarysoftwaresolutions.budgetboss.menu.MainMenu;
+import com.visionarysoftwaresolutions.budgetboss.menu.*;
 
 public class BudgetBoss {
 	
@@ -14,10 +14,10 @@ public class BudgetBoss {
 	static TheCreator creator = new TheCreator();
 	static Budget currentBudget = new Budget("No budget loaded");
 	static String defaultDirectory;
+	static MasterMenu mainMenu;
 	static boolean stillUsingBudgetBoss = true;
 	static boolean loadASavedBudget = true;
 	static boolean needANewBudget = true;
-	static MainMenu mainMenu;
 	
 	public static void loadSavedBudget(){
 		loadASavedBudget = true;
@@ -65,7 +65,7 @@ public class BudgetBoss {
 		Listener.getInput();
 		
 		while (stillUsingBudgetBoss){
-			mainMenu.displayMenu();
+			mainMenu.getOption(mainMenu);
 			while(loadASavedBudget)
 				opener.loadFromDirectory();
 			while(needANewBudget)

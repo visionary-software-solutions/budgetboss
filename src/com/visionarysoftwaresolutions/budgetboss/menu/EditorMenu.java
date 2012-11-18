@@ -12,10 +12,14 @@ public class EditorMenu implements MasterMenu{
 	
 	private Budget toEdit;
 	private boolean stillEditing = true;
-	private InputValidator validator = new InputValidator();
+	private String errorMessage = "";
 
 	public EditorMenu(Budget toEdit){
 		this.toEdit = toEdit;
+	}
+	
+	public void setErrorMessage(String newMessage){
+		errorMessage = newMessage;
 	}
 	
 	public boolean stillEditingBudget(){
@@ -52,10 +56,18 @@ public class EditorMenu implements MasterMenu{
 		Printer.print("editorMenuHeader");
 		System.out.println("Working with budget: " + toEdit.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
+	}
+	
+	public void getOption(MasterMenu menu){
+		displayMenu();
+		System.out.println(errorMessage);
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		while(validator.menuChoiceIsInvalid(userInput, this))
+		while(validator.menuChoiceIsInvalid(userInput, this)){
+			displayMenu();
+			System.out.println(errorMessage);
 			userInput = Listener.getInput();
+		}
 		if(!(userInput.equals("exit"))){
 			int optionChose = Integer.valueOf(userInput);
 			chooseOption(optionChose);
@@ -84,6 +96,7 @@ public class EditorMenu implements MasterMenu{
 	private void getNewStartDate(){
 		Printer.print("getNewStartDate");
 		String userInput = Listener.getInput();
+		InputValidator validator = new InputValidator();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
 		if(!(userInput.equals("exit")))
@@ -93,6 +106,7 @@ public class EditorMenu implements MasterMenu{
 	private void getNewEndDate(){
 		Printer.print("getNewEndDate");
 		String userInput = Listener.getInput();
+		InputValidator validator = new InputValidator();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
 		if(!(userInput.equals("exit")))

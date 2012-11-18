@@ -12,9 +12,18 @@ import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
 public class MainMenu implements MasterMenu {
 	
 	private Budget currentBudget;
+	private String errorMessage = "";
 
 	public MainMenu(Budget currentBudget){
 		this.currentBudget = currentBudget;
+	}
+	
+	public void setErrorMessage(String newMessage){
+		errorMessage = newMessage;
+	}
+	
+	public int getNumberOfOptions(){
+		return menuOptions.length;
 	}
 			
 	private MasterOption[] menuOptions = new MasterOption[]{
@@ -46,18 +55,18 @@ public class MainMenu implements MasterMenu {
 		Printer.print("mainMenuHeader");
 		System.out.println("Working with budget: " + currentBudget.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
-		getOption(this);
 	}
 	
-	public int getNumberOfOptions(){
-		return menuOptions.length;
-	}
-	
-	private void getOption(MasterMenu menu){
+	public void getOption(MasterMenu menu){
+		displayMenu();
+		System.out.println(errorMessage);
 		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		while (validator.menuChoiceIsInvalid(userInput, menu))
+		while (validator.menuChoiceIsInvalid(userInput, menu)){
+			displayMenu();
+			System.out.println(errorMessage);
 			userInput = Listener.getInput();
+		}
 		if(!(userInput.equalsIgnoreCase("exit"))){
 			int optionChose = Integer.valueOf(userInput);
 			chooseOption(optionChose);
@@ -68,7 +77,7 @@ public class MainMenu implements MasterMenu {
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			System.out.println(currentBudget.toString());
 		}else {
-			Printer.print("noBudgetLoaded");
+			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);
 		}
 	}
@@ -78,7 +87,7 @@ public class MainMenu implements MasterMenu {
 			Salvation savior = new Salvation();
 			savior.writeBudgetToText(currentBudget.getName(), currentBudget);
 		}else{
-			Printer.print("noBudgetLoaded");
+			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);
 		}
 	}
@@ -87,9 +96,9 @@ public class MainMenu implements MasterMenu {
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			EditorMenu editor = new EditorMenu(currentBudget);
 			while(editor.stillEditingBudget())
-				editor.displayMenu();
+				editor.getOption(editor);
 		}else{
-			Printer.print("noBudgetLoaded");
+			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);
 		}
 	}
@@ -99,7 +108,7 @@ public class MainMenu implements MasterMenu {
 			Salvation savior = new Salvation();
 			savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
 		}else{
-			Printer.print("noBudgetLoaded");
+			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);
 		}
 	}

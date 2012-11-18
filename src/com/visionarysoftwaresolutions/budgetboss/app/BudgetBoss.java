@@ -61,7 +61,7 @@ public class BudgetBoss {
 		String currentUser = System.getProperty("user.name");
 		defaultDirectory = "/home/" + currentUser + "/Documents/";
 		mainMenu = new MainMenu(currentBudget);
-		Printer.printPrompt("welcome");
+		Printer.print("welcome");
 		Listener.getInput();
 		
 		while (stillUsingBudgetBoss){

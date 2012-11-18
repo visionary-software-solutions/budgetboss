@@ -11,7 +11,7 @@ public class Salvation {
 	InputValidator validator = new InputValidator();
 	
 	private String getSaveDirectory(){
-		Printer.printPrompt("getSaveDirectoryPath");
+		Printer.print("getSaveDirectoryPath");
 		System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 		String toCheck = Listener.getInput();
 		while(validator.pathIsInvalid(toCheck))
@@ -33,7 +33,7 @@ public class Salvation {
 				ObjectOutputStream saveOutput = new ObjectOutputStream(saveFile);
 				saveOutput.writeObject(budget);
 				saveOutput.close();
-				Printer.printPrompt("budgetSaved");
+				Printer.print("budgetSaved");
 				BudgetBoss.setDefaultDirectory(pathToSalvation);
 			}catch(Exception ex){
 				ex.printStackTrace();
@@ -48,7 +48,7 @@ public class Salvation {
 				PrintStream budgetToText =  new PrintStream(new FileOutputStream(pathToSalvation + fileName + ".txt"));
 				budgetToText.println(budget.toString());
 				budgetToText.close();
-				Printer.printPrompt("budgetSaved");
+				Printer.print("budgetSaved");
 				BudgetBoss.setDefaultDirectory(pathToSalvation);
 			} catch (FileNotFoundException e) {
 				System.out.println("Rethink this son");

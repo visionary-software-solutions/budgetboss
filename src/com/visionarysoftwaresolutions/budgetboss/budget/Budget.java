@@ -61,7 +61,7 @@ public class Budget implements MasterBudget, Serializable{
 	
 	
 	public String toString(){
-		return ("\nBudget name: " + getName() + "\nBudget start: " + getStartDate() + 
+		return ("\nBudget Name: " + getName() + "\nBudget Start: " + getStartDate() + 
 				"\nBudget End: " + getEndDate() + "\n");
 	}
 

@@ -11,7 +11,6 @@ import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
 public class EditorMenu implements MasterMenu{
 	
 	private Budget toEdit;
-	private int currentMenuChoice;
 	private boolean stillEditing = true;
 	private InputValidator validator = new InputValidator();
 
@@ -50,7 +49,7 @@ public class EditorMenu implements MasterMenu{
 
 	public void displayMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
-		Printer.printPrompt("editorMenuHeader");
+		Printer.print("editorMenuHeader");
 		System.out.println("Working with budget: " + toEdit.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
 		InputValidator validator = new InputValidator();
@@ -58,8 +57,8 @@ public class EditorMenu implements MasterMenu{
 		while(validator.menuChoiceIsInvalid(userInput, this))
 			userInput = Listener.getInput();
 		if(!(userInput.equals("exit"))){
-			currentMenuChoice = Integer.valueOf(userInput);
-			chooseOption();
+			int optionChose = Integer.valueOf(userInput);
+			chooseOption(optionChose);
 		}else
 			stillEditing = false;
 	}
@@ -70,7 +69,7 @@ public class EditorMenu implements MasterMenu{
 	}
 	
 	private void getNewName(){
-		Printer.printPrompt("getNewName");
+		Printer.print("getNewName");
 		String userInput = Listener.getInput();
 		if(!(userInput.equals("exit")))
 			toEdit.setName(userInput);
@@ -83,7 +82,7 @@ public class EditorMenu implements MasterMenu{
 	}
 	
 	private void getNewStartDate(){
-		Printer.printPrompt("getNewStartDate");
+		Printer.print("getNewStartDate");
 		String userInput = Listener.getInput();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
@@ -92,7 +91,7 @@ public class EditorMenu implements MasterMenu{
 	}
 	
 	private void getNewEndDate(){
-		Printer.printPrompt("getNewEndDate");
+		Printer.print("getNewEndDate");
 		String userInput = Listener.getInput();
 		while(validator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
@@ -100,8 +99,8 @@ public class EditorMenu implements MasterMenu{
 			toEdit.setEndDate(userInput);
 	}
 		
-	public void chooseOption(){
-		int index = (currentMenuChoice -1);
+	public void chooseOption(int optionChose){
+		int index = (optionChose - 1);
 		menuOptions[index].optionMethod();
 	}
 }

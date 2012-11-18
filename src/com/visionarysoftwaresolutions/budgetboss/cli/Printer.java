@@ -13,7 +13,7 @@ public class Printer {
 		return cliOutput.getString(toGet);
 	}
 
-	public static void printPrompt(String toGet){
+	public static void print(String toGet){
 		System.out.println(cliOutput.getString(toGet));
 	}
 	

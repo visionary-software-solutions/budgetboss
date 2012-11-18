@@ -12,7 +12,6 @@ import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
 public class MainMenu implements MasterMenu {
 	
 	private Budget currentBudget;
-	private int currentMenuChoice;
 
 	public MainMenu(Budget currentBudget){
 		this.currentBudget = currentBudget;
@@ -20,7 +19,7 @@ public class MainMenu implements MasterMenu {
 			
 	private MasterOption[] menuOptions = new MasterOption[]{
 		new MasterOption(){String optionPrintout = Printer.getPrintout("toConsoleOption"); 
-			public void optionMethod() {System.out.println(currentBudget.toString());}
+			public void optionMethod() {choseToPrintText();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("toTextOption");
 			public void optionMethod() {choseToSaveText();}
@@ -44,37 +43,65 @@ public class MainMenu implements MasterMenu {
 	
 	public void displayMenu(){
 		AnsiConsole.out.println(ansi().eraseScreen());
-		Printer.printPrompt("mainMenuHeader");
+		Printer.print("mainMenuHeader");
 		System.out.println("Working with budget: " + currentBudget.getName() + "\n");
 		Printer.printMenuOptions(menuOptions);
-		InputValidator validator = new InputValidator();
-		String userInput = Listener.getInput();
-		while(validator.menuChoiceIsInvalid(userInput, this))
-			userInput = Listener.getInput();
-		if(!(userInput.equals("exit"))){
-			currentMenuChoice = Integer.valueOf(userInput);
-			chooseOption();	
-		}
+		getOption(this);
 	}
 	
 	public int getNumberOfOptions(){
 		return menuOptions.length;
 	}
 	
+	private void getOption(MasterMenu menu){
+		InputValidator validator = new InputValidator();
+		String userInput = Listener.getInput();
+		while (validator.menuChoiceIsInvalid(userInput, menu))
+			userInput = Listener.getInput();
+		if(!(userInput.equalsIgnoreCase("exit"))){
+			int optionChose = Integer.valueOf(userInput);
+			chooseOption(optionChose);
+		}
+	}
+	
+	private void choseToPrintText(){
+		if(!(currentBudget.getName().equals("No budget loaded"))){
+			System.out.println(currentBudget.toString());
+		}else {
+			Printer.print("noBudgetLoaded");
+			getOption(this);
+		}
+	}
+	
 	private void choseToSaveText(){
-		Salvation savior = new Salvation();
-		savior.writeBudgetToText(currentBudget.getName(), currentBudget);
+		if(!(currentBudget.getName().equals("No budget loaded"))){
+			Salvation savior = new Salvation();
+			savior.writeBudgetToText(currentBudget.getName(), currentBudget);
+		}else{
+			Printer.print("noBudgetLoaded");
+			getOption(this);
+		}
 	}
 	
 	private void startEditor(){
-		EditorMenu editor = new EditorMenu(currentBudget);
-		while(editor.stillEditingBudget())
-			editor.displayMenu();
+		if(!(currentBudget.getName().equals("No budget loaded"))){
+			EditorMenu editor = new EditorMenu(currentBudget);
+			while(editor.stillEditingBudget())
+				editor.displayMenu();
+		}else{
+			Printer.print("noBudgetLoaded");
+			getOption(this);
+		}
 	}
 
 	private void choseToSave(){
-		Salvation savior = new Salvation();
-		savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
+		if(!(currentBudget.getName().equals("No budget loaded"))){
+			Salvation savior = new Salvation();
+			savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
+		}else{
+			Printer.print("noBudgetLoaded");
+			getOption(this);
+		}
 	}
 	
 	private void choseToOpen(){
@@ -93,8 +120,8 @@ public class MainMenu implements MasterMenu {
 		BudgetBoss.endNeedNewBudget();
 	}
 	
-	public void chooseOption(){
-		int index = (currentMenuChoice -1);
+	public void chooseOption(int optionChose){
+		int index = (optionChose -1);
 		menuOptions[index].optionMethod();
 	}
 }

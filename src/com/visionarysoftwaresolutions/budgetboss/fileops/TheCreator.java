@@ -7,7 +7,7 @@ import com.visionarysoftwaresolutions.budgetboss.cli.*;
 public class TheCreator {
 		
 	public void createBudget(){
-		Printer.printPrompt("getBudgetName");
+		Printer.print("getBudgetName");
 		String desiredName = Listener.getInput();
 		if(!(desiredName.equals("exit"))){
 			System.out.println("Creating budget " + desiredName + "...\n");

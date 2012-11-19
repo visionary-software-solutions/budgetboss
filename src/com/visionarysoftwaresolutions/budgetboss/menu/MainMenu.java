@@ -25,26 +25,26 @@ public class MainMenu implements MasterMenu {
 	}
 			
 	private MasterOption[] menuOptions = new MasterOption[]{
-		new MasterOption(){String optionPrintout = Printer.getPrintout("toConsoleOption"); 
-			public void optionMethod() {choseToPrintText();}
+		new MasterOption(){String optionPrintout = Printer.getPrintout("reportToConsoleOption"); 
+			public void optionMethod() {reportToConsole();}
 			public String printOption(){return optionPrintout;}},
-		new MasterOption(){String optionPrintout = Printer.getPrintout("budgetReportOption");
-			public void optionMethod() {choseBudgetReport();}
+		new MasterOption(){String optionPrintout = Printer.getPrintout("reportToDiskOption");
+			public void optionMethod() {reportToDisk();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("startEditorOption");
 			public void optionMethod() {startEditor();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("saveBudgetOption");
-			public void optionMethod() {choseToSave();}
+			public void optionMethod() {saveBudget();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("openBudgetOption");
-			public void optionMethod() {choseToOpen();}
+			public void optionMethod() {openBudget();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("createBudgetOption");
-			public void optionMethod() {choseToCreate();}
+			public void optionMethod() {createBudget();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption(){String optionPrintout = Printer.getPrintout("exitOption");
-			public void optionMethod() {choseToClose();}
+			public void optionMethod() {exitProgram();}
 			public String printOption(){return optionPrintout;}}
 	};
 	
@@ -71,7 +71,7 @@ public class MainMenu implements MasterMenu {
 		}
 	}
 	
-	private void choseToPrintText(){
+	private void reportToConsole(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			System.out.println(currentBudget.toString());
 		}else {
@@ -80,7 +80,7 @@ public class MainMenu implements MasterMenu {
 		}
 	}
 	
-	private void choseBudgetReport(){
+	private void reportToDisk(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			Salvation savior = new Salvation();
 			savior.generateBudgetReport(currentBudget.getName(), currentBudget);
@@ -101,7 +101,7 @@ public class MainMenu implements MasterMenu {
 		}
 	}
 
-	private void choseToSave(){
+	private void saveBudget(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
 			Salvation savior = new Salvation();
 			savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
@@ -111,17 +111,17 @@ public class MainMenu implements MasterMenu {
 		}
 	}
 	
-	private void choseToOpen(){
+	private void openBudget(){
 		BudgetBoss.loadSavedBudget();
 		BudgetBoss.endNeedNewBudget();
 	}
 		
-	private void choseToCreate(){
+	private void createBudget(){
 		BudgetBoss.endLoadSavedBudget();
 		BudgetBoss.needNewBudget();
 	}
 	
-	private void choseToClose(){
+	private void exitProgram(){
 		BudgetBoss.doneUsingBudgetBoss();
 		BudgetBoss.endLoadSavedBudget();
 		BudgetBoss.endNeedNewBudget();

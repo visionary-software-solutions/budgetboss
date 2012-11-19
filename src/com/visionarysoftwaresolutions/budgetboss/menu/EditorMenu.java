@@ -1,7 +1,6 @@
 package com.visionarysoftwaresolutions.budgetboss.menu;
 
 import static org.fusesource.jansi.Ansi.ansi;
-
 import org.fusesource.jansi.AnsiConsole;
 import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
 import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
@@ -31,11 +30,11 @@ public class EditorMenu implements MasterMenu{
 	}
 	
 	private MasterOption[] menuOptions = new MasterOption[] {
-		new MasterOption() {String optionPrintout = Printer.getPrintout("toConsoleOption");
+		new MasterOption() {String optionPrintout = Printer.getPrintout("reportToConsoleOption");
 			public void optionMethod() {System.out.println(toEdit.toString());}
 			public String printOption(){return optionPrintout;}},
-		new MasterOption() {String optionPrintout = Printer.getPrintout("budgetReportOption");
-			public void optionMethod() {choseBudgetReport();}
+		new MasterOption() {String optionPrintout = Printer.getPrintout("reportToDiskOption");
+			public void optionMethod() {reportToDisk();}
 			public String printOption(){return optionPrintout;}},
 		new MasterOption() {String optionPrintout = Printer.getPrintout("newNameOption");
 			public void optionMethod() {getNewName();}
@@ -75,7 +74,7 @@ public class EditorMenu implements MasterMenu{
 			stillEditing = false;
 	}
 	
-	private void choseBudgetReport(){
+	private void reportToDisk(){
 		Salvation savior = new Salvation();
 		savior.generateBudgetReport(toEdit.getName(), toEdit);
 	}

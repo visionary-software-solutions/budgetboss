@@ -11,14 +11,8 @@ public class Listener {
 	private String desiredInput;
 	
 	public static String getInput(){
-		InputValidator validator = new InputValidator();
 		Listener listener = new Listener();
 		String input = listener.listenForInput();
-		if(input.equalsIgnoreCase("exit")){
-			BudgetBoss.endLoadSavedBudget();
-			BudgetBoss.endNeedNewBudget();
-			BudgetBoss.doneUsingBudgetBoss();
-		}
 		return input;
 	}
 	

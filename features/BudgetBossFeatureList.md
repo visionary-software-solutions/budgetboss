@@ -15,7 +15,7 @@
 		       		<li>When: BudgetBoss is launched</li>
 		       		<li>And: After an initial welcome message</li>
 		       		<li>Then: A main menu will appear with access to various functions</li>
-		       		<li>For more on available main menu features see: <a href = "BudgetBoss/features/MainMenuFeatureList.md">Main Menu Feature List</a>
+		       		<li>For more on available main menu features see: <a href = "features/MainMenuFeatureList.md">Main Menu Feature List</a>
 		 	</td>
 		  	<td>Implemented</td>
 		</tr>
@@ -78,7 +78,7 @@
 		       		<li>When: The main menu comes up initially, before a user has a chance to open/create a budget</li>
 		       		<li>Then: The indicator for the budget in use will show "No budget loaded"</li>
 				<li>And: Menu features will be restricted until a budget is opened/created.</li>
-		       		<li>For more on restricting menu functions see: <a href = "BudgetBoss/features/MainMenuFeatureList.md">Main Menu Feature List</a>
+		       		<li>For more on restricting menu functions see: <a href = "features/MainMenuFeatureList.md">Main Menu Feature List</a>
 
 		 	</td>
 		  	<td>Implemented</td>
@@ -112,7 +112,7 @@
 				<li>And: The user declines to use the default directory, and instead opts to input a custom load directory path</li>
 		      		<li>If: The user enters a valid path and successfully loads a budget from it</li>
 				<li>Then: BudgetBoss will make the directory from which the budget was loaded the new default load directory</li>
-				<li>For more on how the validity of the inputted path is determined, see: <a href = "BudgetBoss/features/InputValidatorFeatureList.md">Input Validator Feature List</a>
+				<li>For more on how the validity of the inputted path is determined, see: <a href = "features/InputValidatorFeatureList.md">Input Validator Feature List</a>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -125,7 +125,7 @@
 				<li>And: The user declines to use the default directory, and instead opts to input a custom save directory path</li>
 		      		<li>If: The user enters a valid path and successfully saves a budget</li>
 				<li>Then: BudgetBoss will make the directory to which the budget was saved the new default save directory</li>
-				<li>For more on how the validity of the inputted path is determined, see: <a href = "BudgetBoss/features/InputValidatorFeatureList.md">Input Validator Feature List</a>
+				<li>For more on how the validity of the inputted path is determined, see: <a href = "features/InputValidatorFeatureList.md">Input Validator Feature List</a>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>

@@ -20,6 +20,16 @@
 		  	<td>Implemented</td>
 		</tr>
 		<tr>
+			<td>BudgetBoss can create new budgets</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: BudgetBoss is running</li>
+		       		<li>When: A user needs to create a new budget</li>
+		      		<li>Then: The user will be prompted to name the budget, and it will be created and set as the budget in use</li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
 			<td>BudgetBoss can save budgets to disk</td>
 		  	<td>
 		   	<ul>
@@ -36,6 +46,27 @@
 		      		<li>Given: BudgetBoss is running</li>
 		       		<li>When: A user needs to access a previously saved budget</li>
 		      		<li>Then: The user can open the desired budget and it will load into BudgetBoss</li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
+			<td>BudgetBoss can seach for budgets to load</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: BudgetBoss is running</li>
+		       		<li>When: A user needs to access a previously saved budget</li>
+		      		<li>Then: The user can point BudgetBoss to a valid path and it will collect any saved budgets there for potential loading</li>
+				<li>For more on how the validity of the path is determined, see: <a href = "InputValidatorFeatureList.md">Input Validator Feature List</a></li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
+			<td>BudgetBoss can load budgets from a selectable list</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: BudgetBoss has collected saved budgets from a directory searched</li>
+		       		<li>When: A user wants to open a collected budgets</li>
+		      		<li>Then: The budgets names will be printed and paired with indicator numbers, allowing the user to input the number of the budget they want to open</li>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -78,7 +109,7 @@
 		       		<li>When: The main menu comes up initially, before a user has a chance to open/create a budget</li>
 		       		<li>Then: The indicator for the budget in use will show "No budget loaded"</li>
 				<li>And: Menu features will be restricted until a budget is opened/created.</li>
-		       		<li>For more on restricting menu functions see: <a href = "MainMenuFeatureList.md">Main Menu Feature List</a>
+		       		<li>For more on restricting menu functions see: <a href = "MainMenuFeatureList.md">Main Menu Feature List</a></li>
 
 		 	</td>
 		  	<td>Implemented</td>
@@ -112,7 +143,7 @@
 				<li>And: The user declines to use the default directory, and instead opts to input a custom load directory path</li>
 		      		<li>If: The user enters a valid path and successfully loads a budget from it</li>
 				<li>Then: BudgetBoss will make the directory from which the budget was loaded the new default load directory</li>
-				<li>For more on how the validity of the inputted path is determined, see: <a href = "InputValidatorFeatureList.md">Input Validator Feature List</a>
+				<li>For more on how the validity of the inputted path is determined, see: <a href = "InputValidatorFeatureList.md">Input Validator Feature List</a></li>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -125,7 +156,7 @@
 				<li>And: The user declines to use the default directory, and instead opts to input a custom save directory path</li>
 		      		<li>If: The user enters a valid path and successfully saves a budget</li>
 				<li>Then: BudgetBoss will make the directory to which the budget was saved the new default save directory</li>
-				<li>For more on how the validity of the inputted path is determined, see: <a href = "InputValidatorFeatureList.md">Input Validator Feature List</a>
+				<li>For more on how the validity of the inputted path is determined, see: <a href = "InputValidatorFeatureList.md">Input Validator Feature List</a></li>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -145,7 +176,7 @@
 		    	<ul>
 		       		<li>Given: BudgetBoss is running</li>
 		       		<li>When: A user wants to exit the program </li>
-				<li>And: Is unable to access the menu option to exit</li>
+				<li>And: Is able to provide input to BudgetBoss</li>
 		       		<li>Then: Providing "exit" as an input regardless of case will indeed exit the program</li>
 		 	</td>
 		  	<td>Implemented</td>

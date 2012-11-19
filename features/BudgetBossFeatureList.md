@@ -26,6 +26,7 @@
 		      		<li>Given: BudgetBoss is running</li>
 		       		<li>When: A user needs to create a new budget</li>
 		      		<li>Then: The user will be prompted to name the budget, and it will be created and set as the budget in use</li>
+				<li>For more on the features of the budgets themselves, see: <a href = "BudgetFeatureList.md">Budget Feature List</a></li>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -167,6 +168,38 @@
 		      		<li>Given: BudgetBoss is running</li>
 		       		<li>When: A user is loading/saving a budget/budget report</li>
 		      		<li>Then: The default directory they are prompted with will be the last place a budget was saved/loaded from as both saving and loading share the same changeable default directory and either process can modify it</li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
+			<td>BudgetBoss clears console output on launch and when displaying menus</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: Personal finances need to be managed in a boss-like fashion</li>
+		       		<li>When: BudgetBoss is launched</li>
+				<li>And: When any menu is displayed
+		      		<li>Then: The console output is cleared allowing the menus to remain more or less fixed, for a more pleasant user experience</li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
+			<td>BudgetBoss can edit budget name</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: A budget is in use with BudgetBoss</li>
+		       		<li>When: A user wants to change the name of the budget in use</li>
+		      		<li>Then: A new name can be set for the budget, provided it is not "exit" (regardless of case, as that command works anywhere BudgetBoss takes input)</li>
+		 	</td>
+		 	<td>Implemented</td>
+		</tr>
+		<tr>
+			<td>BudgetBoss can edit budget dates</td>
+		  	<td>
+		   	<ul>
+		      		<li>Given: A budget is in use with BudgetBoss</li>
+		       		<li>When: A user wants to change the start/end date of the budget in use</li>
+		      		<li>Then: New dates can be set for the budget, provided they are valid</li>
+				<li>For more on how the validity of the date is determined, see: <a href = "InputValidatorFeatureList.md">InputValidator Feature List</a></li>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>

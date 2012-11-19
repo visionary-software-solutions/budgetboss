@@ -24,7 +24,7 @@
 		      		<li>Given: The main menu is displayed and a user wants to select a option</li>
 		       		<li>When: The user inputs a valid number corresponding with a visible option</li>
 		      		<li>Then: The associated action of the selected option is carried out</li>
-				<li>For more on how the validity of the input is determined, see: <a href = "BudgetBoss/features/InputValidatorFeatureList.md">Input Validator Feature List</a>
+				<li>For more on how the validity of the input is determined, see: <a href = "features/InputValidatorFeatureList.md">Input Validator Feature List</a>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>
@@ -57,7 +57,7 @@
 		       		<li>When: A user wants to generate a budget report and save it for future access</li>
 		      		<li>Then: "Save a budget report" will be an option on the menu</li>
 				<li>And: Upon selecting this option, a budget report will be generated and saved to a directory of the user's choosing, as a text file</li>
-				<li>For more on how saving works in BudgetBoss, see: <a href = "BudgetBoss/features/BudgetBossFeatureList.md">BudgetBoss Feature List</a>
+				<li>For more on how saving works in BudgetBoss, see: <a href = "features/BudgetBossFeatureList.md">BudgetBoss Feature List</a>
 		 	</td>
 		 	<td>Implemented</td>
 		</tr>

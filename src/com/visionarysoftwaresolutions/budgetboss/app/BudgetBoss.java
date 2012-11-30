@@ -58,8 +58,7 @@ public class BudgetBoss {
 		
 	public static void main(String args[]){
 		AnsiConsole.out.println(ansi().eraseScreen());
-		String currentUser = System.getProperty("user.name");
-		defaultDirectory = "/home/" + currentUser + "/Documents/";
+		defaultDirectory = Finder.pathFinder();
 		mainMenu = new MainMenu(currentBudget);
 		Printer.print("welcome");
 		Listener.getInput();

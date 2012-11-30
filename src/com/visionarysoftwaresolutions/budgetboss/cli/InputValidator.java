@@ -12,7 +12,9 @@ import com.visionarysoftwaresolutions.budgetboss.menu.*;
 
 public class InputValidator {
 	
-	public boolean inputNotAnInteger(String toCheck){
+	private InputValidator(){}
+	
+	public static boolean inputNotAnInteger(String toCheck){
 		if(itsTimeToExit(toCheck))
 			return false;
 		try{
@@ -20,10 +22,13 @@ public class InputValidator {
 		}catch(NumberFormatException e){
 			return true;
 		}
-		return false;
+		if(Integer.parseInt(toCheck) <= 0)
+			return true;
+		else
+			return false;
 	}
 	
-	public boolean pathIsInvalid(String toCheck){
+	public static boolean pathIsInvalid(String toCheck){
 		File directory = new File(toCheck);
 		if(itsTimeToExit(toCheck))
 			return false;
@@ -52,7 +57,7 @@ public class InputValidator {
 		}
 	}
 
-	public boolean inputNotABudget(String toCheck, int highestChoice){
+	public static boolean inputNotABudget(String toCheck, int highestChoice){
 		if(itsTimeToExit(toCheck))
 			return false;
 		if(inputNotAnInteger(toCheck))
@@ -70,7 +75,7 @@ public class InputValidator {
 			return false;
 	}
 	
-	public boolean menuChoiceIsInvalid(String toCheck, MasterMenu menu){
+	public static boolean menuChoiceIsInvalid(String toCheck, MasterMenu menu){
 		if(itsTimeToExit(toCheck))
 			return false;
 		if(inputNotAnInteger(toCheck)){
@@ -90,7 +95,7 @@ public class InputValidator {
 			return false;
 	}
 	
-	public boolean dateIsInvalid(String toCheck){
+	public static boolean dateIsInvalid(String toCheck){
 		if(itsTimeToExit(toCheck))
 			return false;
 		if(!toCheck.contains("/")){
@@ -151,7 +156,7 @@ public class InputValidator {
 			return false;
 	}
 	
-	public boolean itsTimeToExit(String toCheck){
+	public static boolean itsTimeToExit(String toCheck){
 		if(toCheck.equalsIgnoreCase("exit")){
 			BudgetBoss.endLoadSavedBudget();
 			BudgetBoss.endNeedNewBudget();

@@ -9,16 +9,16 @@ import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
 
 public class Opener {
+
+	private Opener(){}
 	
-	InputValidator validator = new InputValidator();
-	
-	public void getLoadDirectory(){
+	public static void getLoadDirectory(){
 		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Printer.print("whereSaved");
 		String toCheck = Listener.getInput();
-		while(validator.pathIsInvalid(toCheck))
+		while(InputValidator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();
 		if(!(toCheck.equals("exit"))){
 			if(toCheck.equalsIgnoreCase("y")){
@@ -28,7 +28,7 @@ public class Opener {
 		}
 	}
 		
-	private void searchDirectory(String directoryToSearch){
+	private static void searchDirectory(String directoryToSearch){
 		AnsiConsole.out.println(ansi().eraseScreen());
 		Printer.print("searchingDirectory");
 		File [] foundBudgets = Finder.findBudgets(directoryToSearch);
@@ -39,7 +39,7 @@ public class Opener {
 			Printer.print("noBudgetFound");
 	}
 	
-	private void chooseBudget(File[] foundBudgets){
+	private static void chooseBudget(File[] foundBudgets){
 		Printer.printFoundBudgets(foundBudgets);
 		Printer.print("openBudget");
 		int index = getChoiceNumber(foundBudgets);
@@ -50,10 +50,10 @@ public class Opener {
 		}
 	}
 	
-	private int getChoiceNumber(File[] foundBudgets){
+	private static int getChoiceNumber(File[] foundBudgets){
 		String toCheck = Listener.getInput();
 		int highestChoice = foundBudgets.length;
-		while(validator.inputNotABudget(toCheck, highestChoice))
+		while(InputValidator.inputNotABudget(toCheck, highestChoice))
 			toCheck = Listener.getInput();
 		if(!(toCheck.equals("exit")))
 			return (Integer.valueOf(toCheck) - 1);
@@ -61,7 +61,7 @@ public class Opener {
 			return -5;
 	}
 	
-	private Budget loadBudget(int index, File[] foundBudgets){
+	private static Budget loadBudget(int index, File[] foundBudgets){
 		FileInputStream newBudget = null;
 		ObjectInputStream toLoad = null;
 		Object loadedBudget = null;

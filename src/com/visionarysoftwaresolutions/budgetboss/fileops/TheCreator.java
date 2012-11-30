@@ -5,8 +5,10 @@ import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
 
 public class TheCreator {
+	
+	private TheCreator(){}
 		
-	public void createBudget(){
+	public static void createBudget(){
 		Printer.print("getBudgetName");
 		String desiredName = Listener.getInput();
 		if(!(desiredName.equals("exit"))){

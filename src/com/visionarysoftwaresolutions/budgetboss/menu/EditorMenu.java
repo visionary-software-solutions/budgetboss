@@ -5,7 +5,7 @@ import org.fusesource.jansi.AnsiConsole;
 import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
 import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
-import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
+import com.visionarysoftwaresolutions.budgetboss.fileops.Savior;
 
 public class EditorMenu implements MasterMenu{
 	
@@ -60,9 +60,8 @@ public class EditorMenu implements MasterMenu{
 	public void getOption(MasterMenu menu){
 		displayMenu();
 		System.out.println(errorMessage);
-		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		while(validator.menuChoiceIsInvalid(userInput, this)){
+		while(InputValidator.menuChoiceIsInvalid(userInput, this)){
 			displayMenu();
 			System.out.println(errorMessage);
 			userInput = Listener.getInput();
@@ -75,8 +74,7 @@ public class EditorMenu implements MasterMenu{
 	}
 	
 	private void reportToDisk(){
-		Salvation savior = new Salvation();
-		savior.generateBudgetReport(toEdit.getName(), toEdit);
+		Savior.generateBudgetReport(toEdit.getName(), toEdit);
 	}
 	
 	private void getNewName(){
@@ -95,8 +93,7 @@ public class EditorMenu implements MasterMenu{
 	private void getNewStartDate(){
 		Printer.print("getNewStartDate");
 		String userInput = Listener.getInput();
-		InputValidator validator = new InputValidator();
-		while(validator.dateIsInvalid(userInput))
+		while(InputValidator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
 		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setStartDate(userInput);
@@ -105,8 +102,7 @@ public class EditorMenu implements MasterMenu{
 	private void getNewEndDate(){
 		Printer.print("getNewEndDate");
 		String userInput = Listener.getInput();
-		InputValidator validator = new InputValidator();
-		while(validator.dateIsInvalid(userInput))
+		while(InputValidator.dateIsInvalid(userInput))
 			userInput = Listener.getInput();
 		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setEndDate(userInput);

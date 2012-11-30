@@ -10,8 +10,6 @@ import com.visionarysoftwaresolutions.budgetboss.menu.*;
 
 public class BudgetBoss {
 	
-	static Opener opener = new Opener();
-	static TheCreator creator = new TheCreator();
 	static Budget currentBudget = new Budget("No budget loaded");
 	static String defaultDirectory;
 	static MasterMenu mainMenu;
@@ -66,9 +64,9 @@ public class BudgetBoss {
 		while (stillUsingBudgetBoss){
 			mainMenu.getOption(mainMenu);
 			while(loadASavedBudget)
-				opener.getLoadDirectory();
+				Opener.getLoadDirectory();
 			while(needANewBudget)
-				creator.createBudget();
+				TheCreator.createBudget();
 		}
 	}
 }

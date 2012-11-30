@@ -2,14 +2,13 @@ package com.visionarysoftwaresolutions.budgetboss.cli;
 
 import java.io.File;
 import java.util.*;
-
 import com.visionarysoftwaresolutions.budgetboss.menu.MasterOption;
 
 public class Printer {
 	
-	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
-	
 	private Printer(){}
+
+	private static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
 	
 	public static String getPrintout(String toGet){
 		return cliOutput.getString(toGet);

@@ -6,15 +6,15 @@ import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
 import com.visionarysoftwaresolutions.budgetboss.budget.Budget;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
 
-public class Salvation {
+public class Savior {
 	
-	InputValidator validator = new InputValidator();
+	private Savior(){}
 	
-	private String getSaveDirectory(){
+	private static String getSaveDirectory(){
 		Printer.print("getSaveDirectoryPath");
 		System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
 		String toCheck = Listener.getInput();
-		while(validator.pathIsInvalid(toCheck))
+		while(InputValidator.pathIsInvalid(toCheck))
 			toCheck = Listener.getInput();
 		if(!(toCheck.equalsIgnoreCase("exit"))){
 			if(toCheck.equalsIgnoreCase("y"))
@@ -25,7 +25,7 @@ public class Salvation {
 			return toCheck;
 	}
 
-	public void writeBudgetToDisk(String fileName, Budget budget){
+	public static void writeBudgetToDisk(String fileName, Budget budget){
 		String pathToSalvation = getSaveDirectory();
 		if(!(pathToSalvation.equalsIgnoreCase("exit"))){
 			try{
@@ -41,7 +41,7 @@ public class Salvation {
 		}
 	}
 	
-	public void generateBudgetReport(String fileName, Budget budget){
+	public static void generateBudgetReport(String fileName, Budget budget){
 		String pathToSalvation = getSaveDirectory();
 		if(!(pathToSalvation.equalsIgnoreCase("exit"))){
 			try {

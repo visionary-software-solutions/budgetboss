@@ -5,7 +5,7 @@ import org.fusesource.jansi.AnsiConsole;
 import com.visionarysoftwaresolutions.budgetboss.app.BudgetBoss;
 import com.visionarysoftwaresolutions.budgetboss.budget.*;
 import com.visionarysoftwaresolutions.budgetboss.cli.*;
-import com.visionarysoftwaresolutions.budgetboss.fileops.Salvation;
+import com.visionarysoftwaresolutions.budgetboss.fileops.Savior;
 
 public class MainMenu implements MasterMenu {
 	
@@ -58,9 +58,8 @@ public class MainMenu implements MasterMenu {
 	public void getOption(MasterMenu menu){
 		displayMenu();
 		System.out.println(errorMessage);
-		InputValidator validator = new InputValidator();
 		String userInput = Listener.getInput();
-		while (validator.menuChoiceIsInvalid(userInput, menu)){
+		while (InputValidator.menuChoiceIsInvalid(userInput, menu)){
 			displayMenu();
 			System.out.println(errorMessage);
 			userInput = Listener.getInput();
@@ -82,8 +81,7 @@ public class MainMenu implements MasterMenu {
 	
 	private void reportToDisk(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
-			Salvation savior = new Salvation();
-			savior.generateBudgetReport(currentBudget.getName(), currentBudget);
+			Savior.generateBudgetReport(currentBudget.getName(), currentBudget);
 		}else{
 			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);
@@ -103,8 +101,7 @@ public class MainMenu implements MasterMenu {
 
 	private void saveBudget(){
 		if(!(currentBudget.getName().equals("No budget loaded"))){
-			Salvation savior = new Salvation();
-			savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
+			Savior.writeBudgetToDisk(currentBudget.getName(), currentBudget);
 		}else{
 			errorMessage = Printer.getPrintout("noBudgetLoaded");
 			getOption(this);

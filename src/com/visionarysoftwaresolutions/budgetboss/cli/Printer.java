@@ -9,6 +9,8 @@ public class Printer {
 	
 	public static ResourceBundle cliOutput = ResourceBundle.getBundle("cliOutput");
 	
+	private Printer(){}
+	
 	public static String getPrintout(String toGet){
 		return cliOutput.getString(toGet);
 	}
@@ -25,15 +27,12 @@ public class Printer {
 	}
 	
 	public static void printFoundBudgets(File[] foundBudgets){
-		List<String> budgetPaths= new ArrayList<String>();
-		String delimiter = "[/]";
+		List<String> budgetNames = new ArrayList<String>();
 		for(int i = 0; i < foundBudgets.length; i++)
-			budgetPaths.add(foundBudgets[i].toString());
-		for(int i = 0; i < budgetPaths.size(); i++){
-			String pathName = budgetPaths.get(i);
-			String[] splitPathName = pathName.split(delimiter);
-			String fileName = splitPathName[splitPathName.length - 1];
-			System.out.println((i+1) + ") " + fileName);
+			budgetNames.add(foundBudgets[i].getName());
+		for(int i = 0; i < budgetNames.size(); i++){
+			String budgetName = budgetNames.get(i);
+			System.out.println((i+1) + ") " + budgetName);
 		}
 	}
 }

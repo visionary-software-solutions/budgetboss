@@ -1,0 +1,13 @@
+#Binaries Directory#
+bin
+
+#Project Files#
+*.class
+*.classpath
+*.project
+*.settings
+
+# Package Files #
+*.jar
+*.war
+*.ear

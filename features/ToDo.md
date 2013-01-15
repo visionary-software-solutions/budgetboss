@@ -11,6 +11,22 @@ To-Do List : BudgetBoss
 	</thead>
 	<tbody>
 		<tr>
+		  <td>Listener can take a String input from console or text file and return it for use (via depency injection)</td>
+		  <td>
+		    <ul>
+			   <li>Story: A user provides a String input to a program</li>
+			   <li>Scenario 1: A user inputs a String directly in to the console</li>
+		       <li>Given: A user is required to provide a String to progress BudgetBoss</li>
+		       <li>When: The user types the desired characters into the console</li>
+		       <li>Then: Listener will read the console input and return the String</li>
+			   <li>Scenario 2: A user inputs a String from a text file</li>
+		       <li>Given: A user is required to provide a String to progress BudgetBoss</li>
+		       <li>When: Listener is pointed to a text file containing a String</li>
+		       <li>Then: Listener will read the input from the file and return the String</li>
+		  </td>
+	 	  <td>Currently working on this</td>
+		</tr>
+		<tr>
 		  <td>BudgetBoss has a default initial save/load directory - Windows</td>
 		  <td>
 		    <ul>

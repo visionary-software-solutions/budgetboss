@@ -10,7 +10,7 @@ public class TheCreator {
 		
 	public static void createBudget(){
 		Printer.print("getBudgetName");
-		String desiredName = Listener.getInput();
+		String desiredName = TakeInput.getInput();
 		if(!(desiredName.equals("exit"))){
 			System.out.println("Creating budget " + desiredName + "...\n");
 			Budget newBudget = new Budget(desiredName);

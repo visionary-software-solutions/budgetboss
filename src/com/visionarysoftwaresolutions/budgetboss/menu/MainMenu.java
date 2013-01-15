@@ -58,11 +58,11 @@ public class MainMenu implements MasterMenu {
 	public void getOption(MasterMenu menu){
 		displayMenu();
 		System.out.println(errorMessage);
-		String userInput = Listener.getInput();
+		String userInput = TakeInput.getInput();
 		while (InputValidator.menuChoiceIsInvalid(userInput, menu)){
 			displayMenu();
 			System.out.println(errorMessage);
-			userInput = Listener.getInput();
+			userInput = TakeInput.getInput();
 		}
 		if(!(userInput.equalsIgnoreCase("exit"))){
 			int optionChose = Integer.valueOf(userInput);

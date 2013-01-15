@@ -14,15 +14,10 @@ To-Do List : BudgetBoss
 		  <td>Listener can take a String input from console or text file and return it for use (via depency injection)</td>
 		  <td>
 		    <ul>
-			   <li>Story: A user provides a String input to a program</li>
-			   <li>Scenario 1: A user inputs a String directly in to the console</li>
-		       <li>Given: A user is required to provide a String to progress BudgetBoss</li>
-		       <li>When: The user types the desired characters into the console</li>
-		       <li>Then: Listener will read the console input and return the String</li>
-			   <li>Scenario 2: A user inputs a String from a text file</li>
-		       <li>Given: A user is required to provide a String to progress BudgetBoss</li>
-		       <li>When: Listener is pointed to a text file containing a String</li>
-		       <li>Then: Listener will read the input from the file and return the String</li>
+			   <li>Story: When it is necessary for a  program to receive external input, Listener can provide it</li>
+			   <li>Given: A Listener is needed to take input</li>
+		       <li>When: Input is provided</li>
+		       <li>Then: Listener will use a reader to take the input</li>
 		  </td>
 	 	  <td>Currently working on this</td>
 		</tr>

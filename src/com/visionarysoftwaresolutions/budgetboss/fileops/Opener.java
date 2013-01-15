@@ -17,9 +17,9 @@ public class Opener {
 		Printer.print("savedInDefault");
 		System.out.println(BudgetBoss.getDefaultDirectory());
 		Printer.print("whereSaved");
-		String toCheck = Listener.getInput();
+		String toCheck = Reader.getInput();
 		while(InputValidator.pathIsInvalid(toCheck))
-			toCheck = Listener.getInput();
+			toCheck = Reader.getInput();
 		if(!(toCheck.equals("exit"))){
 			if(toCheck.equalsIgnoreCase("y")){
 				searchDirectory(BudgetBoss.getDefaultDirectory());
@@ -51,10 +51,10 @@ public class Opener {
 	}
 	
 	private static int getChoiceNumber(File[] foundBudgets){
-		String toCheck = Listener.getInput();
+		String toCheck = Reader.getInput();
 		int highestChoice = foundBudgets.length;
 		while(InputValidator.inputNotABudget(toCheck, highestChoice))
-			toCheck = Listener.getInput();
+			toCheck = Reader.getInput();
 		if(!(toCheck.equals("exit")))
 			return (Integer.valueOf(toCheck) - 1);
 		else

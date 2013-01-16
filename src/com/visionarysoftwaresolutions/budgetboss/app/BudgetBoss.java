@@ -59,7 +59,7 @@ public class BudgetBoss {
 		defaultDirectory = Finder.pathFinder();
 		mainMenu = new MainMenu(currentBudget);
 		Printer.print("welcome");
-		TakeInput.getInput();
+		//TakeInput.create().getStringConsole();
 		
 		while (stillUsingBudgetBoss){
 			mainMenu.getOption(mainMenu);

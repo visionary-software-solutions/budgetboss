@@ -13,9 +13,9 @@ public class Savior {
 	private static String getSaveDirectory(){
 		Printer.print("getSaveDirectoryPath");
 		System.out.println("The default is: " + BudgetBoss.getDefaultDirectory());
-		String toCheck = Reader.getInput();
+		String toCheck = Listener.create().getInput();
 		while(InputValidator.pathIsInvalid(toCheck))
-			toCheck = Reader.getInput();
+			toCheck = Listener.create().getInput();
 		if(!(toCheck.equalsIgnoreCase("exit"))){
 			if(toCheck.equalsIgnoreCase("y"))
 				return BudgetBoss.getDefaultDirectory();

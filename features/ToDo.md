@@ -11,17 +11,6 @@ To-Do List : BudgetBoss
 	</thead>
 	<tbody>
 		<tr>
-		  <td>Listener can take a String input from console or text file and return it for use (via depency injection)</td>
-		  <td>
-		    <ul>
-			   <li>Story: When it is necessary for a  program to receive external input, Listener can provide it</li>
-			   <li>Given: A Listener is needed to take input</li>
-		       <li>When: Input is provided</li>
-		       <li>Then: Listener will use a reader to take the input</li>
-		  </td>
-	 	  <td>Currently working on this</td>
-		</tr>
-		<tr>
 		  <td>BudgetBoss has a default initial save/load directory - Windows</td>
 		  <td>
 		    <ul>

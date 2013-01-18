@@ -122,6 +122,7 @@ public class MainMenu implements MasterMenu {
 		BudgetBoss.doneUsingBudgetBoss();
 		BudgetBoss.endLoadSavedBudget();
 		BudgetBoss.endNeedNewBudget();
+		Listener.create().closeListener();
 	}
 	
 	public void chooseOption(int optionChose){

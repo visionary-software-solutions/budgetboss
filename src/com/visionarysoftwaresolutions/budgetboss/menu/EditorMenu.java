@@ -87,6 +87,7 @@ public class EditorMenu implements MasterMenu{
 			BudgetBoss.endLoadSavedBudget();
 			BudgetBoss.endNeedNewBudget();
 			BudgetBoss.doneUsingBudgetBoss();
+			Listener.create().closeListener();
 		}
 	}
 	

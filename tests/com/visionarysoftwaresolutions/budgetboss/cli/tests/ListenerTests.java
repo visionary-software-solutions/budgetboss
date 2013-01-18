@@ -28,4 +28,11 @@ public class ListenerTests {
 		//Then: TakeInput will get the correct String from the user
 		Assert.assertTrue(isNeeded.equals("Input from console!"));
 	}
+	
+	@Test
+	public void testMulitpleInstantiationsRealInput(){
+		//This ensures that the reader doesn't close before the end of the program
+		String firstInput = Listener.create().getInput();
+		String secondInput = Listener.create().getInput();
+	}
 }

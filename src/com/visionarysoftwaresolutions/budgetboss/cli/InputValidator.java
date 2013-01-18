@@ -161,6 +161,7 @@ public class InputValidator {
 			BudgetBoss.endLoadSavedBudget();
 			BudgetBoss.endNeedNewBudget();
 			BudgetBoss.doneUsingBudgetBoss();
+			Listener.create().closeListener();
 			return true;
 		}else
 			return false;

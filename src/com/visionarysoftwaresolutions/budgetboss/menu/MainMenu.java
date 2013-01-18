@@ -58,11 +58,11 @@ public class MainMenu implements MasterMenu {
 	public void getOption(MasterMenu menu){
 		displayMenu();
 		System.out.println(errorMessage);
-		String userInput = Listener.getInput();
+		String userInput = Listener.create().getInput();
 		while (InputValidator.menuChoiceIsInvalid(userInput, menu)){
 			displayMenu();
 			System.out.println(errorMessage);
-			userInput = Listener.getInput();
+			userInput = Listener.create().getInput();
 		}
 		if(!(userInput.equalsIgnoreCase("exit"))){
 			int optionChose = Integer.valueOf(userInput);
@@ -122,6 +122,7 @@ public class MainMenu implements MasterMenu {
 		BudgetBoss.doneUsingBudgetBoss();
 		BudgetBoss.endLoadSavedBudget();
 		BudgetBoss.endNeedNewBudget();
+		Listener.create().closeListener();
 	}
 	
 	public void chooseOption(int optionChose){

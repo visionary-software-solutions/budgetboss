@@ -60,11 +60,11 @@ public class EditorMenu implements MasterMenu{
 	public void getOption(MasterMenu menu){
 		displayMenu();
 		System.out.println(errorMessage);
-		String userInput = Listener.getInput();
+		String userInput = Listener.create().getInput();
 		while(InputValidator.menuChoiceIsInvalid(userInput, this)){
 			displayMenu();
 			System.out.println(errorMessage);
-			userInput = Listener.getInput();
+			userInput = Listener.create().getInput();
 		}
 		if(!(userInput.equalsIgnoreCase("exit"))){
 			int optionChose = Integer.valueOf(userInput);
@@ -79,7 +79,7 @@ public class EditorMenu implements MasterMenu{
 	
 	private void getNewName(){
 		Printer.print("getNewName");
-		String userInput = Listener.getInput();
+		String userInput = Listener.create().getInput();
 		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setName(userInput);
 		else{
@@ -87,23 +87,24 @@ public class EditorMenu implements MasterMenu{
 			BudgetBoss.endLoadSavedBudget();
 			BudgetBoss.endNeedNewBudget();
 			BudgetBoss.doneUsingBudgetBoss();
+			Listener.create().closeListener();
 		}
 	}
 	
 	private void getNewStartDate(){
 		Printer.print("getNewStartDate");
-		String userInput = Listener.getInput();
+		String userInput = Listener.create().getInput();
 		while(InputValidator.dateIsInvalid(userInput))
-			userInput = Listener.getInput();
+			userInput = Listener.create().getInput();
 		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setStartDate(userInput);
 	}
 	
 	private void getNewEndDate(){
 		Printer.print("getNewEndDate");
-		String userInput = Listener.getInput();
+		String userInput = Listener.create().getInput();
 		while(InputValidator.dateIsInvalid(userInput))
-			userInput = Listener.getInput();
+			userInput = Listener.create().getInput();
 		if(!(userInput.equalsIgnoreCase("exit")))
 			toEdit.setEndDate(userInput);
 	}
